@@ -16,10 +16,11 @@ public:
 public:
     Graph(string filename){
         int value;
-        ifstream in(filename);  cout << "    test    " << endl;
-        in >> value;    cout << "2    test    " << endl;
-        vertexnumber = value;   cout << "3    test    " << endl;
+        ifstream in(filename);  //cout << "    test    " << endl;
+        in >> value;    //cout << "2    test    " << endl;
+        vertexnumber = value;   //cout << "3    test    " << endl;
         matrix.assign(vertexnumber, vector<int>(vertexnumber,INF));
+        cout << "Matrix Initialization" << endl;
         for (int i = 0 ; i < vertexnumber ; i++){
             cout << "[ ";
             for (int j = 0 ; j < vertexnumber; j++){
@@ -27,25 +28,25 @@ public:
             cout << " ]" << endl;}
         int src,dst,w;
         int count;
-        cout << "4    test    " << endl;
+//        cout << "4    test    " << endl;
         for(;;){
             if(in>>src>>dst>>w){
                 // 가중치 초기화
-                cout << "5    test    " << endl;
+//                cout << "5    test    " << endl;
                 matrix[src][dst] = w;
-                cout << "row src " << src <<
-                " and column dst " << dst << " is w " << w << endl;
-                cout << "6    test    " << endl;
+//                cout << "row src " << src <<
+//                " and column dst " << dst << " is w " << w << endl;
+//                cout << "6    test    " << endl;
                 count++;
-                cout << "count" << count << endl;
+//                cout << "count" << count << endl;
                 //matrix[v-1][u-1] = w; //무방향성 그래프일 경우 다음 코드를 추가한다. David: why v-1, u-1 are? I did u, v.
             }else{
                 break;
             }
-            cout << "7    test    " << endl;
+//            cout << "7    test    " << endl;
         }
         edgenumber = count;
-        cout << "8    test    " << endl;
+//        cout << "8    test    " << endl;
         in.close();
     
         cout << "vertices are " << vertexnumber << endl;
@@ -57,12 +58,22 @@ public:
                 cout << matrix[i][j] << "\t";}
             cout << " ]" << endl;}
     
-        dijkstra(src);
+        dijkstra(1);
     }
 
-    
-    
-    
+//    int minDistance(int dist, bool check){
+//        int min = INF;
+//        int min_index;
+//        for (int v = 0; v < vertexnumber; v++){
+//            if(!check[v] && (min > dist[v])){
+//                min_index = v;
+//                min = dist[v];
+//            }
+//        }
+//        return min_index;
+//    }
+//
+//
     void dijkstra(int src){
         bool check[vertexnumber]; // 방문 여부, 최단 경로
         int dist[vertexnumber];
@@ -102,24 +113,68 @@ public:
         
         dist[src] = 0;   // initial condition as well as self is zero.
         
-    
+        for(int i = 0; i < vertexnumber; i++){
+            if(!david_check[src][i] && matrix[src][i] && (dist[i]>(dist[src]+matrix[src][i]))){
+                
+                dist[i] = dist[src] + matrix[src][i];
+//              cout << "src " << src << " i " << i << " is " << 2 << endl;
         
-        for(int count = 0 ; count < (vertexnumber-1) ; count ++){
-            int u = minDistance(dist, check);
-            
-            for(int v = 0 ; v < vertexnumber ; v++){
-                if(!check[v] && matrix[u][v] && (dist[u] != INF) && (dist[v] > (dist[u] + matrix[u][v]){
-                    dist[v] = dist[u] + matrix[u][v];
+                cout << "from " << src << " to " << i << " : dist[" << i << "] is " << dist[i] << endl;
+                cout << "1st for-loop david_check status change \n";
+                david_check[src][i] = true;
+                
+                for(int j = (vertexnumber-1); j >= vertexnumber; j--){
+                    if(!david_check[i][j] && matrix[i][j] && (dist[j]>(dist[i]+matrix[i][j]))){
+                        dist[j] = dist[i] + matrix[i][j];
+                        cout << "from " << i << " to " << j << " : dist[" << j << "] is " << dist[j] << endl;
+                        cout << "2nd for-loop david_check status change \n";
+                        david_check[i][j] = true;
+                        
+                    }
                 }
+                
             }
         }
-        check[u] = true;
-        for(int i = 0 ; i < vertexnumber; i++){
-            
-            
-                                                            
+
+        // FROM HERE HERE HERE
+        
+        
+        cout << "distance matrix FOR itself" << endl;
+        cout << "[ ";
+        for(int i = 0 ; i < vertexnumber ; i++){
+            cout << dist[i] << "\t";
+        }cout << " ]" << endl;
+        
+        
+        cout << "true false matrix: 2D David" << endl;
+        for(int i = 0 ; i < vertexnumber ; i++){
+            cout << "[ ";
+            for(int j=0; j < vertexnumber; j++){
+                cout << david_check[i][j] << "\t";
+            }
+            cout << " ]" << endl;
         }
-                                                                     
+        
+//
+//
+//        for(int count = 0 ; count < (vertexnumber-1) ; count ++){
+//            int u = minDistance(dist, check);
+//
+//            for(int v = 0 ; v < vertexnumber ; v++){
+//                if(!check[v] && matrix[u][v] && (dist[u] != INF) && (dist[v] > (dist[u] + matrix[u][v]))){
+//                    dist[v] = dist[u] + matrix[u][v];
+//                }
+//            }
+//        check[u] = true;
+//
+//        }
+//
+//        for(int i = 0 ; i < vertexnumber; i++){
+//
+//
+//
+//        }
+        
 
     }
     
