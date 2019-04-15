@@ -1,0 +1,169 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+
+using namespace std;
+
+
+class UnorderedArrayList
+{
+	string* buf;
+	int capacity;
+	int size;
+
+public:
+	UnorderedArrayList(int max_len);
+	~UnorderedArrayList();
+	void insert(string word);
+	bool find(string word);
+	void remove(string word);
+	void print(ostream& out);
+	bool isEmpty();
+	bool isFull();
+
+};
+
+
+// David wrote constructor;
+UnorderedArrayList::UnorderedArrayList(int max_len)
+{
+	capacity = max_len;
+	buf = new string[capacity];
+	size = 0;
+}
+
+// David wrote destructor;
+UnorderedArrayList::~UnorderedArrayList()
+{
+	delete[] buf;
+}
+
+// David wrote isEmpty();
+bool UnorderedArrayList::isEmpty()
+{
+	if(buf == NULL) // size == 0?
+		return true;
+	else
+		return false;
+}
+
+// David wrote isFull();
+bool UnorderedArrayList::isFull()
+{
+	if(buf == NULL) // (size >= capacity? true : false)??
+		return false;
+	else
+		return true;
+}
+
+// David wrote void insert(string word);
+void UnorderedArrayList::insert(string word)
+{
+	buf[size] = word;
+	size++;
+}
+
+// David wrote
+bool UnorderedArrayList::find(string word)
+{
+	for(int i=0; i < size; i++)
+	{
+		if (buf[i] == word)
+		{
+			return true;
+//			cout << "Found";
+		} else
+		{
+			return false;
+//			cout << "Not found";
+		}
+	}
+}
+			
+// David wrote
+void UnorderedArrayList::remove(string word)
+{
+	if(bool find = true)
+	{
+		for(int i=0; i < size; i++)
+		{
+			if (buf[i] == word)
+			{
+				for(int j=i+1; j<(size-1); j++)
+				{	
+					buf[j-1] = buf[j];
+				} 	
+			}
+		}
+	}
+}
+
+
+ostream& operator << (ostream& out, UnorderedArrayList& L)
+{
+	L.print(out);
+	return out;
+}
+
+void insert_all_words(string file_name, UnorderedArrayList& L)
+{
+
+//declare timer object
+//open file
+	ifstream L("random_b.txt");
+
+//start timer
+//for each word, w, in file
+//	L.insert(w);
+// David wrote and commented: Do I have to use L.insert(w)? how to use this? 
+	if(L.is_open())
+	{
+		int i=0;
+		while(!L.eof())
+		{	
+			L >> buf[i];
+			i++;
+		}	
+		cout << i << "lines are" << endl;
+	}
+//stop timer
+ 
+//close file
+	L.close();
+//report time
+
+
+}
+
+void find_all_words(string file_name, UnorderedArrayList& L)
+{
+	int num;
+			
+
+
+}
+
+void remove_all_words(string file_name, UnorderedArrayList& L)
+{
+
+
+}
+
+
+void test_UnorderedArrayList_methods(string file_name, UnorderedArrayList& L)
+{
+	cout << "Testing UnorderedArrayList: " << endl;
+	insert_all_words(file_name, L);
+	find_all_words(file_name, L);
+	remove_all_words(file_name, L);
+}
+
+
+int main(int argc, char* argv[])
+{
+	const char* input_file = argc == 2 ? argv[1]: "random_b.txt";
+	UnorderedArrayList UAL(45500);
+	test_UnorderedArrayList_methods(input_file, UAL);
+
+	return 0;
+}
