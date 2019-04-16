@@ -91,18 +91,15 @@ bool UnorderedArrayList::find(string word)
 // David wrote
 void UnorderedArrayList::remove(string word)
 {
-	if(bool find = true)
+	for(int i=0; i < size; i++)
 	{
-		for(int i=0; i < size; i++)
-		{
-			if (buf[i] == word)
-			{ 	
-				buf[i]=buf[size-1];
-				size = size - 1;
-				break; 
-				// break: to stop further for-loop 
-				// after if-statement achieved.
-			}
+		if (buf[i] == word)
+		{ 	
+			buf[i]=buf[size-1];
+			size = size - 1;
+			break; 
+			// break: to stop further for-loop 
+			// after if-statement achieved.
 		}
 	}
 }
