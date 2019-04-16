@@ -41,7 +41,7 @@ UnorderedArrayList::~UnorderedArrayList()
 // David wrote isEmpty();
 bool UnorderedArrayList::isEmpty()
 {
-	if(buf == NULL) // size == 0?
+	if(size == 0)
 		return true;
 	else
 		return false;
@@ -50,17 +50,24 @@ bool UnorderedArrayList::isEmpty()
 // David wrote isFull();
 bool UnorderedArrayList::isFull()
 {
-	if(buf == NULL) // (size >= capacity? true : false)??
-		return false;
-	else
+	if(size >= capacity)
 		return true;
+	else
+		return false;
 }
 
 // David wrote void insert(string word);
 void UnorderedArrayList::insert(string word)
 {
-	buf[size] = word;
-	size++;
+	if(bool isfull = true)
+	{
+		cout << "sorry, size is full. no more insertion" << endl;
+	}	
+	else
+	{
+		buf[size] = word;
+		size++;
+	}
 }
 
 // David wrote
@@ -89,10 +96,11 @@ void UnorderedArrayList::remove(string word)
 		{
 			if (buf[i] == word)
 			{
-				for(int j=i+1; j<(size-1); j++)
-				{	
-					buf[j-1] = buf[j];
-				} 	
+				buf[i]=buf[size-1];
+				size = size - 1;
+				break; 
+				// break: to stop further for-loop 
+				// after if-statement achieved. 	
 			}
 		}
 	}
@@ -109,27 +117,29 @@ void insert_all_words(string file_name, UnorderedArrayList& L)
 {
 
 //declare timer object
+
 //open file
-	ifstream L("random_b.txt");
+	ifstream f("random_b.txt");
+	string w;	
 
 //start timer
+
 //for each word, w, in file
-//	L.insert(w);
-// David wrote and commented: Do I have to use L.insert(w)? how to use this? 
-	if(L.is_open())
+	if(f.is_open())
 	{
-		int i=0;
-		while(!L.eof())
+		while(getline(f, w))
 		{	
-			L >> buf[i];
-			i++;
+		L.insert(w); 
 		}	
-		cout << i << "lines are" << endl;
+	}
+	else
+	{
+		cout << "file is not opened. check" << endl;
 	}
 //stop timer
  
 //close file
-	L.close();
+	f.close();
 //report time
 
 
@@ -137,14 +147,27 @@ void insert_all_words(string file_name, UnorderedArrayList& L)
 
 void find_all_words(string file_name, UnorderedArrayList& L)
 {
-	int num;
-			
-
+	ifstream f("random_b.txt");
+	string word;
+//	assume file is opened and object L is already created and inserted.	
+	
+	while(getline(f, word))
+	{
+		L.find(word);
+	}
 
 }
 
 void remove_all_words(string file_name, UnorderedArrayList& L)
 {
+	ifstream f("random_b.txt");
+	string word;
+//	assume file is opened and object L is already created and inserted.	
+
+	while(getline(f, word))
+	{
+		L.remove(word);
+	}
 
 
 }
