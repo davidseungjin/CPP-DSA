@@ -1,6 +1,7 @@
-#include<iostream>
-#include<string>
-#include<fstream>
+#include <iostream>
+#include <string>
+#include <fstream>
+#include "Timer.h"
 
 using namespace std;
 
@@ -59,11 +60,11 @@ bool UnorderedArrayList::isFull()
 // David wrote void insert(string word);
 void UnorderedArrayList::insert(string word)
 {
-	if(bool isfull = true)
-	{
-		cout << "sorry, size is full. no more insertion" << endl;
-	}	
-	else
+//	if(bool isfull = true)
+//	{
+//		cout << "sorry, size is full. no more insertion" << endl;
+//	}	
+//	else
 	{
 		buf[size] = word;
 		size++;
@@ -95,19 +96,100 @@ void UnorderedArrayList::remove(string word)
 		for(int i=0; i < size; i++)
 		{
 			if (buf[i] == word)
-			{
+			{ 	
 				buf[i]=buf[size-1];
 				size = size - 1;
 				break; 
 				// break: to stop further for-loop 
-				// after if-statement achieved. 	
+				// after if-statement achieved.
 			}
 		}
 	}
 }
 
 
+class UnorderedLinkedList
+{
+	struct ListNode{
+		string info;
+		ListNode* next;
+		ListNode (string new_info, ListNode *new_next)
+			:info(new_info), next(new_next){}
+		static void print(ostream& out, ListNode* L)
+		{
+			if(L)
+			{
+				out << L->info << endl;
+				print(out, L->next);
+			}
+		}
+	};
+	ListNode* head;
+public:
+	UnorderedLinkedList();
+	~UnorderedLinkedList();
+	void insert(string word);
+	bool find(string word);
+	void remove(string word);
+	void print(ostream& out);
+	bool isEmpty();
+//	bool isFull(); is it worthy talk about full in linked list?
+};
+
+
+//isEmpty
+bool UnorderedLinkedList::isEmpty()
+{
+	return head==NULL;
+}
+
+// constructor
+UnorderedLinkedList::UnorderedLinkedList()
+:head(NULL){}
+
+
+// destructor
+UnorderedLinkedList::~UnorderedLinkedList()
+{
+	while(!empty())
+		remove();
+}
+
+//insert
+UnorderedLinkedList::insert(string word)
+{
+	ListNode* v = new UnorderedLinkedList;
+	v->info = file_name;
+	v->next = head;
+	head = v;
+}
+
+//remove
+UnorderedLinkedList::remove(string word)
+{
+	ListNode* old = head;
+	head = old->next;
+	delete old;
+}
+
+
+
+
+
+
+
+
+void UnorderedArrayList::print(ostream& out){}
+//David wrote: when compile, undefined error unless above is declared.
+
 ostream& operator << (ostream& out, UnorderedArrayList& L)
+{
+	L.print(out);
+	return out;
+}
+
+
+ostream& operator << (ostream& out, UnorderedLinkedList& L)
 {
 	L.print(out);
 	return out;
@@ -117,13 +199,14 @@ void insert_all_words(string file_name, UnorderedArrayList& L)
 {
 
 //declare timer object
-
+	Timer t;
+	double eTime;
 //open file
 	ifstream f("random_b.txt");
 	string w;	
 
 //start timer
-
+	t.start();
 //for each word, w, in file
 	if(f.is_open())
 	{
@@ -137,56 +220,114 @@ void insert_all_words(string file_name, UnorderedArrayList& L)
 		cout << "file is not opened. check" << endl;
 	}
 //stop timer
- 
+	t.elapsedUserTime(eTime); 
 //close file
 	f.close();
 //report time
-
+	cout << "insert_all_words run time \t\t" << eTime << endl;
 
 }
 
 void find_all_words(string file_name, UnorderedArrayList& L)
 {
+//declare timer object
+	Timer t;
+	double eTime;
+//open file
 	ifstream f("random_b.txt");
 	string word;
 //	assume file is opened and object L is already created and inserted.	
 	
+//start timer
+	t.start();
 	while(getline(f, word))
 	{
 		L.find(word);
 	}
+//stop timer
+	t.elapsedUserTime(eTime); 
+//close file
+	f.close();
 
+	cout << "find_all_words run time \t\t" << eTime << endl;
 }
 
 void remove_all_words(string file_name, UnorderedArrayList& L)
 {
+//declare timer object
+	Timer t;
+	double eTime;
+//open file
 	ifstream f("random_b.txt");
 	string word;
 //	assume file is opened and object L is already created and inserted.	
 
+//start timer
+	t.start();
 	while(getline(f, word))
 	{
 		L.remove(word);
 	}
+//stop timer
+	t.elapsedUserTime(eTime); 
+//close file
+	f.close();
+	cout << "remove_all_words run time \t\t" << eTime << endl;
+}
 
+/*
+void insert_all_words(string file_name, UnorderedLinkedList& L)
+{
+
+ * declare timer object
+ * open file
+ * start timer
+ * for each word, w, in file
+ * 	L.insert(w);
+ * stop timer
+ * close file
+ * report time
 
 }
 
+void find_all_words(string file_name, UnorderedLinkedList& L)
+{
+}
+
+void remove_all_words(string file_name, UnorderedLinkedList& L)
+{
+}
+*/
 
 void test_UnorderedArrayList_methods(string file_name, UnorderedArrayList& L)
+{
+	cout << "Testing UnorderedArrayList: " << endl;
+	insert_all_words("random_b.txt", L);
+	find_all_words("random_b.txt", L);
+	remove_all_words(file_name, L);
+}
+
+/*
+void test_UnorderedLinkedList_methods(string file_name, UnorderedLinkedList& L)
 {
 	cout << "Testing UnorderedArrayList: " << endl;
 	insert_all_words(file_name, L);
 	find_all_words(file_name, L);
 	remove_all_words(file_name, L);
 }
+*/
 
-
-int main(int argc, char* argv[])
+int main(int argc, char * argv[])
 {
-	const char* input_file = argc == 2 ? argv[1]: "random_b.txt";
+	const char * input_file = argc == 2 ? argv[1] : "random_b.txt";
 	UnorderedArrayList UAL(45500);
 	test_UnorderedArrayList_methods(input_file, UAL);
+//	UnorderedLinkedList ULL;
+//	test_UnorderedLinkedList_methods(input_file, ULL);
+
 
 	return 0;
 }
+
+
+
