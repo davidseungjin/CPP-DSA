@@ -60,11 +60,11 @@ bool UnorderedArrayList::isFull()
 // David wrote void insert(string word);
 void UnorderedArrayList::insert(string word)
 {
-//	if(bool isfull = true)
-//	{
-//		cout << "sorry, size is full. no more insertion" << endl;
-//	}	
-//	else
+	if(isfull() == true)
+	{
+		cout << "sorry, size is full. no more insertion for " << word << endl;
+	}	
+	else
 	{
 		buf[size] = word;
 		size++;
@@ -104,6 +104,14 @@ void UnorderedArrayList::remove(string word)
 	}
 }
 
+void UnorderedArrayList::print(ostream& out)
+{
+	for(int i=0; i< size; ++i) 
+	{
+		out << buf[i] << endl;
+	}
+}
+
 
 class UnorderedLinkedList
 {
@@ -129,16 +137,11 @@ public:
 	bool find(string word);
 	void remove(string word);
 	void print(ostream& out);
-	bool isEmpty();
+	// HW requirement: no additional methods to classes. thus below two methods should not be added.
+//	bool isEmpty();
 //	bool isFull(); is it worthy talk about full in linked list?
 };
 
-
-//isEmpty
-bool UnorderedLinkedList::isEmpty()
-{
-	return head==NULL;
-}
 
 // constructor
 UnorderedLinkedList::UnorderedLinkedList()
@@ -149,24 +152,36 @@ UnorderedLinkedList::UnorderedLinkedList()
 UnorderedLinkedList::~UnorderedLinkedList()
 {
 	while(!empty())
-		remove();
+		remove(*head);
 }
 
 //insert
-UnorderedLinkedList::insert(string word)
+void UnorderedLinkedList::insert(string word)
 {
-	ListNode* v = new UnorderedLinkedList;
-	v->info = file_name;
-	v->next = head;
+	ListNode* v = new ListNode(word, head);
 	head = v;
 }
 
 //remove
-UnorderedLinkedList::remove(string word)
+void UnorderedLinkedList::remove(string word)
 {
-	ListNode* old = head;
-	head = old->next;
-	delete old;
+	if(head==NULL) return;
+	if(head->info == word) {
+		ListNode* newhead = head->next;
+		delete head;
+		head = newhead;
+		return;
+	}
+	for(ListNode* prev=head; prev->next!=NULL; prev=prev->next)
+	{
+		if(prev->next->info == word) {
+			ListNode *nodetodelete = prev->next;
+			prev->next = prev->next->next;
+			delete nodedelete;
+			break;
+		}
+	}
+	return;
 }
 
 
@@ -176,8 +191,6 @@ UnorderedLinkedList::remove(string word)
 
 
 
-void UnorderedArrayList::print(ostream& out){}
-//David wrote: when compile, undefined error unless above is declared.
 
 ostream& operator << (ostream& out, UnorderedArrayList& L)
 {
