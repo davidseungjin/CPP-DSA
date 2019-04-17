@@ -224,7 +224,7 @@ void find_all_words(string file_name, UnorderedArrayList& L)
 	t.start();
 	while(getline(f, word))
 	{
-		L.find(word);
+		L.find(word); // this needs to be modified
 	}
 	t.elapsedUserTime(eTime); 
 	f.close();
