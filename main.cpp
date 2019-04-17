@@ -149,7 +149,8 @@ bool UnorderedLinkedList::find(string word)
 
 void UnorderedLinkedList::remove(string word)
 {
-	ListNode* prev = head->next;
+	// when head delete case, when delete other than head
+	ListNode* prev = head;
 	for(head; prev->next != NULL; prev=prev->next)
 	{
 		if(prev->next->info==word)
@@ -157,7 +158,6 @@ void UnorderedLinkedList::remove(string word)
 			ListNode* temp = prev->next;
 			prev->next = prev->next->next;
 			delete temp;
-			delete prev;
 			break;
 
 		}
