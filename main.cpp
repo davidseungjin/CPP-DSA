@@ -133,21 +133,18 @@ void UnorderedLinkedList::insert(string word)
 {
 	ListNode* v = new ListNode(word, head);
 	head = v;
-	delete v;
 }
 
 bool UnorderedLinkedList::find(string word)
 {
-	ListNode* current = head->next;
-	while (current->next != NULL)
+	ListNode* current = head;
+	while (current != NULL)
 	{
 		if (current->info == word)
 			return true;
-			break;
 		current = current->next;
 	}
 	return false;
-	delete current; // is this necessary? 
 }
 
 void UnorderedLinkedList::remove(string word)
