@@ -64,4 +64,90 @@ void StringLinkedList::removeFront(){
 	head = old->next;
 	delete old;
 }
+// It is noteworthy that we cannot as easily delete the last node of a singly linked list, even if we had a pointer to it. In order to delete a node, we need to update the next link of the node immediately preceding the deleted node.
+
+
+/*
+Chapter 3.2.4 Implementing a Generic Singly Linked List.
+
+The implementation of the singly slinked list in 3.2.1 assumes that the element type is a character string. It is easy to convert the implementation so that it works for an arbitary element type through the use of C++'s template mechanism. 
+
+In contrast to our earlier version in Code Fragment, references to the data type "string have been replaced by "E". When referring to our templated node and list class, we need to include the suffix "<E>". For example, the class is SLinkedList<E> and the associated node is SNode<E>
+*/
+
+template <typename E>
+class SNode{
+private:
+	E elem;
+	SNode<E>* next;
+	friend class SLinkedList<E>;
+};
+
+/* The generic list class is presented below. references to the specific element type "string" have been replaced by reference to the generic type parameter "E". */
+
+template<typename E>
+clas SlinkedList {
+public:
+	SlinkedList();
+	~SlinkedList();
+	bool empty() const;
+	const E& front() cost;
+	void addFront(const E& e);
+	void removeFront();
+private:
+	Snode<E>* head;
+};
+
+/* Observe that each definition is prefaced by the template specifier template <typename E> */
+
+template <typename E>
+SlinkedList<E>::SlinkedList()
+:head(NULL){}
+
+template<typename E>
+bool SlinkedList<E>::empty() const
+{return head == NULL;}
+
+template<typename E>
+const E& SLinkedList<E>::front() const
+{return head->elem;}
+
+template<typename E>
+SlinkedList<E>::~SlinkedList()
+{while (!empty()) removeFront();}
+
+template<typename E>
+void SlinkedList<E>::addFront(const E& e){
+	SNode<E>* v = new SNode<E>;
+	v->elem = e;
+	v->next = head;
+	head = v;
+}
+
+template<typename E>
+void SLinkedList<E>::removeFront(){
+	SNode<E>* old=head;
+	head=old->next;
+	delete old;
+}
+
+/* We can generate singly linked lists of various types by simply setting the template parameter as desired as shown in the following code fragment.
+
+SLinkedList<string> a;
+a.addFront("MSP");
+// .... 
+SlinkedList<int>b;
+b.addFront(1);
+
+Because templated classes carry a relatively high notational burden, we oftern sacrifice generality for simplicity, and avoid the use of templated classes in some of our examples.
+*/
+
+
+
+
+
+
+
+
+
 
