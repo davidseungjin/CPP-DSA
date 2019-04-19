@@ -142,6 +142,18 @@ b.addFront(1);
 Because templated classes carry a relatively high notational burden, we oftern sacrifice generality for simplicity, and avoid the use of templated classes in some of our examples.
 */
 
+/*
+3.3 Doubly Linked List.
+
+removing and element at the tail of singly linked list is not easy. Indeed, it is time consuming to remove any node other than the head in a singly linked list.
+
+There is a type of linked list that allows us to go in both directions - forward and reverse - in a linked list. It is the doubly linked list. Inaddition to its element member, a node in a doubly linked list stores two pointers, a next link and the prev link, which point to the next node in the list and the previous node in the list, respectively.
+ 
+
+
+Next 03_03.cpp will present details.
+
+*/
 
 
 
