@@ -19,27 +19,27 @@ public:
 	virtual ~SortedList();
 };
 
-class UnorderedArrayList : public SortedList
+class SortedArrayList : public SortedList
 {
 	string* buf;
 	int capacity;
 	int size;
 
 public:
-	UnorderedArrayList(int max_len);
-	virtual ~UnorderedArrayList();
+	SortedArrayList(int max_len);
+	virtual ~SortedArrayList();
 };
 
 
-UnorderedArrayList::UnorderedArrayList(int max_len)
+SortedArrayList::SortedArrayList(int max_len)
 	:SortedList(), capacity(max_len), buf(new string[capacity]), size(0){}
 
-UnorderedArrayList::~UnorderedArrayList()
+SortedArrayList::~SortedArrayList()
 {
 	delete[] buf;
 }
 
-bool UnorderedArrayList::isEmpty()
+bool SortedArrayList::isEmpty()
 {
 	if(size == 0)
 		return true;
@@ -47,7 +47,7 @@ bool UnorderedArrayList::isEmpty()
 		return false;
 }
 
-bool UnorderedArrayList::isFull()
+bool SortedArrayList::isFull()
 {
 	if(size >= capacity)
 		return true;
@@ -55,7 +55,7 @@ bool UnorderedArrayList::isFull()
 		return false;
 }
 
-void UnorderedArrayList::insert(string word)
+void SortedArrayList::insert(string word)
 {
 
 // this is to insert at the next of the end index.
@@ -68,9 +68,28 @@ void UnorderedArrayList::insert(string word)
 
 }
 
-bool UnorderedArrayList::find(string word)
+int binary_search(char key, char buf[], int min, int max) {
+    int mid;
+     while ( min <= max ) {
+    mid = min + ( max - min ) / 2;
+    if ( key < buf[mid] )
+    max = mid - 1;
+    else if ( key > buf[mid] )
+              min = mid + 1;
+        else 
+            return mid; 
+    }
+    return mid;    	
+}
+
+
+bool SortedArrayList::find(string word)
 {
-	for(int i=0; i < size; i++)
+	int mid;
+	while(min <= max) {
+		mid = min + (max-min)/2;
+		if (
+		for(int i=0; i < size; i++)
 	{
 		if (buf[i] == word)
 		{
@@ -82,7 +101,7 @@ bool UnorderedArrayList::find(string word)
 	}
 }
 			
-void UnorderedArrayList::remove(string word)
+void SortedArrayList::remove(string word)
 {
 	for(int i=0; i < size; i++)
 	{
@@ -96,7 +115,7 @@ void UnorderedArrayList::remove(string word)
 }
 
 
-class UnorderedLinkedList : public SortedList
+class SortedLinkedList : public SortedList
 {
 	struct ListNode{
 		string info;
@@ -114,8 +133,8 @@ class UnorderedLinkedList : public SortedList
 	};
 	ListNode* head;
 public:
-	UnorderedLinkedList();
-	virtual ~UnorderedLinkedList();
+	SortedLinkedList();
+	virtual ~SortedLinkedList();
 //	David: needs to delete below because all is located in base class.
 //	void insert(string word);
 //	bool find(string word);
@@ -124,10 +143,10 @@ public:
 };
 
 
-UnorderedLinkedList::UnorderedLinkedList()
+SortedLinkedList::SortedLinkedList()
 :SortedList(), head(NULL){}
 
-UnorderedLinkedList:: virtual ~UnorderedLinkedList() // is that syntactically right?
+SortedLinkedList:: virtual ~SortedLinkedList() // is that syntactically right? (space between double colon and "virtual"
 {
 	while(head!=NULL) 
 	{
@@ -137,13 +156,13 @@ UnorderedLinkedList:: virtual ~UnorderedLinkedList() // is that syntactically ri
 	}
 }
 
-void UnorderedLinkedList::insert(string word)
+void SortedLinkedList::insert(string word)
 {
 	ListNode* v = new ListNode(word, head);
 	head = v;
 }
 
-bool UnorderedLinkedList::find(string word) // sequence search
+bool SortedLinkedList::find(string word) // sequence search
 {
 	ListNode* current = head;
 	while (current != NULL)
@@ -157,7 +176,7 @@ bool UnorderedLinkedList::find(string word) // sequence search
 	return false;
 }
 
-void UnorderedLinkedList::remove(string word)
+void SortedLinkedList::remove(string word)
 {
 	if(head->info==word)
 	{
@@ -182,14 +201,14 @@ void UnorderedLinkedList::remove(string word)
 }
 
 
-void UnorderedArrayList::print(ostream& out){
+void SortedArrayList::print(ostream& out){
 	for(int i=0; i < size; i++)
 	{
 		out << buf[i] << "\n";
 	}
 }
 
-void UnorderedLinkedList::print(ostream& out){
+void SortedLinkedList::print(ostream& out){
 	ListNode* cur=head;
 	for(head; cur->next != NULL; cur=cur->next)
 	{
@@ -198,20 +217,20 @@ void UnorderedLinkedList::print(ostream& out){
 }
 
 
-ostream& operator << (ostream& out, UnorderedArrayList& L)
+ostream& operator << (ostream& out, SortedArrayList& L)
 {
 	L.print(out);
 	return out;
 }
 
 
-ostream& operator << (ostream& out, UnorderedLinkedList& L)
+ostream& operator << (ostream& out, SortedLinkedList& L)
 {
 	L.print(out);
 	return out;
 }
 
-void insert_all_words(string file_name, UnorderedArrayList& L)
+void insert_all_words(string file_name, SortedArrayList& L)
 {
 
 	Timer t;
@@ -237,7 +256,7 @@ void insert_all_words(string file_name, UnorderedArrayList& L)
 
 }
 
-void find_all_words(string file_name, UnorderedArrayList& L)
+void find_all_words(string file_name, SortedArrayList& L)
 {
 	Timer t;
 	double eTime;
@@ -255,7 +274,7 @@ void find_all_words(string file_name, UnorderedArrayList& L)
 	cout << "find_all_words run time \t\t" << eTime << endl;
 }
 
-void remove_all_words(string file_name, UnorderedArrayList& L)
+void remove_all_words(string file_name, SortedArrayList& L)
 {
 	Timer t;
 	double eTime;
@@ -273,7 +292,7 @@ void remove_all_words(string file_name, UnorderedArrayList& L)
 }
 
 
-void insert_all_words(string file_name, UnorderedLinkedList& L)
+void insert_all_words(string file_name, SortedLinkedList& L)
 {
 
 	Timer t;
@@ -299,7 +318,7 @@ void insert_all_words(string file_name, UnorderedLinkedList& L)
 
 }
 
-void find_all_words(string file_name, UnorderedLinkedList& L)
+void find_all_words(string file_name, SortedLinkedList& L)
 {
 	Timer t;
 	double eTime;
@@ -317,7 +336,7 @@ void find_all_words(string file_name, UnorderedLinkedList& L)
 	cout << "find_all_words run time \t\t" << eTime << endl;
 }
 
-void remove_all_words(string file_name, UnorderedLinkedList& L)
+void remove_all_words(string file_name, SortedLinkedList& L)
 {
 	Timer t;
 	double eTime;
@@ -335,18 +354,18 @@ void remove_all_words(string file_name, UnorderedLinkedList& L)
 }
 
 
-void test_UnorderedArrayList_methods(string file_name, UnorderedArrayList& L)
+void test_SortedArrayList_methods(string file_name, SortedArrayList& L)
 {
-	cout << "Testing UnorderedArrayList: " << endl;
+	cout << "Testing SortedArrayList: " << endl;
 	insert_all_words(file_name, L);
 	find_all_words(file_name, L);
 	remove_all_words(file_name, L);
 }
 
 
-void test_UnorderedLinkedList_methods(string file_name, UnorderedLinkedList& L)
+void test_SortedLinkedList_methods(string file_name, SortedLinkedList& L)
 {
-	cout << "Testing UnorderedLinkedList: " << endl;
+	cout << "Testing SortedLinkedList: " << endl;
 	insert_all_words(file_name, L);
 	find_all_words(file_name, L);
 	remove_all_words(file_name, L);
@@ -356,11 +375,11 @@ void test_UnorderedLinkedList_methods(string file_name, UnorderedLinkedList& L)
 int main(int argc, char * argv[])
 {
 	const char * input_file = argc == 2 ? argv[1] : "random_120.txt";
-	UnorderedArrayList UAL(45500);
-	test_UnorderedArrayList_methods(input_file, UAL);
+	SortedArrayList UAL(45500);
+	test_SortedArrayList_methods(input_file, UAL);
 	cout << "\n\n\n";
-	UnorderedLinkedList ULL;
-	test_UnorderedLinkedList_methods(input_file, ULL);
+	SortedLinkedList ULL;
+	test_SortedLinkedList_methods(input_file, ULL);
 
 
 	return 0;
