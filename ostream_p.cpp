@@ -9,6 +9,8 @@ overloaded insertion operator to recognize an ostream object on the left and a D
 The overloaded << operator function must then be declared as a friend of class Date so it can access the private data with a Data object. 
 Initially quoted from the website -> 
 https://docs.microsoft.com/en-us/cpp/standard-library/overloading-the-output-operator-for-your-own-classes?view=vs-2019
+After study above, below information get familar more.
+https://www.learncpp.com/cpp-tutorial/93-overloading-the-io-operators/
 */
 
 /* David interpretation. 
