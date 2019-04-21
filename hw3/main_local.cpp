@@ -5,8 +5,21 @@
 
 using namespace std;
 
+class SortedList
+{
+protected:
+	virtual void insert(string word);
+	virtual bool find(string word);
+	virtual void remove(string word);
+	virtual bool isEmpty();
+	virtual bool isFull();
+	void print(ostream& out);
+public:
+	SortedList();
+	virtual ~SortedList();
+};
 
-class UnorderedArrayList
+class UnorderedArrayList : public SortedList
 {
 	string* buf;
 	int capacity;
@@ -14,23 +27,12 @@ class UnorderedArrayList
 
 public:
 	UnorderedArrayList(int max_len);
-	~UnorderedArrayList();
-	void insert(string word);
-	bool find(string word);
-	void remove(string word);
-	void print(ostream& out);
-	bool isEmpty();
-	bool isFull();
-
+	virtual ~UnorderedArrayList();
 };
 
 
 UnorderedArrayList::UnorderedArrayList(int max_len)
-{
-	capacity = max_len;
-	buf = new string[capacity];
-	size = 0;
-}
+	:SortedList(), capacity(max_len), buf(new string[capacity]), size(0){}
 
 UnorderedArrayList::~UnorderedArrayList()
 {
@@ -55,8 +57,15 @@ bool UnorderedArrayList::isFull()
 
 void UnorderedArrayList::insert(string word)
 {
+
+// this is to insert at the next of the end index.
+	
 	buf[size] = word;
 	size++;
+
+// if we should do in the middle or first, we should move some/all element one indice right.
+
+
 }
 
 bool UnorderedArrayList::find(string word)
@@ -81,13 +90,13 @@ void UnorderedArrayList::remove(string word)
 		{ 	
 			buf[i]=buf[size-1];
 			size = size - 1;
-			break; 
+//			break;  David: do we need to do this?
 		}
 	}
 }
 
 
-class UnorderedLinkedList
+class UnorderedLinkedList : public SortedList
 {
 	struct ListNode{
 		string info;
@@ -106,19 +115,19 @@ class UnorderedLinkedList
 	ListNode* head;
 public:
 	UnorderedLinkedList();
-	~UnorderedLinkedList();
-	void insert(string word);
-	bool find(string word);
-	void remove(string word);
-	void print(ostream& out);
+	virtual ~UnorderedLinkedList();
+//	David: needs to delete below because all is located in base class.
+//	void insert(string word);
+//	bool find(string word);
+//	void remove(string word);
+//	void print(ostream& out);
 };
 
 
 UnorderedLinkedList::UnorderedLinkedList()
-:head(NULL){}
+:SortedList(), head(NULL){}
 
-
-UnorderedLinkedList::~UnorderedLinkedList()
+UnorderedLinkedList:: virtual ~UnorderedLinkedList() // is that syntactically right?
 {
 	while(head!=NULL) 
 	{
@@ -134,7 +143,7 @@ void UnorderedLinkedList::insert(string word)
 	head = v;
 }
 
-bool UnorderedLinkedList::find(string word)
+bool UnorderedLinkedList::find(string word) // sequence search
 {
 	ListNode* current = head;
 	while (current != NULL)
@@ -173,10 +182,20 @@ void UnorderedLinkedList::remove(string word)
 }
 
 
+void UnorderedArrayList::print(ostream& out){
+	for(int i=0; i < size; i++)
+	{
+		out << buf[i] << "\n";
+	}
+}
 
-void UnorderedArrayList::print(ostream& out){}
-
-void UnorderedLinkedList::print(ostream& out){}
+void UnorderedLinkedList::print(ostream& out){
+	ListNode* cur=head;
+	for(head; cur->next != NULL; cur=cur->next)
+	{
+		out << cur->info << "\n";
+	}
+}
 
 
 ostream& operator << (ostream& out, UnorderedArrayList& L)
@@ -336,7 +355,7 @@ void test_UnorderedLinkedList_methods(string file_name, UnorderedLinkedList& L)
 
 int main(int argc, char * argv[])
 {
-	const char * input_file = argc == 2 ? argv[1] : "random.txt";
+	const char * input_file = argc == 2 ? argv[1] : "random_120.txt";
 	UnorderedArrayList UAL(45500);
 	test_UnorderedArrayList_methods(input_file, UAL);
 	cout << "\n\n\n";
