@@ -8,7 +8,7 @@ public:
 		:first(f), cur(f){}
 	virtual ~Progression(){};		//David: look at this. virtual
 	void printProgression(int n);
-Protected:
+protected:
 	virtual long firstValue();		// reset
 	virtual long nextValue();		// advance
 protected:
@@ -52,13 +52,40 @@ protected:
 // Observe that the constructor invokes the base class constructor Progression to initialize the base object in addition to initializing the value of inc.
 
 ArithProgression::ArithProgression(long i)
-	:Progression() inc(i) {}
+	:Progression(), inc(i) {}
 
 long ArithProgression::nextValue(){
 	cur+=inc;
 	return cur;
 }
 
-// To be continued.
-// ddddddddddddddddddddddd
+
+class GeomProgression : public Progression {
+public:
+	GeomProgression(long b= 2);
+protected:
+	virtual long nextValue();
+protected:
+	long base;
+};
+
+GeomProgression::GeomProgression(long b)
+	: Progression(1), base(b){}
+
+long GeomProgression::nextValue(){
+	cur *= base;
+	return cur;
+}
+
+int main(){
+
+	Progression david;
+	ArithProgression david_a;	
+	GeomProgression david_g;
+	david.printProgression(10);
+	david_a.printProgression(10);
+	david_g.printProgression(10);
+
+	return 0;
+}
 
