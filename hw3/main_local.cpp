@@ -108,6 +108,21 @@ void SortedArrayList::remove(string word)
 	}
 }
 
+void SortedArrayList::print(ostream& out){
+	for(int i=0; i < size; i++)
+	{
+		out << buf[i] << "\n";
+	}
+}
+
+ostream& operator << (ostream& out, SortedArrayList& L)
+{
+	L.print(out);
+	return out;
+}
+
+
+		
 /*
 class SortedLinkedList : public SortedList
 {
@@ -194,17 +209,6 @@ void SortedLinkedList::remove(string word)
 	}
 }
 
-*/
-
-void SortedArrayList::print(ostream& out){
-	for(int i=0; i < size; i++)
-	{
-		out << buf[i] << "\n";
-	}
-}
-
-
-
 void SortedLinkedList::print(ostream& out){
 	ListNode* cur=head;
 	for(head; cur->next != NULL; cur=cur->next)
@@ -213,19 +217,13 @@ void SortedLinkedList::print(ostream& out){
 	}
 }
 
-
-ostream& operator << (ostream& out, SortedArrayList& L)
-{
-	L.print(out);
-	return out;
-}
-
-
 ostream& operator << (ostream& out, SortedLinkedList& L)
 {
 	L.print(out);
 	return out;
 }
+
+*/
 
 
 
@@ -235,20 +233,21 @@ void insert_all_words(string file_name, SortedArrayList& L)
 	Timer t;
 	double eTime;
 	ifstream f(file_name.c_str());
-	string w;	
+	string word;	
 
 	t.start();
 	if(f.is_open())
 	{
-		while(getline(f, w))
+		while(getline(f, word))
 		{	
-		L.insert(w); 
+		L.insert(word); 
 		}	
 	}
 	else
 	{
 		cout << "file is not opened. check" << endl;
 	}
+	
 	t.elapsedUserTime(eTime); 
 	f.close();
 	cout << "insert_all_words run time \t\t" << eTime << endl;
@@ -314,7 +313,13 @@ void insert_all_words(string file_name, SortedLinkedList& L)
 	t.elapsedUserTime(eTime); 
 	f.close();
 	cout << "insert_all_words run time \t\t" << eTime << endl;
-
+/*	
+	ostream& operator << (ostream& out, SortedArrayList& L)
+	{
+		L.print(out);
+	}
+*/	
+	
 }
 
 void find_all_words(string file_name, SortedLinkedList& L)
