@@ -83,21 +83,20 @@ int binary_search(char key, char buf[], int min, int max) {
 }
 
 
-bool SortedArrayList::find(string word)
-{
+bool SortedArrayList::find(string word){
 	int mid;
-	while(min <= max) {
+	int min = 0;
+	int max = size;
+	while(min <= max){
 		mid = min + (max-min)/2;
-		if (
-		for(int i=0; i < size; i++)
-	{
-		if (buf[i] == word)
-		{
-			return true;
-		} else
-		{
+		if (word < buf[mid]){
+			max = mid - 1;}
+		else if (word > buf[mid]){
+			min = mid + 1;}
+		else if (word == buf[mid]){
+			return true;}
+		else
 			return false;
-		}
 	}
 }
 			
