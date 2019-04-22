@@ -58,30 +58,26 @@ bool SortedArrayList::isFull()
 void SortedArrayList::insert(string word)
 {
 
-// this is to insert at the next of the end index.
-	
 	buf[size] = word;
 	size++;
-
-// if we should do in the middle or first, we should move some/all element one indice right.
+	int mid;
+	int min=0;
+	int max=size;
+	while(min <= max) {
+		mid = min+(max-min)/2;
+		if(word < buf[mid]){
+			max = mid -1;}
+		else if (word>buf[mid]){
+			mid = mid+1;}
+		else if (word == buf[mid]){
+			size++
+			for(int i=mid; i < size; i++){
+				buf[i+1]=buf[i];
+			}
+			buf[mid] = word;
 
 
 }
-
-int binary_search(char key, char buf[], int min, int max) {
-    int mid;
-     while ( min <= max ) {
-    mid = min + ( max - min ) / 2;
-    if ( key < buf[mid] )
-    max = mid - 1;
-    else if ( key > buf[mid] )
-              min = mid + 1;
-        else 
-            return mid; 
-    }
-    return mid;    	
-}
-
 
 bool SortedArrayList::find(string word){
 	int mid;
@@ -108,12 +104,11 @@ void SortedArrayList::remove(string word)
 		{ 	
 			buf[i]=buf[size-1];
 			size = size - 1;
-//			break;  David: do we need to do this?
 		}
 	}
 }
 
-
+/*
 class SortedLinkedList : public SortedList
 {
 	struct ListNode{
@@ -199,6 +194,7 @@ void SortedLinkedList::remove(string word)
 	}
 }
 
+*/
 
 void SortedArrayList::print(ostream& out){
 	for(int i=0; i < size; i++)
@@ -206,6 +202,8 @@ void SortedArrayList::print(ostream& out){
 		out << buf[i] << "\n";
 	}
 }
+
+
 
 void SortedLinkedList::print(ostream& out){
 	ListNode* cur=head;
@@ -228,6 +226,8 @@ ostream& operator << (ostream& out, SortedLinkedList& L)
 	L.print(out);
 	return out;
 }
+
+
 
 void insert_all_words(string file_name, SortedArrayList& L)
 {
