@@ -28,11 +28,21 @@ class SortedArrayList : public SortedList
 public:
 	SortedArrayList(int max_len);
 	virtual ~SortedArrayList();
+	virtual void insert(string word);
+	virtual bool find(string word);
+	virtual void remove(string word);
+	virtual bool isEmpty();
+	virtual bool isFull();
+	void print(ostream& out);
 };
 
 
-SortedArrayList::SortedArrayList(int max_len)
-	:SortedList(), capacity(max_len), buf(new string[capacity]), size(0){}
+SortedArrayList::SortedArrayList(int max_len){
+	SortedList();
+	capacity = max_len;
+	buf = new string[capacity];
+	size = 0;
+}
 
 SortedArrayList::~SortedArrayList()
 {
@@ -70,26 +80,31 @@ void SortedArrayList::insert(string word)
 		else if (word>buf[mid]){
 			mid = mid+1;}
 		else if (word == buf[mid]){
-			size++
+			size++;
 			for(int i=mid; i < size; i++){
 				buf[i+1]=buf[i];
 			}
 			buf[mid] = word;
-
-
+		}
+	}
 }
 
-bool SortedArrayList::find(string word){
+bool SortedArrayList::find(string word)
+{
 	int mid;
 	int min = 0;
 	int max = size;
-	while(min <= max){
+	while(min <= max)
+	{
 		mid = min + (max-min)/2;
-		if (word < buf[mid]){
+		if (word < buf[mid])
+		{
 			max = mid - 1;}
-		else if (word > buf[mid]){
+		else if (word > buf[mid])
+		{
 			min = mid + 1;}
-		else if (word == buf[mid]){
+		else if (word == buf[mid])
+		{
 			return true;}
 		else
 			return false;
@@ -290,6 +305,8 @@ void remove_all_words(string file_name, SortedArrayList& L)
 }
 
 
+
+/*
 void insert_all_words(string file_name, SortedLinkedList& L)
 {
 
@@ -322,6 +339,8 @@ void insert_all_words(string file_name, SortedLinkedList& L)
 	
 }
 
+
+/*
 void find_all_words(string file_name, SortedLinkedList& L)
 {
 	Timer t;
@@ -358,6 +377,11 @@ void remove_all_words(string file_name, SortedLinkedList& L)
 }
 
 
+
+*/
+
+
+
 void test_SortedArrayList_methods(string file_name, SortedArrayList& L)
 {
 	cout << "Testing SortedArrayList: " << endl;
@@ -367,6 +391,10 @@ void test_SortedArrayList_methods(string file_name, SortedArrayList& L)
 }
 
 
+
+
+/*
+
 void test_SortedLinkedList_methods(string file_name, SortedLinkedList& L)
 {
 	cout << "Testing SortedLinkedList: " << endl;
@@ -375,6 +403,8 @@ void test_SortedLinkedList_methods(string file_name, SortedLinkedList& L)
 	remove_all_words(file_name, L);
 }
 
+*/
+
 
 int main(int argc, char * argv[])
 {
@@ -382,8 +412,8 @@ int main(int argc, char * argv[])
 	SortedArrayList UAL(45500);
 	test_SortedArrayList_methods(input_file, UAL);
 	cout << "\n\n\n";
-	SortedLinkedList ULL;
-	test_SortedLinkedList_methods(input_file, ULL);
+//	SortedLinkedList ULL;
+//	test_SortedLinkedList_methods(input_file, ULL);
 
 
 	return 0;
