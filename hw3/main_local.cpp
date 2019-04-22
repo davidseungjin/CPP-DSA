@@ -49,6 +49,10 @@ SortedArrayList::~SortedArrayList()
 	delete[] buf;
 }
 
+
+
+
+/*
 bool SortedArrayList::isEmpty()
 {
 	if(size == 0)
@@ -64,6 +68,9 @@ bool SortedArrayList::isFull()
 	else
 		return false;
 }
+
+*/
+
 
 void SortedArrayList::insert(string word)
 {
@@ -110,6 +117,9 @@ bool SortedArrayList::find(string word)
 			return false;
 	}
 }
+
+
+
 			
 void SortedArrayList::remove(string word)
 {
@@ -122,6 +132,8 @@ void SortedArrayList::remove(string word)
 		}
 	}
 }
+
+
 
 void SortedArrayList::print(ostream& out){
 	for(int i=0; i < size; i++)
@@ -330,17 +342,16 @@ void insert_all_words(string file_name, SortedLinkedList& L)
 	t.elapsedUserTime(eTime); 
 	f.close();
 	cout << "insert_all_words run time \t\t" << eTime << endl;
-/*	
+
+
 	ostream& operator << (ostream& out, SortedArrayList& L)
 	{
 		L.print(out);
 	}
-*/	
 	
-}
 
 
-/*
+
 void find_all_words(string file_name, SortedLinkedList& L)
 {
 	Timer t;
