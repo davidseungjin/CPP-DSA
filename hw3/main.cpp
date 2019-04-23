@@ -45,7 +45,7 @@ SortedArrayList::SortedArrayList(int max_len)
 	cout << "Derived class constructor called \n";
 	capacity = max_len;
 	buf = new string[capacity];
-	size = 0;
+	size = capacity;
 }
 
 SortedArrayList::~SortedArrayList()
@@ -76,7 +76,11 @@ void SortedArrayList::insert(string word)
 	
 	int mid;
 	int min = 0;
+	size = 107;
 	int max = size;
+	cout << mid << min << max;
+	buf[0]="";
+
 	while(min <= max)
 	{
 		mid = min + (max-min)/2;
@@ -86,7 +90,7 @@ void SortedArrayList::insert(string word)
 		}
 		else if (word > buf[mid])
 		{
-			mid = mid + 1;
+			min = mid + 1;
 		}
 		else if (word == buf[mid])
 		{
@@ -102,6 +106,8 @@ void SortedArrayList::insert(string word)
 			cout << "is there else case? in insert" << endl;
 		}
 	}
+
+
 }
 
 bool SortedArrayList::find(string word)
@@ -160,7 +166,7 @@ void insert_all_words(string file_name, SortedArrayList& L)
 {
 	Timer t;
 	double eTime;
-	ifstream f(file_name.c_str());
+	ifstream f(file_name.c_str()); // it error if it is omit .c_str().
 	string word;
 
 	t.start();
@@ -171,14 +177,15 @@ void insert_all_words(string file_name, SortedArrayList& L)
 		while(getline(f, word))
 		{
 // here here
-		cout << "\n here here" << endl;
-		count++;
-	//		L.insert(word);
+			cout << "\n here here" << endl; //David : estimate it really get lines
+			count++; //David: count lines
+			L.insert(word); // core function.
 // here here
 		}
+		
 
 	cout << "\n after loop: here here \n " << endl;
-	cout << count << endl;
+	cout << count << endl; // David: print how many lines
 	}
 	else
 	{
