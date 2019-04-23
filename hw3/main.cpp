@@ -79,16 +79,8 @@ void SortedArrayList::insert(string word)
 //	size = 107; size initialization was done by constructor as 0
 	int max = 0;
 	cout << "mid1: " << mid << "\t  min: " << min << "\t  max: " << max << endl;
-	buf[0]="";
 	cout << "==== \n BEFORE INSERT FUNCTION \n ====\n"; //<< buf[mid]; // David : test.
 	cout << "\n word1 " << word << " buf[0] is " << buf[0];
-	if (min == max)
-	{
-		max = min + 1;
-		cout << "if statement" << endl;
-		cout << max;
-	}
-
 	 while(min <= max)
 	{
 		cout << "\n word2 " << word;
