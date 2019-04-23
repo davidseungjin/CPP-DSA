@@ -84,7 +84,7 @@ void SortedArrayList::insert(string word)
 		mid = min+(max-min)/2;
 		if(word < buf[mid]){
 			max = mid -1;}
-		else if (word>buf[mid]){
+		else if (word > buf[mid]){
 			mid = mid+1;}
 		else if (word == buf[mid]){
 			size++;
