@@ -45,7 +45,7 @@ SortedArrayList::SortedArrayList(int max_len)
 	cout << "Derived class constructor called \n";
 	capacity = max_len;
 	buf = new string[capacity];
-	size = 0;
+	size = capacity;
 }
 
 SortedArrayList::~SortedArrayList()
@@ -77,30 +77,36 @@ void SortedArrayList::insert(string word)
 	int mid = 0;
 	int min = 0;
 //	size = 107; size initialization was done by constructor as 0
-	int max = size;
-	cout << "mid " << mid << "\t min " << min << "\t max" << max << endl;
-	buf[0]=word;
+	int max = 0;
+	cout << "mid1: " << mid << "\t  min: " << min << "\t  max: " << max << endl;
+	buf[0]="";
 	cout << "==== \n BEFORE INSERT FUNCTION \n ====\n"; //<< buf[mid]; // David : test.
 	cout << "\n word1 " << word << " buf[0] is " << buf[0];
-/*
- * while(min <= max)
+	if (min == max)
+	{
+		max = min + 1;
+		cout << "if statement" << endl;
+		cout << max;
+	}
+
+	 while(min <= max)
 	{
 		cout << "\n word2 " << word;
 		mid = min + (max-min)/2;
-		cout << "\nmin " << min << "mid " << mid << "max " << max;
+		cout << "\nmin2: " << min << " mid2: " << mid << " max2: " << max;
 		if(word < buf[mid])
 		{
 			cout << "\n word3 " << word;
 			max = mid - 1;
 			cout << "==first If== word < buf[mid] \n" << buf[mid]; // David : test.
-			cout << "min3" << min << "mid3" << mid << "max3" << max << endl;		
+			cout << "\nmin3: " << min << " mid3: " << mid << " max3: " << max << endl;		
 		}
 		else if(word > buf[mid])
 		{
 			cout << "\n word4 " << word;
 			min = mid + 1;
 			cout << " Else if I word > buf[mid]\n" << buf[mid]; // David : test.
-			cout << "min4 " << min << "mid4 " << mid << "max4 " << max << endl;		
+			cout << "\nmin4: " << min << " mid4: " << mid << " max4: " << max << endl;		
 		}
 		else if(word == buf[mid])
 		{
@@ -109,9 +115,10 @@ void SortedArrayList::insert(string word)
 			{
 				buf[i+1] = buf[i];
 			}
+			max++; // max increase 1
 			buf[mid] = word;
 			cout << "--else if II-- word == buf[mid]\n" << buf[mid]; // David : test.
-			cout << "min5" << min << "mid5" << mid << "max5" << endl;
+			cout << "\nmin5: " << min << " mid5: " << mid << " max5: " << endl;
 		}
 		else
 		{
@@ -119,7 +126,6 @@ void SortedArrayList::insert(string word)
 		}
 	}
 
-*/
 
 
 }
