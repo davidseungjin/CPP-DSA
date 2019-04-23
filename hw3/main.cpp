@@ -23,7 +23,7 @@ public:
 
 class SortedArrayList:public SortedList
 {
-private:
+public:
 	string* buf;
 	int capacity;
 	int size;
@@ -78,8 +78,9 @@ void SortedArrayList::insert(string word)
 	int min = 0;
 	size = 107;
 	int max = size;
-	cout << mid << min << max;
+	cout << "mid " << mid << "\t min " << min << "\t max" << max << endl;
 	buf[0]="";
+	cout << "==== \n BEFORE INSERT FUNCTION \n ====\n"; //<< buf[mid]; // David : test.
 
 	while(min <= max)
 	{
@@ -87,19 +88,22 @@ void SortedArrayList::insert(string word)
 		if (word < buf[mid])
 		{
 			max = mid - 1;
+			cout << "==first If== word < buf[mid] \n" << buf[mid]; // David : test.
+		
 		}
 		else if (word > buf[mid])
 		{
 			min = mid + 1;
+			cout << " Else if I word > buf[mid]\n" << buf[mid]; // David : test.
 		}
 		else if (word == buf[mid])
 		{
-			size++;
 			for(int i=mid; i < size; i++)
 			{
 				buf[i+1] = buf[i];
 			}
 			buf[mid] = word;
+			cout << "--else if II-- word == buf[mid]\n" << buf[mid]; // David : test.
 		}
 		else
 		{
@@ -207,8 +211,10 @@ void test_SortedArrayList_methods(string file_name, SortedArrayList& L)
 {
 	cout << "Testing SortedArrayList: " << endl;
 	insert_all_words(file_name, L);
-	ostream& operator << (ostream& out, SortedArrayList& L);
+	cout << "before L \n" << L << " should be L.buf[something]\n";
 
+	for (int i=0; i<L.size; i++)
+		cout << L.buf[i] << "\n";
 //	find_all_words(file_name, L);
 //	remove_all_words(file_name, L);
 	
