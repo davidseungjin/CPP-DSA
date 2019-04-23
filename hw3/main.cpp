@@ -45,7 +45,7 @@ SortedArrayList::SortedArrayList(int max_len)
 	cout << "Derived class constructor called \n";
 	capacity = max_len;
 	buf = new string[capacity];
-	size = capacity;
+	size = 0;
 }
 
 SortedArrayList::~SortedArrayList()
@@ -74,36 +74,44 @@ bool SortedArrayList::isFull()
 void SortedArrayList::insert(string word)
 {
 	
-	int mid;
+	int mid = 0;
 	int min = 0;
-	size = 107;
+//	size = 107; size initialization was done by constructor as 0
 	int max = size;
 	cout << "mid " << mid << "\t min " << min << "\t max" << max << endl;
-	buf[0]="";
+	buf[0]=word;
 	cout << "==== \n BEFORE INSERT FUNCTION \n ====\n"; //<< buf[mid]; // David : test.
-
-	while(min <= max)
+	cout << "\n word1 " << word << " buf[0] is " << buf[0];
+/*
+ * while(min <= max)
 	{
+		cout << "\n word2 " << word;
 		mid = min + (max-min)/2;
-		if (word < buf[mid])
+		cout << "\nmin " << min << "mid " << mid << "max " << max;
+		if(word < buf[mid])
 		{
+			cout << "\n word3 " << word;
 			max = mid - 1;
 			cout << "==first If== word < buf[mid] \n" << buf[mid]; // David : test.
-		
+			cout << "min3" << min << "mid3" << mid << "max3" << max << endl;		
 		}
-		else if (word > buf[mid])
+		else if(word > buf[mid])
 		{
+			cout << "\n word4 " << word;
 			min = mid + 1;
 			cout << " Else if I word > buf[mid]\n" << buf[mid]; // David : test.
+			cout << "min4 " << min << "mid4 " << mid << "max4 " << max << endl;		
 		}
-		else if (word == buf[mid])
+		else if(word == buf[mid])
 		{
+			cout << "\n word5 " << word;
 			for(int i=mid; i < size; i++)
 			{
 				buf[i+1] = buf[i];
 			}
 			buf[mid] = word;
 			cout << "--else if II-- word == buf[mid]\n" << buf[mid]; // David : test.
+			cout << "min5" << min << "mid5" << mid << "max5" << endl;
 		}
 		else
 		{
@@ -111,12 +119,14 @@ void SortedArrayList::insert(string word)
 		}
 	}
 
+*/
+
 
 }
 
 bool SortedArrayList::find(string word)
 {
-	int mid;
+	int mid = 0;
 	int min = 0;
 	int max = size;
 	while (min <= max)
@@ -181,8 +191,9 @@ void insert_all_words(string file_name, SortedArrayList& L)
 		while(getline(f, word))
 		{
 // here here
-			cout << "\n here here" << endl; //David : estimate it really get lines
+			cout << "\n here before count and L.insert" << endl; //David : estimate it really get lines
 			count++; //David: count lines
+			cout << "count is " << count << endl; // David: print count
 			L.insert(word); // core function.
 // here here
 		}
@@ -211,10 +222,10 @@ void test_SortedArrayList_methods(string file_name, SortedArrayList& L)
 {
 	cout << "Testing SortedArrayList: " << endl;
 	insert_all_words(file_name, L);
-	cout << "before L \n" << L << " should be L.buf[something]\n";
+//	cout << "before L \n" << L << " should be L.buf[something]\n";
 
-	for (int i=0; i<L.size; i++)
-		cout << L.buf[i] << "\n";
+//	for (int i=0; i<L.size; i++)
+//		cout << L.buf[i] << "\n";
 //	find_all_words(file_name, L);
 //	remove_all_words(file_name, L);
 	
