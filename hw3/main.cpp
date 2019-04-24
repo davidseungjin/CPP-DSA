@@ -78,8 +78,8 @@ SortedLinkedList::~SortedLinkedList()
 		ListNode* old = head;
 		head = old->next;
 		delete old;
-		cout << "SortedLinkedList Destructor\n"; 		// David added
 	}
+		cout << "SortedLinkedList Destructor\n"; 		// David added
 }
 
 
@@ -105,6 +105,9 @@ bool SortedLinkedList::find(string word)
 	return false; 			// Is it meaningful
 }
 
+
+
+/*
 void SortedLinkedList::remove(string word)
 {
 	if(head->info==word)
@@ -122,10 +125,76 @@ void SortedLinkedList::remove(string word)
 			ListNode* temp = prev->next;
 			prev->next = prev->next->next;
 			delete temp;			// my hw2 tells break was included after temp;. is it really necessary?
-			delete prev;
 		}
 	}
+	delete prev;					// David is this right?
 }
+*/
+
+void SortedLinkedList::remove(string word)
+{
+	ListNode* p = head;
+	ListNode* temp = p;
+	cout << "word is " << word << endl;			// David: to check
+	cout << p->info << "\t" << p->next << endl;		// David: to check
+	int i =0;						// David: to check	
+
+	if(p->info == word)
+	{
+		// cout << word << endl;		//David
+	//	cout << head->info << endl;	//David
+		head = head->next;
+	//	cout << head->info << endl;	//David
+		delete p;			// David: because declared below.		
+	}
+	else
+	{
+	cout << "else statement" << endl;
+		while(p->next != NULL)
+//		for(head; p->next!=NULL; p = p->next)
+		{
+
+			cout << p->info << endl;
+			cout << p << endl;
+
+
+/*
+			if(p->next->info==word)		
+			{
+				temp = p->next;
+				cout << "temp is pointer " << temp;				
+				cout << "temp info is " << temp->info;				
+				p->info = p->next->info;
+
+				p->next=p->next->next;
+
+				delete temp;
+
+			}
+//			cout << "p->info is  " << p->info << " and p->next->info is " << p->next->info;
+//			p->info = p->next->info;
+//			cout << "p->info is " << p->info << " and p->next->info is " << p->next->info;
+//			cout << "p while loop" << endl;		// David: to check
+//			i++;					// David: to check
+//			cout << i << endl;			//
+		
+*/			/*
+			if(p->next->info == word)
+			{
+				ListNode* temp;
+				cout << "removing " << p->info << endl;	//David
+				temp = p->next;
+				p->info = p->next->info;
+				p-> next = p->next->next;
+				delete temp;
+			}
+			*/
+		}
+	}
+
+//	delete current;		// because dynamically allocated to be used for finding target node. after mission completed.... 
+}
+
 
 
 
@@ -406,6 +475,7 @@ void insert_all_words(string file_name, SortedLinkedList& L)
 	}
 	t.elapsedUserTime(eTime);
 	f.close();
+
 	cout << "Insert_all_words run time \t\t" << eTime << endl;
 }
 
@@ -437,6 +507,7 @@ void remove_all_words(string file_name, SortedLinkedList& L)
 	t.start();
 	while(getline(f,word))
 	{
+		cout << word << endl;		//David
 		L.remove(word);
 	}
 	t.elapsedUserTime(eTime);
@@ -487,7 +558,7 @@ void test_SortedArrayList_methods(string file_name, SortedArrayList& L)
 void test_SortedLinkedList(string file_name, SortedLinkedList& L)
 {
 	cout << "Testinhg SortedLinkedList: " << endl;
-//	insert_all_words(file_name, L);
+	insert_all_words(file_name, L);
 //	find_all_words(file_name, L);
 	remove_all_words(file_name,L);
 }
