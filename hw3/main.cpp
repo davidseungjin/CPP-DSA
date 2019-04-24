@@ -21,6 +21,7 @@ public:
 
 };
 
+/*
 class SortedArrayList:public SortedList
 {
 public:
@@ -37,12 +38,109 @@ public:
 	bool isFull();
 	void print(ostream& out);
 };
+*/
+
+
+
+class SortedLinkedList : public SortedList
+{
+	struct ListNode{
+		string info;
+		ListNode* next;
+		ListNode (string new_info, ListNode *new_next)
+			:info(new_info), next(new_next){}
+		static void print(ostream& out, ListNode* L)
+		{
+			if(L)
+			{
+				out << L->info << endl;
+				print(out, L->next);
+			}
+		}
+	};
+	ListNode* head;
+public:
+	SortedLinkedList();
+	~SortedLinkedList();
+	void insert(string word);
+	bool find(string word);
+	void remove(string word);
+	void print(ostream& out);
+};
+
+SortedLinkedList::SortedLinkedList()
+:head(NULL){ cout << "SortedLinkedList Constructor\n";}			// David added
+
+SortedLinkedList::~SortedLinkedList()
+{
+	while(head!=NULL)
+	{
+		ListNode* old = head;
+		head = old->next;
+		delete old;
+		cout << "SortedLinkedList Destructor\n"; 		// David added
+	}
+}
+
+
+void SortedLinkedList::insert(string word)
+{
+	ListNode* v = new ListNode(word, head);
+	head = v;
+	cout << head->info << endl;	// David added
+}
+
+bool SortedLinkedList::find(string word)
+{
+	ListNode* current = head;
+	while(current !=NULL)
+	{
+		if(current->info == word)
+		{
+			cout << "found " << current->info << endl;	//David: this is to confirm it find all words.
+			return true;
+		}
+		current = current->next;
+	}
+	return false; 			// Is it meaningful
+}
+
+void SortedLinkedList::remove(string word)
+{
+	if(head->info==word)
+	{
+		ListNode* oldhead=head;
+		head = head->next;
+		delete oldhead;
+		return;
+	}
+	ListNode* prev=head;
+	for(head; prev->next != NULL; prev=prev->next)
+	{
+		if(prev->next->info==word)
+		{
+			ListNode* temp = prev->next;
+			prev->next = prev->next->next;
+			delete temp;			// my hw2 tells break was included after temp;. is it really necessary?
+			delete prev;
+		}
+	}
+}
+
+
+
+/*
+===================================
+==================================
+====================================
+=====================================
+
 
 
 SortedArrayList::SortedArrayList(int max_len)
 {
 //	SortedList();
-	cout << "Derived class constructor called \n";
+	cout << "SortedArrayList class constructor called \n";
 	capacity = max_len;
 	buf = new string[size];
 	size = 0;
@@ -51,7 +149,7 @@ SortedArrayList::SortedArrayList(int max_len)
 SortedArrayList::~SortedArrayList()
 {
 	delete[] buf;
-	cout << "Derived class destructor called \n";
+	cout << "SortedArrayList class destructor called \n";
 //	SortedList::~SortedList();
 }
 
@@ -95,7 +193,7 @@ void SortedArrayList::insert(string word)
 	}
 
 
-/*
+===============================   Trouble Shooting =============== binary insertion
 	 while(min <= max)
 	{
 		cout << "\n word2 " << word;
@@ -138,7 +236,7 @@ void SortedArrayList::insert(string word)
 //			cout << "is there else case? in insert" << endl;
 //		}		
 	}
-*/
+======================================================================================
 
 }
 
@@ -275,10 +373,99 @@ void remove_all_words(string file_name, SortedArrayList& L)
 }
 
 
+============================ Comment on all SortedArray until SortedLinkedList gets cleared =====================
+================================================================================================================
+
+*/
 
 
 
+/* this below is for SortedLinkedList plain function
+ * =====================================================================
+ */
 
+void insert_all_words(string file_name, SortedLinkedList& L)
+{
+	Timer t;
+	double eTime;
+	ifstream f(file_name.c_str());
+	string w;
+
+	t.start();
+	if(f.is_open())
+	{
+		while(getline(f,w))
+		{
+			L.insert(w);
+		}
+	cout << "file opened. this is a confirmation that is is after while loop." << endl;	// David.
+	}
+	else
+	{
+		cout << "file is not opened. check" << endl;
+	}
+	t.elapsedUserTime(eTime);
+	f.close();
+	cout << "Insert_all_words run time \t\t" << eTime << endl;
+}
+
+void find_all_words(string file_name, SortedLinkedList& L)
+{
+	Timer t;
+	double eTime;
+	ifstream f(file_name.c_str());
+	string word;
+
+	t.start();
+	while(getline(f, word))
+	{
+		L.find(word);
+	}
+	t.elapsedUserTime(eTime);
+	f.close();
+
+	cout << "find_all_words run time \t\t" << eTime << endl;
+}
+
+void remove_all_words(string file_name, SortedLinkedList& L)
+{
+	Timer t;
+	double eTime;
+	ifstream f(file_name.c_str());
+	string word;
+
+	t.start();
+	while(getline(f,word))
+	{
+		L.remove(word);
+	}
+	t.elapsedUserTime(eTime);
+	f.close();
+	cout << "remove_all_words run time\t\t" << eTime << endl;
+}
+
+
+
+void SortedLinkedList::print(ostream& out)
+{
+	ListNode* current = head;
+	while(current != NULL)
+	{
+		out << current-> info << endl;
+		current = current -> next;
+	}
+}
+
+ostream& operator << (ostream& out, SortedLinkedList& L)
+{
+	L.print(out);
+	return out;
+}
+
+
+/*
+ *
+ *
 void test_SortedArrayList_methods(string file_name, SortedArrayList& L)
 {
 	cout << "Testing SortedArrayList: " << endl;
@@ -288,17 +475,36 @@ void test_SortedArrayList_methods(string file_name, SortedArrayList& L)
 //	for (int i=0; i<L.size; i++)
 //		cout << L.buf[i] << "\n";
 	find_all_words(file_name, L);
-	remove_all_words(file_name, L);
-	
-	
+	remove_all_words(file_name, L);	
 }
+*
+*
+*
+*/
+
+
+
+void test_SortedLinkedList(string file_name, SortedLinkedList& L)
+{
+	cout << "Testinhg SortedLinkedList: " << endl;
+//	insert_all_words(file_name, L);
+//	find_all_words(file_name, L);
+	remove_all_words(file_name,L);
+}
+
+
+
+
+
 
 int main(int argc, char* argv[])
 {
 	const char* input_file = argc == 2? argv[1] : "random_5.txt";
 
-	SortedArrayList a(150);	
-	test_SortedArrayList_methods(input_file, a);	
+//	SortedArrayList a(150);	
+//	test_SortedArrayList_methods(input_file, a);	
+	SortedLinkedList b;
+	test_SortedLinkedList(input_file, b);
 	return 0;
 }
 
