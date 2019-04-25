@@ -85,11 +85,6 @@ void SortedArrayList::insert(string word)
 	buf[i]=word;
 	size++;
 	
-//	for(int k=0; k<size; k++)			//d
-//	{
-//		cout << "buf[" << k << "] is " << buf[k] << endl;
-//	}
-	
 	return;
 }
 
@@ -112,17 +107,13 @@ bool SortedArrayList::find(string word)
 		}
 		else if (word == buf[mid])
 		{
-//			cout << "found\n" << endl;; // David added to check
-//			cout << "index is " << mid << endl;
 			return true;
 		}
 		else
 		{
-//			cout << "not found\n";
 			return false;
 		}
 	}
-//	cout << "size is in find " <<size<< endl;
 }
 
 
@@ -130,8 +121,6 @@ bool SortedArrayList::find(string word)
 
 void SortedArrayList::remove(string word)
 {
-//	cout << "before for loop" << endl;
-//	cout << "size is " << size << endl;
 
 	int mid = 0;
 	int min = 0;
@@ -154,13 +143,7 @@ void SortedArrayList::remove(string word)
 				buf[j]=buf[j+1];
 			}
 		}	
-//		cout << "test: " << word << " " << i << " " << buf[i] << endl;	
 		size = size - 1;
-//		cout << "for loop in remove test" << endl;
-//		break;
-
-//	David added to show
-//	cout << "size is: " << size << endl;
 	}
 }
 
