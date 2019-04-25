@@ -178,7 +178,7 @@ ostream& operator << (ostream& out, SortedArrayList& L)
 }
 
 
-void insert_all_words(string file_name, SortedArrayList& L)
+void insert_all_words(string file_name, SortedList& L)
 {
 	Timer t;
 	double eTime;
