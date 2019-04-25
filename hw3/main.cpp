@@ -169,41 +169,25 @@ void insert_all_words(string file_name, SortedList& L)
 {
 	Timer t;
 	double eTime;
-	ifstream f(file_name.c_str()); // it error if it is omit .c_str().
+	ifstream f(file_name.c_str());
 	string word;
 
 	t.start();
 	int count =0;
 	if(f.is_open())
 	{
-		cout << "file is once opened";
 		while(getline(f, word))
 		{
-// here here
-//			cout << "\nhere before count and L.insert" << endl; 
-//David : estimate it really get lines
-//			count++; 
-//David: count lines
-//			cout << "count is " << count << endl; 
-// David: print count
-			L.insert(word); // core function.
-// here here
+			L.insert(word);
 		}
-		
-
-//	cout << "\n after loop: here here \n " << endl;
-//	cout << count << endl; // David: print how many lines
 	}
 	else
 	{
-		cout << "file is not opened. check" << endl;
 	}
 	t.elapsedUserTime(eTime);
 	f.close();
 
 	cout << "insert_all_words run time \t\t" << eTime << endl;
-
-
 }
 
 void find_all_words(string file_name, SortedList& L)
