@@ -76,7 +76,7 @@ bool SortedArrayList::isFull()
 
 void SortedArrayList::insert(string word)
 {
-	
+	if(isfull()==true)return;
 	cout << "word before assigning to buf is: " << word << endl;
 	size++;
 	buf[size-1] = word;
