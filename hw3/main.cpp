@@ -5,6 +5,7 @@
 
 using namespace std;
 
+
 class SortedList
 {
 public:
@@ -21,7 +22,8 @@ public:
 
 };
 
-/*
+
+
 class SortedArrayList:public SortedList
 {
 public:
@@ -38,10 +40,9 @@ public:
 	bool isFull();
 	void print(ostream& out);
 };
-*/
 
 
-
+/*
 class SortedLinkedList : public SortedList
 {
 	struct ListNode{
@@ -68,6 +69,12 @@ public:
 	void print(ostream& out);
 };
 
+*/
+
+
+
+/*
+ 
 SortedLinkedList::SortedLinkedList()
 :head(NULL){ cout << "SortedLinkedList Constructor\n";}			// David added
 
@@ -104,6 +111,8 @@ bool SortedLinkedList::find(string word)
 	}
 	return false; 			// Is it meaningful
 }
+*/
+
 
 
 
@@ -129,7 +138,7 @@ void SortedLinkedList::remove(string word)
 	}
 	delete prev;					// David is this right?
 }
-*/
+
 
 void SortedLinkedList::remove(string word)
 {
@@ -158,7 +167,7 @@ void SortedLinkedList::remove(string word)
 			cout << p << endl;
 
 
-/*
+
 			if(p->next->info==word)		
 			{
 				temp = p->next;
@@ -177,8 +186,8 @@ void SortedLinkedList::remove(string word)
 //			cout << "p while loop" << endl;		// David: to check
 //			i++;					// David: to check
 //			cout << i << endl;			//
-		
-*/			/*
+			
+
 			if(p->next->info == word)
 			{
 				ListNode* temp;
@@ -188,21 +197,12 @@ void SortedLinkedList::remove(string word)
 				p-> next = p->next->next;
 				delete temp;
 			}
-			*/
 		}
 	}
 
 //	delete current;		// because dynamically allocated to be used for finding target node. after mission completed.... 
 }
-
-
-
-
-/*
-===================================
-==================================
-====================================
-=====================================
+*/
 
 
 
@@ -241,42 +241,41 @@ bool SortedArrayList::isFull()
 void SortedArrayList::insert(string word)
 {
 	
-//	int min = 0;
-//	int mid = 0;
-//	cout << "word before assigning to buf is: " << word << endl;
+	int min = 0;
+	int mid = 0;
+	cout << "word before assigning to buf is: " << word << endl;
 	size++;
 	buf[size-1] = word;
-//	cout << "buf[size-1] is : " << buf[size-1] << endl; // buf[size]
-//	cout << "size : " << size << endl;		// size
-//	int max = size-1;
+	cout << "buf[size-1] is : " << buf[size-1] << endl; // buf[size]
+	cout << "size : " << size << endl;		// size
+	int max = size-1;
 	
-//	cout << "mid1: " << mid << "\t  min: " << min << "\t  max: " << max << endl;
-//	cout << "==== \n BEFORE INSERT FUNCTION \n ====\n"; // David : test.
+	cout << "mid1: " << mid << "\t  min: " << min << "\t  max: " << max << endl;
+	cout << "==== \n BEFORE INSERT FUNCTION \n ====\n"; // David : test.
+	cout << "size in insert is " << size << endl;
 
 
+//	for (int i=0; i<size; i++)	//this is to check array is ordered.
+//	{
+//		cout << "buf[" << i << "] is " <<  buf[i] << endl;
+//	}
 
-
-	for (int i=0; i<size; i++)	//this is to check array is ordered.
-	{
-		cout << "buf[" << i << "] is " <<  buf[i] << endl;
-	}
-
-
-===============================   Trouble Shooting =============== binary insertion
+/*
+//================   Trouble Shooting =============== binary insertion
 	 while(min <= max)
 	{
 		cout << "\n word2 " << word;
 		mid = min + (max-min)/2;
 		cout << "\nmin2: " << min << " mid2: " << mid << " max2: " << max;
-		if(word < buf[mid])
+		if(buf[size-1] < buf[mid])
 		{
-			cout << "\n word3 " << word;
+			cout << "\n word3 " << buf[size-1];
 			max = mid - 1;
 			cout << " word < buf[mid] \n" << buf[mid]; // David : test.
 			cout << "\nmin3: " << min << " mid3: " << mid << " max3: " << max << endl;
 			return;
 		}
-		else if(word > buf[mid])
+		else if(buf[size-1] > buf[mid])
 		{
 			cout << "\n word4 " << word;
 			min = mid + 1;
@@ -305,9 +304,14 @@ void SortedArrayList::insert(string word)
 //			cout << "is there else case? in insert" << endl;
 //		}		
 	}
-======================================================================================
+//======================================================================================
+
+*/
 
 }
+
+
+
 
 bool SortedArrayList::find(string word)
 {
@@ -337,20 +341,28 @@ bool SortedArrayList::find(string word)
 			return false;
 		}
 	}
+	cout << "size is in find " <<size<< endl;
+// size
+
 }
 
 void SortedArrayList::remove(string word)
 {
+	cout << "before for loop" << endl;
+	cout << "size is " << size << endl;
+
 	for(int i = 0; i < size ; i++)
 	{
 		if(buf[i] == word)
 		{
 			buf[i] = buf[size-1];
 			size = size - 1;
+			cout << "for loop in remove test" << endl;
 		}
 //	David added to show
 	cout << "size is: " << size << endl;
 	cout << "buf is" << buf << endl;
+	cout << "*buf is " << *buf << endl;
 	}
 }
 
@@ -384,9 +396,12 @@ void insert_all_words(string file_name, SortedArrayList& L)
 		while(getline(f, word))
 		{
 // here here
-			cout << "\nhere before count and L.insert" << endl; //David : estimate it really get lines
-			count++; //David: count lines
-			cout << "count is " << count << endl; // David: print count
+			cout << "\nhere before count and L.insert" << endl; 
+//David : estimate it really get lines
+			count++; 
+//David: count lines
+			cout << "count is " << count << endl; 
+// David: print count
 			L.insert(word); // core function.
 // here here
 		}
@@ -432,6 +447,7 @@ void remove_all_words(string file_name, SortedArrayList& L)
 	ifstream f(file_name.c_str());
 	string word;
 	t.start();
+	cout << "remove_all_words function executed" << endl;
 	while(getline(f,word))
 	{
 		L.remove(word);
@@ -442,6 +458,7 @@ void remove_all_words(string file_name, SortedArrayList& L)
 }
 
 
+/*
 ============================ Comment on all SortedArray until SortedLinkedList gets cleared =====================
 ================================================================================================================
 
@@ -451,7 +468,7 @@ void remove_all_words(string file_name, SortedArrayList& L)
 
 /* this below is for SortedLinkedList plain function
  * =====================================================================
- */
+
 
 void insert_all_words(string file_name, SortedLinkedList& L)
 {
@@ -534,9 +551,9 @@ ostream& operator << (ostream& out, SortedLinkedList& L)
 }
 
 
-/*
- *
- *
+*/
+
+
 void test_SortedArrayList_methods(string file_name, SortedArrayList& L)
 {
 	cout << "Testing SortedArrayList: " << endl;
@@ -548,13 +565,10 @@ void test_SortedArrayList_methods(string file_name, SortedArrayList& L)
 	find_all_words(file_name, L);
 	remove_all_words(file_name, L);	
 }
-*
-*
-*
-*/
 
 
 
+/*
 void test_SortedLinkedList(string file_name, SortedLinkedList& L)
 {
 	cout << "Testinhg SortedLinkedList: " << endl;
@@ -563,7 +577,7 @@ void test_SortedLinkedList(string file_name, SortedLinkedList& L)
 	remove_all_words(file_name,L);
 }
 
-
+*/
 
 
 
@@ -572,10 +586,10 @@ int main(int argc, char* argv[])
 {
 	const char* input_file = argc == 2? argv[1] : "random_5.txt";
 
-//	SortedArrayList a(150);	
-//	test_SortedArrayList_methods(input_file, a);	
-	SortedLinkedList b;
-	test_SortedLinkedList(input_file, b);
+	SortedArrayList a(45500);	
+	test_SortedArrayList_methods(input_file, a);	
+//	SortedLinkedList b;
+//	test_SortedLinkedList(input_file, b);
 	return 0;
 }
 
