@@ -85,9 +85,8 @@ void SortedArrayList::insert(string word)
 			for(int j=size-1; j>=1; --j)
 			{
 				buf[i+1]=buf[i];
-				break;
 			}
-			return;
+			break;
 		}
 	}			
 
