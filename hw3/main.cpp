@@ -93,7 +93,11 @@ void SortedArrayList::insert(string word)
 	}			
 	buf[i]=word;
 	size++;
-	cout << buf[0] << "\t\t" << buf[1] << "\t\t" << buf[2] << endl;
+	
+	for(k=0; k<size; k++)
+	{
+		cout << "buf[" << k << "] is " << buf[k] << endl;
+	}
 	
 	return;
 }
