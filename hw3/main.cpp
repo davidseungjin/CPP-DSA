@@ -88,6 +88,31 @@ void SortedArrayList::insert(string word)
 	return;
 }
 
+void insert_all_words(string file_name, SortedList& L)
+{
+	Timer t;
+	double eTime;
+	ifstream f(file_name.c_str());
+	string word;
+
+	t.start();
+	int count =0;
+	if(f.is_open())
+	{
+		while(getline(f, word))
+		{
+			L.insert(word);
+		}
+	}
+	else
+	{
+	}
+	t.elapsedUserTime(eTime);
+	f.close();
+
+	cout << "insert_all_words run time \t\t" << eTime << endl;
+}
+
 
 bool SortedArrayList::find(string word)
 {
@@ -165,30 +190,6 @@ ostream& operator << (ostream& out, SortedArrayList& L)
 }
 
 
-void insert_all_words(string file_name, SortedList& L)
-{
-	Timer t;
-	double eTime;
-	ifstream f(file_name.c_str());
-	string word;
-
-	t.start();
-	int count =0;
-	if(f.is_open())
-	{
-		while(getline(f, word))
-		{
-			L.insert(word);
-		}
-	}
-	else
-	{
-	}
-	t.elapsedUserTime(eTime);
-	f.close();
-
-	cout << "insert_all_words run time \t\t" << eTime << endl;
-}
 
 void find_all_words(string file_name, SortedList& L)
 {
