@@ -87,11 +87,14 @@ void SortedArrayList::insert(string word)
 			{
 				buf[j+1]=buf[j];
 			}
+			cout << “test: “ << word << “ “ << i << “ “ << buf[i] << endl;
 			break;
 		}
 	}			
 	buf[i]=word;
 	size++;
+	cout << buf[0] << "\t\t" << buf[1] << "\t\t" << buf[2] << endl;
+	
 	return;
 }
 
