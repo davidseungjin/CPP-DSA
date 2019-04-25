@@ -86,10 +86,10 @@ void SortedArrayList::insert(string word)
 			{
 				buf[j+1]=buf[j];
 			}
-			break;
+			buf[i]=word;
 		}
 	}			
-
+	size++;
 }
 
 
