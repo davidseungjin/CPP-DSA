@@ -22,8 +22,6 @@ public:
 
 };
 
-
-
 class SortedArrayList:public SortedList
 {
 public:
