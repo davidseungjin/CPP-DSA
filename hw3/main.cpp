@@ -153,21 +153,12 @@ void SortedArrayList::remove(string word)
 			{
 				buf[j]=buf[j+1];
 			}
-//			cout << "found\n" << endl;; // David added to check
-//			cout << "index is " << mid << endl;
-//			return true;
-//		}
-//		else
-//		{
-//			cout << "not found\n";
-//			return false;
-//		}
 		}	
 //		cout << "test: " << word << " " << i << " " << buf[i] << endl;	
 		size = size - 1;
 //		cout << "for loop in remove test" << endl;
 //		break;
-		}
+
 //	David added to show
 //	cout << "size is: " << size << endl;
 	}
