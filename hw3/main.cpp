@@ -183,19 +183,19 @@ void insert_all_words(string file_name, SortedArrayList& L)
 		while(getline(f, word))
 		{
 // here here
-			cout << "\nhere before count and L.insert" << endl; 
+//			cout << "\nhere before count and L.insert" << endl; 
 //David : estimate it really get lines
-			count++; 
+//			count++; 
 //David: count lines
-			cout << "count is " << count << endl; 
+//			cout << "count is " << count << endl; 
 // David: print count
 			L.insert(word); // core function.
 // here here
 		}
 		
 
-	cout << "\n after loop: here here \n " << endl;
-	cout << count << endl; // David: print how many lines
+//	cout << "\n after loop: here here \n " << endl;
+//	cout << count << endl; // David: print how many lines
 	}
 	else
 	{
