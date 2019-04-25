@@ -81,7 +81,7 @@ void SortedArrayList::insert(string word)
 	int i=0;
 	for (; i<size;i++)
 	{
-		if(word > buf[i])
+		if(word < buf[i])
 		{
 			for(int j=size-1; j>=i; --j)
 			{
