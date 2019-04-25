@@ -140,10 +140,32 @@ void SortedArrayList::remove(string word)
 	cout << "before for loop" << endl;
 	cout << "size is " << size << endl;
 
-	for(int i = 0; i < size ; i++)
+	int mid = 0;
+	int min = 0;
+	int max = size;
+	while (min <= max)
 	{
-		if(buf[i] == word)
+		mid = min + (max-min)/2;
+		if (word < buf[mid])
 		{
+			max = mid - 1;
+		}
+		else if (word > buf[mid])
+		{
+			min = mid + 1;
+		}
+		else if (word == buf[mid])
+		{
+			cout << "found\n" << endl;; // David added to check
+			cout << "index is " << mid << endl;
+			return true;
+		}
+		else
+		{
+			cout << "not found\n";
+			return false;
+		}
+	}
 			for(int j=i; j<size; j++)
 			{
 				buf[j]=buf[j+1];
