@@ -150,11 +150,10 @@ void SortedArrayList::remove(string word)
 			{
 				buf[j]=buf[j+1];
 			}
-			cout << "test: " << word << " " << i << " " << buf[i] << endl;
-			break;
-			
+			cout << "test: " << word << " " << i << " " << buf[i] << endl;	
 		size = size - 1;
 		cout << "for loop in remove test" << endl;
+		break;
 		}
 //	David added to show
 	cout << "size is: " << size << endl;
