@@ -47,7 +47,7 @@ SortedArrayList::SortedArrayList(int max_len)
 //	SortedList();
 	cout << "SortedArrayList class constructor called \n";
 	capacity = max_len;
-	buf = new string[size];
+	buf = new string[capacity];
 	size = 0;
 }
 
