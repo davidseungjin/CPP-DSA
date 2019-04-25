@@ -11,12 +11,12 @@ class SortedList
 public:
 	SortedList()
 	{cout<<"Base class constructor called \n";}
-//	virtual void insert(string word){};
-//	virtual bool find(string word){};
-//	virtual void remove(string word){};
-//	virtual bool isEmpty(){};
-//	virtual bool isFull(){};
-//	virtual void print(ostream& out){};
+	virtual void insert(string word){};
+	virtual bool find(string word){};
+	virtual void remove(string word){};
+	virtual bool isEmpty(){};
+	virtual bool isFull(){};
+	virtual void print(ostream& out){};
 	virtual ~SortedList()
 	{cout<<"Base class destructor called \n";}
 
@@ -219,7 +219,7 @@ void insert_all_words(string file_name, SortedList& L)
 
 }
 
-void find_all_words(string file_name, SortedArrayList& L)
+void find_all_words(string file_name, SortedList& L)
 {
 	Timer t;
 	double eTime;
@@ -237,7 +237,7 @@ void find_all_words(string file_name, SortedArrayList& L)
 	cout << "find_all_words run time \t\t" << eTime << endl;
 }
 
-void remove_all_words(string file_name, SortedArrayList& L)
+void remove_all_words(string file_name, SortedList& L)
 {
 	Timer t;
 	double eTime;
@@ -256,7 +256,7 @@ void remove_all_words(string file_name, SortedArrayList& L)
 
 
 
-void test_SortedArrayList_methods(string file_name, SortedArrayList& L)
+void test_SortedArrayList_methods(string file_name, SortedList& L)
 {
 	cout << "Testing SortedArrayList: " << endl;
 	insert_all_words(file_name, L);
