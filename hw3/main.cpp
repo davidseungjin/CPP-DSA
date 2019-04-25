@@ -11,12 +11,12 @@ class SortedList
 public:
 	SortedList()
 	{cout<<"Base class constructor called \n";}
-	virtual void insert(string word){};
-	virtual bool find(string word){};
-	virtual void remove(string word){};
-	virtual bool isEmpty(){};
-	virtual bool isFull(){};
-	virtual void print(ostream& out){};
+//	virtual void insert(string word){};
+//	virtual bool find(string word){};
+//	virtual void remove(string word){};
+//	virtual bool isEmpty(){};
+//	virtual bool isFull(){};
+//	virtual void print(ostream& out){};
 	virtual ~SortedList()
 	{cout<<"Base class destructor called \n";}
 
@@ -77,18 +77,18 @@ bool SortedArrayList::isFull()
 void SortedArrayList::insert(string word)
 {
 	
-	int min = 0;
-	int mid = 0;
 	cout << "word before assigning to buf is: " << word << endl;
 	size++;
 	buf[size-1] = word;
-	cout << "buf[size-1] is : " << buf[size-1] << endl; // buf[size]
-	cout << "size : " << size << endl;		// size
 	int max = size-1;
-	
-	cout << "mid1: " << mid << "\t  min: " << min << "\t  max: " << max << endl;
-	cout << "==== \n BEFORE INSERT FUNCTION \n ====\n"; // David : test.
-	cout << "size in insert is " << size << endl;
+	for (int i=0; i<size;i++)
+	{
+		if(word > buf[i])
+		{	
+			buf[i+1]=buf[i];
+			buf[i]=word;
+		}
+	}			
 
 }
 
@@ -122,9 +122,10 @@ bool SortedArrayList::find(string word)
 		}
 	}
 	cout << "size is in find " <<size<< endl;
-// size
-
 }
+
+
+
 
 void SortedArrayList::remove(string word)
 {
@@ -145,6 +146,9 @@ void SortedArrayList::remove(string word)
 	cout << "*buf is " << *buf << endl;
 	}
 }
+
+
+
 
 void SortedArrayList::print(ostream& out)
 {
