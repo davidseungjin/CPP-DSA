@@ -87,7 +87,7 @@ void SortedArrayList::insert(string word)
 			{
 				buf[j+1]=buf[j];
 			}
-			cout << “test: “ << word << “ “ << i << “ “ << buf[i] << endl;
+			cout << "test: " << word << " " << i << " " << buf[i] << endl;
 			break;
 		}
 	}			
