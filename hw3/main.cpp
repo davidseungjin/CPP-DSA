@@ -92,6 +92,7 @@ void SortedArrayList::insert(string word)
 	}			
 	buf[i]=word;
 	size++;
+	return;
 }
 
 
