@@ -94,7 +94,7 @@ void SortedArrayList::insert(string word)
 	buf[i]=word;
 	size++;
 	
-	for(k=0; k<size; k++)
+	for(int k=0; k<size; k++)
 	{
 		cout << "buf[" << k << "] is " << buf[k] << endl;
 	}
