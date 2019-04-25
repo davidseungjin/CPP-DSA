@@ -146,14 +146,18 @@ void SortedArrayList::remove(string word)
 	{
 		if(buf[i] == word)
 		{
-			buf[i] = buf[size-1];
-			size = size - 1;
-			cout << "for loop in remove test" << endl;
+			for(int j=i; j<size; j++)
+			{
+				buf[j]=buf[j+1];
+			}
+			cout << "test: " << word << " " << i << " " << buf[i] << endl;
+			break;
+			
+		size = size - 1;
+		cout << "for loop in remove test" << endl;
 		}
 //	David added to show
 	cout << "size is: " << size << endl;
-	cout << "buf is" << buf << endl;
-	cout << "*buf is " << *buf << endl;
 	}
 }
 
