@@ -78,9 +78,6 @@ void SortedArrayList::insert(string word)
 {
 	if(isfull()==true)return;
 	cout << "word before assigning to buf is: " << word << endl;
-	size++;
-	buf[size-1] = word;
-	int max = size-1;
 	for (int i=0; i<size;i++)
 	{
 		if(word > buf[i])
