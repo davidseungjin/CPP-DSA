@@ -9,16 +9,14 @@ using namespace std;
 class SortedList
 {
 public:
-	SortedList()
-	{cout<<"Base class constructor called \n";}
+	SortedList(){};
 	virtual void insert(string word){};
 	virtual bool find(string word){};
 	virtual void remove(string word){};
 	virtual bool isEmpty(){};
 	virtual bool isFull(){};
 	virtual void print(ostream& out){};
-	virtual ~SortedList()
-	{cout<<"Base class destructor called \n";}
+	virtual ~SortedList(){};
 
 };
 
@@ -42,8 +40,6 @@ public:
 
 SortedArrayList::SortedArrayList(int max_len)
 {
-//	SortedList();
-	cout << "SortedArrayList class constructor called \n";
 	capacity = max_len;
 	buf = new string[capacity];
 	size = 0;
@@ -53,7 +49,6 @@ SortedArrayList::~SortedArrayList()
 {
 	delete[] buf;
 	cout << "SortedArrayList class destructor called \n";
-//	SortedList::~SortedList();
 }
 
 bool SortedArrayList::isEmpty()
@@ -75,7 +70,6 @@ bool SortedArrayList::isFull()
 void SortedArrayList::insert(string word)
 {
 	if(isFull()==true)return;
-	cout << "word before assigning to buf is: " << word << endl;
 	int i=0;
 	for (; i<size;i++)
 	{
@@ -85,17 +79,16 @@ void SortedArrayList::insert(string word)
 			{
 				buf[j+1]=buf[j];
 			}
-			cout << "test: " << word << " " << i << " " << buf[i] << endl;
 			break;
 		}
 	}			
 	buf[i]=word;
 	size++;
 	
-	for(int k=0; k<size; k++)			//d
-	{
-		cout << "buf[" << k << "] is " << buf[k] << endl;
-	}
+//	for(int k=0; k<size; k++)			//d
+//	{
+//		cout << "buf[" << k << "] is " << buf[k] << endl;
+//	}
 	
 	return;
 }
@@ -119,17 +112,17 @@ bool SortedArrayList::find(string word)
 		}
 		else if (word == buf[mid])
 		{
-			cout << "found\n" << endl;; // David added to check
-			cout << "index is " << mid << endl;
+//			cout << "found\n" << endl;; // David added to check
+//			cout << "index is " << mid << endl;
 			return true;
 		}
 		else
 		{
-			cout << "not found\n";
+//			cout << "not found\n";
 			return false;
 		}
 	}
-	cout << "size is in find " <<size<< endl;
+//	cout << "size is in find " <<size<< endl;
 }
 
 
@@ -137,8 +130,8 @@ bool SortedArrayList::find(string word)
 
 void SortedArrayList::remove(string word)
 {
-	cout << "before for loop" << endl;
-	cout << "size is " << size << endl;
+//	cout << "before for loop" << endl;
+//	cout << "size is " << size << endl;
 
 	int mid = 0;
 	int min = 0;
@@ -156,27 +149,27 @@ void SortedArrayList::remove(string word)
 		}
 		else if (word == buf[mid])
 		{
-			cout << "found\n" << endl;; // David added to check
-			cout << "index is " << mid << endl;
-			return true;
-		}
-		else
-		{
-			cout << "not found\n";
-			return false;
-		}
-	}
-			for(int j=i; j<size; j++)
+			for(int j=mid; j<size; j++)
 			{
 				buf[j]=buf[j+1];
 			}
-			cout << "test: " << word << " " << i << " " << buf[i] << endl;	
+//			cout << "found\n" << endl;; // David added to check
+//			cout << "index is " << mid << endl;
+//			return true;
+//		}
+//		else
+//		{
+//			cout << "not found\n";
+//			return false;
+//		}
+		}	
+//		cout << "test: " << word << " " << i << " " << buf[i] << endl;	
 		size = size - 1;
-		cout << "for loop in remove test" << endl;
-		break;
+//		cout << "for loop in remove test" << endl;
+//		break;
 		}
 //	David added to show
-	cout << "size is: " << size << endl;
+//	cout << "size is: " << size << endl;
 	}
 }
 
