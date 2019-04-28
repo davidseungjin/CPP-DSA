@@ -8,14 +8,18 @@ when closing braket ( }, ], >, ) ), then pop from the stack.
 
 To-do is, 
 
+Input string, then convert to char[] to compare character one-by-one.
+
+
 under for loop (i=0; i< strlen(input char value); i++)
 
-1. when input value is closing braket, compare top() and input value
+1. when input value is opening braket, push() to the stack.
+2. when input value is closing braket, compare top() and input value
 	If Match? pop(), else --> "dont match" and program termination --> return false
 
-2. befor completing last element of input, when isempty()
+3. befor completing last element of input, when isempty()
 	then ---> "not match. closing braket is more", and program termination. return false
-3. after completing last element of input, when remained. (meaning 'head != nullptr')
+4. after completing last element of input, when remained. (meaning 'head != nullptr')
 	then ---> "not match. opening braket is more", and program termination. return false
 
 ================
