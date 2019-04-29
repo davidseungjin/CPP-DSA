@@ -63,7 +63,7 @@ bool isBalanced(string& d)
 
 
 /*
-		if((d[i]=='{')||( d[i]=='(' )||(d[i]=='[')||(d[i]=='<'))
+		if((d[i]=="{")||( d[i]=="(" )||(d[i]=="[")||(d[i]=="<"))
 		{
 			L.push(d[i]);
 			cout << "1.   pushing " << endl;
@@ -71,15 +71,15 @@ bool isBalanced(string& d)
 			L.print_top();
 
 		}
-		else if ((d[i]=='}')||(d[i]==')')||(d[i]==']')||(d[i]=='>'))
+		else if ((d[i]=="}")||(d[i]==")")||(d[i]=="]")||(d[i]==">"))
 		{		
 			cout << "d[i] is "<< d[i] << endl;
 
 // assign })]> to <[({
-			if (d[i] == '}' ){d[i] = '{'; }
-			else if (d[i] == ')' ){d[i] = '('; }
-			else if (d[i] == ']' ){d[i] = '['; }
-			else {d[i] = '<'; }
+			if (d[i] == "}" ){d[i] = "{"; }
+			else if (d[i] == ")" ){d[i] = "("; }
+			else if (d[i] == "]" ){d[i] = "["; }
+			else {d[i] = "<"; }
 
 // assign end
 			if(L.isEmpty())
@@ -125,7 +125,10 @@ int main()
 	string d;
 	cout << "input string brakets...";
 	cin >> d;
-	bool isBalanced(string d);
+	cout << d;
+	bool a = isBalanced(d);
+	cout << a << endl;
 
 	return 0;
 }
+
