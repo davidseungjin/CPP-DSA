@@ -125,7 +125,7 @@ int main()
 	string d;
 	cout << "input string brakets...";
 	cin >> d;
-	bool isBalanced(string& d);
+	bool isBalanced(string d);
 
 	return 0;
 }
