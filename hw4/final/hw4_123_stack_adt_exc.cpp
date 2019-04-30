@@ -23,7 +23,7 @@ class StackArray:public Stack
     int capacity;
 public:
     StackArray(int maxsize)
-    :capacity(maxsize=4), tp(0), buf(new string[maxsize]){}
+    :capacity(maxsize), tp(0), buf(new string[maxsize]){}
     ~StackArray(){}
     void push(string w) { buf[tp++] = w; }
     string pop() { return buf[--tp]; }
@@ -116,11 +116,11 @@ void fillAll(string file_name, Stack& L){
 
 void emptyAll(Stack& L, string& output_file)
 {
+	ofstream f(output_file.c_str(), ios::out);
 	try{
 		if(L.isEmpty()){
 			throw ContainerUnderFlow("UnderFlow Error");
 		} else {
-			ofstream f(output_file.c_str(), ios::out);
 			while(L.isEmpty() == 0){
      				f << L.top() << endl;
        				L.pop();
@@ -137,8 +137,8 @@ void emptyAll(Stack& L, string& output_file)
 
 void Stack_test(string file_name, Stack& L, string output_file)
 {
-    fillAll(file_name, L);
-//    emptyAll(L, output_file);
+//    fillAll(file_name, L);
+    emptyAll(L, output_file);
 }
 
 int main(int argc, char* argv[])
@@ -147,14 +147,14 @@ int main(int argc, char* argv[])
     const char* output_file1 = "StackArrayOutput.txt";
     const char* output_file2 = "LinkedStackOutput.txt";
     
-    StackArray a(10);
+    StackArray a(3);
     LinkedStack b;
 
     Stack& s = a;
     Stack& t = b;
 
-    Stack_test(input_file, s, output_file1);
-//    Stack_test(input_file, t, output_file2);
+//    Stack_test(input_file, s, output_file1);
+    Stack_test(input_file, t, output_file2);
 
     
     return 0;
