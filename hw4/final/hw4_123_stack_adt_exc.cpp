@@ -105,12 +105,11 @@ void fillAll(string file_name, Stack& L){
 		            		L.push(w);
 				}	
 			}
-			catch(ContainerOverFlow& exception)
-				{
-					cerr <<	exception.getError() << endl;
-				}
+			catch(ContainerOverFlow& exception){
+				cerr <<	exception.getError() << endl;
+		   		f.close();
+			}
     		}
-   		f.close();
 	}
 }
 
