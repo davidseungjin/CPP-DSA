@@ -98,17 +98,17 @@ void fillAll(string file_name, Stack& L){
    	string w;
    	if(f.is_open()){
 	       	while(getline(f, w)){
-		try{
-			if(L.isFull()){
-				throw ContainerOverFlow("OverFlow Error");
-			} else {
-		            	L.push(w);
-			}	
-		}
-		catch(ContainerOverFlow& exception)
-			{
-				cerr <<	exception.getError() << endl;
+			try{
+				if(L.isFull()){
+					throw ContainerOverFlow("OverFlow Error");
+				} else {
+		            		L.push(w);
+				}	
 			}
+			catch(ContainerOverFlow& exception)
+				{
+					cerr <<	exception.getError() << endl;
+				}
     		}
    		f.close();
 	}
