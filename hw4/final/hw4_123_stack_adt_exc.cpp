@@ -107,8 +107,9 @@ void fillAll(string file_name, Stack& L){
 			}
 			catch(ContainerOverFlow& exception){
 				cerr <<	exception.getError() << endl;
-		   		f.close();
-			}
+				break;
+		   	}
+	f.close();
     		}
 	}
 }
