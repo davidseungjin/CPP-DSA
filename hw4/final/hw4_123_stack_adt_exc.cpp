@@ -109,8 +109,8 @@ void fillAll(string file_name, Stack& L){
 				cerr <<	exception.getError() << endl;
 				break;
 		   	}
-	f.close();
     		}
+ 	f.close();
 	}
 }
 
