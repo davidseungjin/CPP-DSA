@@ -9,16 +9,20 @@ using namespace std;
 class SortedList
 {
 public:
-	SortedList(){};
-	virtual void insert(string word);
-	virtual bool find(string word);
-	virtual void remove(string word);
-	virtual bool isEmpty();
-	virtual bool isFull();
-	virtual void print(ostream& out);
-	virtual ~SortedList(){};
+	SortedList()
+	{cout<<"Base class constructor called \n";}
+	virtual void insert(string word){};
+	virtual bool find(string word){};
+	virtual void remove(string word){};
+	virtual bool isEmpty(){};
+	virtual bool isFull(){};
+	virtual void print(ostream& out){};
+	virtual ~SortedList()
+	{cout<<"Base class destructor called \n";}
 
 };
+
+
 
 class SortedArrayList:public SortedList
 {
@@ -40,6 +44,8 @@ public:
 
 SortedArrayList::SortedArrayList(int max_len)
 {
+//	SortedList();
+	cout << "SortedArrayList class constructor called \n";
 	capacity = max_len;
 	buf = new string[capacity];
 	size = 0;
@@ -49,6 +55,7 @@ SortedArrayList::~SortedArrayList()
 {
 	delete[] buf;
 	cout << "SortedArrayList class destructor called \n";
+//	SortedList::~SortedList();
 }
 
 bool SortedArrayList::isEmpty()
@@ -70,6 +77,7 @@ bool SortedArrayList::isFull()
 void SortedArrayList::insert(string word)
 {
 	if(isFull()==true)return;
+	cout << "word before assigning to buf is: " << word << endl;
 	int i=0;
 	for (; i<size;i++)
 	{
@@ -79,38 +87,19 @@ void SortedArrayList::insert(string word)
 			{
 				buf[j+1]=buf[j];
 			}
+			cout << "test: " << word << " " << i << " " << buf[i] << endl;
 			break;
 		}
 	}			
 	buf[i]=word;
 	size++;
 	
+	for(int k=0; k<size; k++)			//d
+	{
+		cout << "buf[" << k << "] is " << buf[k] << endl;
+	}
+	
 	return;
-}
-
-void insert_all_words(string file_name, SortedList& L)
-{
-	Timer t;
-	double eTime;
-	ifstream f(file_name.c_str());
-	string word;
-
-	t.start();
-	int count =0;
-	if(f.is_open())
-	{
-		while(getline(f, word))
-		{
-			L.insert(word);
-		}
-	}
-	else
-	{
-	}
-	t.elapsedUserTime(eTime);
-	f.close();
-
-	cout << "insert_all_words run time \t\t" << eTime << endl;
 }
 
 
@@ -132,13 +121,17 @@ bool SortedArrayList::find(string word)
 		}
 		else if (word == buf[mid])
 		{
+			cout << "found\n" << endl;; // David added to check
+			cout << "index is " << mid << endl;
 			return true;
 		}
 		else
 		{
+			cout << "not found\n";
 			return false;
 		}
 	}
+	cout << "size is in find " <<size<< endl;
 }
 
 
@@ -146,29 +139,24 @@ bool SortedArrayList::find(string word)
 
 void SortedArrayList::remove(string word)
 {
+	cout << "before for loop" << endl;
+	cout << "size is " << size << endl;
 
-	int mid = 0;
-	int min = 0;
-	int max = size;
-	while (min <= max)
+	for(int i = 0; i < size ; i++)
 	{
-		mid = min + (max-min)/2;
-		if (word < buf[mid])
+		if(buf[i] == word)
 		{
-			max = mid - 1;
-		}
-		else if (word > buf[mid])
-		{
-			min = mid + 1;
-		}
-		else if (word == buf[mid])
-		{
-			for(int j=mid; j<size; j++)
+			for(int j=i; j<size; j++)
 			{
 				buf[j]=buf[j+1];
 			}
-		}	
+			cout << "test: " << word << " " << i << " " << buf[i] << endl;	
 		size = size - 1;
+		cout << "for loop in remove test" << endl;
+		break;
+		}
+//	David added to show
+	cout << "size is: " << size << endl;
 	}
 }
 
@@ -190,6 +178,46 @@ ostream& operator << (ostream& out, SortedArrayList& L)
 }
 
 
+void insert_all_words(string file_name, SortedList& L)
+{
+	Timer t;
+	double eTime;
+	ifstream f(file_name.c_str()); // it error if it is omit .c_str().
+	string word;
+
+	t.start();
+	int count =0;
+	if(f.is_open())
+	{
+		cout << "file is once opened";
+		while(getline(f, word))
+		{
+// here here
+//			cout << "\nhere before count and L.insert" << endl; 
+//David : estimate it really get lines
+//			count++; 
+//David: count lines
+//			cout << "count is " << count << endl; 
+// David: print count
+			L.insert(word); // core function.
+// here here
+		}
+		
+
+//	cout << "\n after loop: here here \n " << endl;
+//	cout << count << endl; // David: print how many lines
+	}
+	else
+	{
+		cout << "file is not opened. check" << endl;
+	}
+	t.elapsedUserTime(eTime);
+	f.close();
+
+	cout << "insert_all_words run time \t\t" << eTime << endl;
+
+
+}
 
 void find_all_words(string file_name, SortedList& L)
 {

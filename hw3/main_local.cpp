@@ -7,7 +7,7 @@ using namespace std;
 
 class SortedList
 {
-protected:
+public:
 	virtual void insert(string word);
 	virtual bool find(string word);
 	virtual void remove(string word);
@@ -27,18 +27,18 @@ class SortedArrayList : public SortedList
 
 public:
 	SortedArrayList(int max_len);
-	virtual ~SortedArrayList();
-	virtual void insert(string word);
-	virtual bool find(string word);
-	virtual void remove(string word);
-	virtual bool isEmpty();
-	virtual bool isFull();
+	~SortedArrayList();
+	void insert(string word);
+	bool find(string word);
+	void remove(string word);
+	bool isEmpty();
+	bool isFull();
 	void print(ostream& out);
 };
 
 
 SortedArrayList::SortedArrayList(int max_len){
-	SortedList();
+//	SortedList();
 	capacity = max_len;
 	buf = new string[capacity];
 	size = 0;
@@ -51,8 +51,6 @@ SortedArrayList::~SortedArrayList()
 
 
 
-
-/*
 bool SortedArrayList::isEmpty()
 {
 	if(size == 0)
@@ -68,8 +66,6 @@ bool SortedArrayList::isFull()
 	else
 		return false;
 }
-
-*/
 
 
 void SortedArrayList::insert(string word)

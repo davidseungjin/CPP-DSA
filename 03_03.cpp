@@ -38,4 +38,7 @@ public:
 	~DLinkedList();
 	bool empty() const;
 	const Elem& front() const;		//get front element
-	const Elem
+	const Elem& back() const;
+	void addFront(const Elem& e);
+	void addBack(const Elem& e);
+	void removeFront()
