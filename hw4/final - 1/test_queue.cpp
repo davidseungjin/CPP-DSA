@@ -17,8 +17,8 @@ public:
 
 class QueueArray:public Queue
 {
+    string* buf;        // base of circular array
     int capacity, front, rear;
-    string* buf;
 public:
     QueueArray(int maxsize)
     :capacity(maxsize+1), front(0), rear(0), buf(new string[maxsize+1]){}
@@ -152,7 +152,7 @@ void Queue_test(string file_name, Queue& L, string output_file)
 
 int main(int argc, char* argv[])
 {
-    const char* input_file = argc == 4? argv[1]: "random.txt";
+    const char* input_file = argv[1];
     const char* output_file1 = argv[2];
     const char* output_file2 = argv[3];
 

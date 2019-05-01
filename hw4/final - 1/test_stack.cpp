@@ -22,8 +22,8 @@ class StackArray:public Stack
     int tp;
     int capacity;
 public:
-    StackArray(int maxsize=45530)
-    	: buf(new string[maxsize]), tp(0), capacity(maxsize){}
+    StackArray(int maxsize)
+    :capacity(maxsize), tp(0), buf(new string[maxsize]){}
     ~StackArray(){}
     void push(string w) { buf[tp++] = w; }
     string pop() { return buf[--tp]; }
@@ -45,8 +45,10 @@ public:
     LinkedStack()
     :head(nullptr){}
     ~LinkedStack(){}
+    //    void push(string w) { if(isFull()) error ("Push on full stack"); head = new ListNode(w, head); }
     void push(string w) { head = new ListNode(w, head); }
     string pop();
+    //    string top() { if(isEmpty()) error("top on empty stack"); return head->info; }
     string top() { return head->info; }
     bool isEmpty() { return head == nullptr; }
     bool isFull() { return false; }
@@ -141,7 +143,7 @@ void Stack_test(string file_name, Stack& L, string output_file)
 
 int main(int argc, char* argv[])
 {
-    const char* input_file = argc == 2 ? argv[1]: "random.txt";
+    const char* input_file = argv[1];
     const char* output_file1 = argv[2];
     const char* output_file2 = argv[3];
     
