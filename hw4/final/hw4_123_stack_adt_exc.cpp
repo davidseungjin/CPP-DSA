@@ -110,7 +110,7 @@ void fillAll(string file_name, Stack& L){
 				break;
 		   	}
     		}
- 	f.close();
+ 		f.close();
 	}
 }
 
