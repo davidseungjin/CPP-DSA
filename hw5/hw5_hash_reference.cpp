@@ -9,13 +9,13 @@ const int TABLE_SIZE = 128;
 /*
  * HashNode Class Declaration
  */
-class ListNode
+class HashNode
 {
 public:
     int key;
     int value;
-    ListNode* next;
-    ListNode(int key, int value)
+    HashNode* next;
+    HashNode(int key, int value)
     {
         this->key = key;
         this->value = value;
@@ -26,21 +26,25 @@ public:
 /*
  * HashMap Class Declaration
  */
-class Hashtable
+class HashMap
 {
 private:
-    ListNode** htable;
+    HashNode** htable;
 public:
-    Hashtable(){
-        htable = new ListNode*[TABLE_SIZE];
+    HashMap()
+    {
+        htable = new HashNode*[TABLE_SIZE];
         for (int i = 0; i < TABLE_SIZE; i++)
             htable[i] = NULL;
     }
-    ~HashMap(){
-        for (int i = 0; i < TABLE_SIZE; ++i){
-            ListNode* entry = htable[i];
-            while (entry != NULL){
-                ListNode* prev = entry;
+    ~HashMap()
+    {
+        for (int i = 0; i < TABLE_SIZE; ++i)
+        {
+            HashNode* entry = htable[i];
+            while (entry != NULL)
+            {
+                HashNode* prev = entry;
                 entry = entry->next;
                 delete prev;
             }
@@ -58,10 +62,11 @@ public:
     /*
      * Insert Element at a key
      */
-    void Insert(int key, int value){
-        int hash_value = HashFunc(key);
+    void Insert(int key, int value)
+    {
+        int hash_val = HashFunc(key);
         HashNode* prev = NULL;
-        HashNode* entry = htable[hash_value];
+        HashNode* entry = htable[hash_val];
         while (entry != NULL)
         {
             prev = entry;
