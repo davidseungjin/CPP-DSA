@@ -1,42 +1,61 @@
 
 #include<iostream>
-#include<cstdlib>
+//#include<cstdlib>
+//#include<string>
+//#include<cstdio>
+#include <fstream>
 #include<string>
-#include<cstdio>
+
 using namespace std;
-const int TABLE_SIZE = 128;
+const int TABLE_SIZE = 13;
 
 /*
- * HashNode Class Declaration
+ * ListNode Class Declaration
  */
-class ListNode
-{
+class ListNode{
 public:
-    int key;
+    string key;
     int value;
     ListNode* next;
-    ListNode(int key, int value)
-    {
+    ListNode(string key, int value){
         this->key = key;
         this->value = value;
         this->next = NULL;
     }
 };
 
-/*
- * HashMap Class Declaration
+/* Hash function, Hash code: base, derived.
  */
-class Hashtable
-{
+struct Hasher{
+    virtual int hash(string key) = 0;
+};
+
+struct GeneralStringHasher:public Hasher{
+    virtual int hash(string key){
+        unsigned result = 0;
+        int len = key.size();
+        for(int i=0; i < len ; i++){result += i;}
+        return result % TABLE_SIZE;
+    }
+};
+
+/*
+ * Hashtable Class Declaration
+ */
+class Hashtable:public GeneralStringHasher{
 private:
     ListNode** htable;
+    ListNode* head;
+
+    
 public:
     Hashtable(){
         htable = new ListNode*[TABLE_SIZE];
         for (int i = 0; i < TABLE_SIZE; i++)
             htable[i] = NULL;
+        cout << "constructor is called" << endl;
     }
-    ~HashMap(){
+    ~Hashtable(){
         for (int i = 0; i < TABLE_SIZE; ++i){
             ListNode* entry = htable[i];
             while (entry != NULL){
@@ -46,138 +65,139 @@ public:
             }
         }
         delete[] htable;
-    }
-    /*
-     * Hash Function
-     */
-    int HashFunc(int key)
-    {
-        return key % TABLE_SIZE;
+        cout << "destructor for htable is called" << endl;
     }
     
     /*
      * Insert Element at a key
      */
-    void Insert(int key, int value){
-        int hash_value = HashFunc(key);
-        HashNode* prev = NULL;
-        HashNode* entry = htable[hash_value];
-        while (entry != NULL)
-        {
+    void insert(string key, int value){
+        int hash_value = GeneralStringHasher::hash(key);
+  //      cout << "hash key is : " << GeneralStringHasher::hash(key) << endl;
+        ListNode* prev = NULL;
+        ListNode* entry = htable[hash_value];
+// this while-loop looks insert at tail position. what if we just want to add at head, what should I do?
+        cout << "insert function is called\n" << hash_value << ' ' << value << endl;
+        
+        
+        while (entry != NULL){
             prev = entry;
             entry = entry->next;
         }
-        if (entry == NULL)
-        {
-            entry = new HashNode(key, value);
-            if (prev == NULL)
-            {
-                htable[hash_val] = entry;
-            }
-            else
-            {
+// above.
+        if (entry == NULL){
+            entry = new ListNode(key, value);
+            // if-else: it's little confusing: why this is necessary?
+            if (prev == NULL){
+                htable[hash_value] = entry;
+                cout << "entry NULL prev NULL case execute?" << endl;
+            }else{
                 prev->next = entry;
+                cout << "entry NULL prev negate NULL case execute" << endl;
             }
-        }
-        else
-        {
+        }else{
             entry->value = value;
         }
     }
+    
     /*
      * Remove Element at a key
      */
-    void Remove(int key)
+    void remove(string key)
     {
-        int hash_val = HashFunc(key);
-        HashNode* entry = htable[hash_val];
-        HashNode* prev = NULL;
-        if (entry == NULL || entry->key != key)
-        {
+        int hash_value = GeneralStringHasher::hash(key);
+cout << "remove hashcode" << endl;
+        ListNode* entry = htable[hash_value];
+cout << "ListNode entry pointer creation" << endl;
+        ListNode* prev = NULL;
+cout << "prev = NULL" << endl;
+        if (entry == NULL || entry->key != key){
             cout<<"No Element found at key "<<key<<endl;
             return;
         }
-        while (entry->next != NULL)
-        {
+        cout << "remove: before while" << endl;
+        while (entry->next != NULL){
             prev = entry;
             entry = entry->next;
         }
-        if (prev != NULL)
-        {
+        cout << "remove: after while, before if "<< endl;
+        if (prev != NULL){
             prev->next = entry->next;
         }
         delete entry;
         cout<<"Element Deleted"<<endl;
     }
-    /*
-     * Search Element at a key
-     */
-    int Search(int key)
-    {
+ 
+    int find(string key){
         bool flag = false;
-        int hash_val = HashFunc(key);
-        HashNode* entry = htable[hash_val];
-        while (entry != NULL)
-        {
-            if (entry->key == key)
-            {
+        int hash_value = GeneralStringHasher::hash(key);
+        ListNode* entry = htable[hash_value];
+        cout << "find before while" << endl;
+        while (entry != NULL){
+            if (entry->key == key){
                 cout<<entry->value<<" ";
                 flag = true;
             }
             entry = entry->next;
         }
+        cout << "find after while"<< endl;
         if (!flag)
             return -1;
     }
 };
+ 
+ 
+//insert all
+void insertAll(string file_name, Hashtable& hash){
+    cout << "1.  insertAll start?" << endl;
+    ifstream f(file_name.c_str());
+    cout << "2.  insertAll start?" << endl;
+    string w;
+    cout << "3.  insertAll start?" << endl;
+    if(f.is_open()){
+        while(getline(f, w)){
+            hash.insert(w, 1);
+        }
+        cout << "4.  insertAll start?" << endl;
+        f.close();
+        cout << "5.  insertAll start?" << endl;
+    }
+}
+
+//overall tester function//
+void testHash(string input_file, Hashtable& hash)
+{
+    //call test functions
+    void insertAll(string input_file, Hashtable& hash);
+    //you may want to instantiate a ChainedHashTable
+    //object to pass as a reference to some of your
+    //more advanced testing functions
+}
+
+
 /*
  * Main Contains Menu
  */
-int main()
-{
-    HashMap hash;
-    int key, value;
-    int choice;
-    while (1)
-    {
-        cout<<"\n----------------------"<<endl;
-        cout<<"Operations on Hash Table"<<endl;
-        cout<<"\n----------------------"<<endl;
-        cout<<"1.Insert element into the table"<<endl;
-        cout<<"2.Search element from the key"<<endl;
-        cout<<"3.Delete element at a key"<<endl;
-        cout<<"4.Exit"<<endl;
-        cout<<"Enter your choice: ";
-        cin>>choice;
-        switch(choice)
-        {
-            case 1:
-                cout<<"Enter element to be inserted: ";
-                cin>>value;
-                cout<<"Enter key at which element to be inserted: ";
-                cin>>key;
-                hash.Insert(key, value);
-                break;
-            case 2:
-                cout<<"Enter key of the element to be searched: ";
-                cin>>key;
-                cout<<"Element at key "<<key<<" : ";
-                if (hash.Search(key) == -1)
-                {
-                    cout<<"No element found at key "<<key<<endl;
-                    continue;
-                }
-                break;
-            case 3:
-                cout<<"Enter key of the element to be deleted: ";
-                cin>>key;
-                hash.Remove(key);
-                break;
-            case 4:
-                exit(1);
-            default:
-                cout<<"\nEnter correct option\n";
-        }
-    }
+int main(int argc, char* argv[]){
+//    const char* input_file = argv[1];
+    const char* input_file = argc == 2? argv[1] : "random_5.txt";
+//
+//    Hashtable test;
+//    Hashtable& a = test;
+//    a.insert("testtest", 1);
+//    a.insert("testtes", 2);
+//    a.insert("testte", 3);
+//    a.insert("testt", 4);
+//    a.insert("testt", 5);
+//    a.insert("testte", 6);
+//
+//    a.find("testte");
+//    a.find("testtes");
+
+
+    GeneralStringHasher h;
+    Hasher& hasher = h;
+    testHash(input_file, h);
+
     return 0;
 }
