@@ -288,6 +288,20 @@ int main(){
 
     cout << "The smallest value in the tree is " << myTree.FindSmallest() << endl;
     
+    cout << "Enter a key value to delete. Enter -1 to stop the process \n";
+    int input;
+    while(input!= -1){
+        cout << "Delete Node: ";
+        cin >> input;
+        {
+            if(input != -1){
+                cout << endl;
+                myTree.RemoveNode(input);
+                myTree.PrintInOrder();
+                cout << endl;
+            }
+        }
+    }
     
     return 0;
 }
