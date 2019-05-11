@@ -21,14 +21,15 @@ private:
     void RemoveNodePrivate(int key, Node* Parent);
     void RemoveRootMatch();
     void RemoveMatch(Node* Parent, Node* match, bool left);
+    Node* CreateLeaf(int key);
+    Node* ReturnNode(int key);
+    void RemoveSubtree(Node* Ptr);
     
 public:
     BST();
-    Node* CreateLeaf(int key);
-    
+    ~BST();
     void AddLeaf(int key);
     void PrintInOrder();
-    Node* ReturnNode(int key);
     int ReturnRootKey();
     void PrintChildren(int key);
     int FindSmallest();
@@ -39,6 +40,24 @@ public:
 BST::BST(){
     root = NULL;
 }
+
+BST::~BST(){
+    RemoveSubtree(root);
+}
+
+void BST::RemoveSubtree(Node* Ptr){
+    if(Ptr != NULL){
+        if(Ptr -> left != NULL){
+            RemoveSubtree(Ptr -> left);
+        }
+    }
+    if(Ptr -> right != NULL){
+        RemoveSubtree(Ptr -> right);
+    }
+    cout << "Deleting the node containing key " << Ptr -> key << endl;
+    delete Ptr;
+}
+
 BST::Node* BST::CreateLeaf(int key){
     Node* n = new Node;
     n -> key = key;
