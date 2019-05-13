@@ -61,33 +61,45 @@ class BST
         else
             return predecessor(t->right);
     }
-    
-    node* remove(string w, node* t){
-        node* temp;
+ 
+    node* find(string w, node* t)
+    {
         if(t == NULL)
             return NULL;
         else if(w < t->data)
-            t->left = remove(w, t->left);
+            return find(w, t->left);
         else if(w > t->data)
-            t->right = remove(w, t->right);
-        else if(t->left && t->right)
-        {
+            return find(w, t->right);
+        else
+            return t;
+    }
+    
+    node* remove(string w, node* t){
+        node* temp;
+        node* find(string w, node* t);
+//        if(t == NULL)
+//            return NULL;
+//        else if(w < t->data)
+//            t->left = remove(w, t->left);
+//        else if(w > t->data)
+//            t->right = remove(w, t->right);
+
             temp = successor(t->right);
             t->data = temp->data;
             delete temp;
             //            t->right = remove(t->data, t->right);
-        }
-
-        else
-        {
-            temp = t;
-            if(t->left == NULL)
-                t = t->right;
-            else if(t->right == NULL)
-                t = t->left;
-            delete temp;
-        }
-        
+//        }
+//
+//        else
+//        {
+//            temp = t;
+//            if(t->left == NULL)
+//                t = t->right;
+//            else if(t->right == NULL)
+//                t = t->left;
+//            delete temp;
+//        }
+//
         return t;
     }
     
@@ -119,17 +131,6 @@ class BST
     }
     
     
-    node* find(node* t, string w)
-    {
-        if(t == NULL)
-            return NULL;
-        else if(w < t->data)
-            return find(t->left, w);
-        else if(w > t->data)
-            return find(t->right, w);
-        else
-            return t;
-    }
     
 public:
     BST(){
@@ -165,7 +166,7 @@ public:
 
     
     void search(string w){
-        root = find(root, w);
+        root = find(w, root);
         cout << "in search function calling find function" << endl;
 //        cout << root -> left -> data << " is found" << endl;
     }
@@ -179,7 +180,7 @@ void insertAllWords(BST& T, int partition, string& input_file){
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*4500; i++){
+        for(int i=0; i < partition*45000; i++){
             
             getline(f,w);
             cout << "w is " << w << endl;
@@ -198,7 +199,7 @@ void findAllWords(BST& T, int partition, string& input_file){
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*10; i++){
+        for(int i=0; i < partition*45000; i++){
             getline(f, w);
             T.search(w);      // test test test test
             cout << "after T.search" << endl;
@@ -232,11 +233,11 @@ void measureAll(string input_file, BST& T){
     for (int i=1; i<=1; ++i){
         cout << " ========= " << "Partition" << i << " ========= " << endl;
         insertAllWords(T, i, input_file);
-//        T.display();
-//        cout << "\n\n\n\n\n\n\n\n\n\n" ;
-//
-        T.display_pre();
-        cout << "intenional blank line " << endl;
+        T.display();
+        cout << "\n\n\n\n\n\n\n\n\n\n" ;
+
+//        T.display_pre();
+//        cout << "intenional blank line " << endl;
 //
 //        cout << "\n\n\n\n\n\n\n\n\n\n" ;
 //        T.display_post();
@@ -249,7 +250,7 @@ void measureAll(string input_file, BST& T){
 
 int main(int argc, char* argv[]){
     
-    const char* input_file = argc == 2? argv[1] : "random_120.txt";
+    const char* input_file = argc == 2? argv[1] : "random.txt";
     
     BST D;
     measureAll(input_file, D);
