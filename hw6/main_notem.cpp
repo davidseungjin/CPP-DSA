@@ -1,8 +1,4 @@
-#include <iostream>
-#include <cstdlib>
-#include <string>
-#include <fstream>
-#include "Timer.h"
+e
 
 using namespace std;
 
@@ -23,7 +19,6 @@ public:
     
     static TreeNode* insert(string key, int info, TreeNode* RootT){
         if (RootT != NULL){
-            cout << "1.     test insert" << endl;
             RootT = newNode(key, info, nullptr, nullptr);
             TreeNode* t = RootT;
             while (t->key !=  key){
@@ -53,7 +48,12 @@ public:
             else if ( key  >  t->key )
                 t = t->right;
             else // found it!
+                cout << "t-key is " << t->key << endl;
+                cout << "key is " << key << endl;
                 return t;
+            // this below is cout.
+            
+            
         }
         return nullptr;
     }
@@ -121,7 +121,6 @@ void BinarySearchTree::insert(string key, int info){
 int BinarySearchTree::find(string key){
     cout << "1.             find function of BST class" << endl;
     TreeNode* t = TreeNode::find(key, root);
-
 /*
     if ( !t ){
         insert(key, int());
@@ -150,15 +149,13 @@ void insertAllWords(BinarySearchTree& T, int partition, string& input_file){
     t.start();
     string w;
     if(f.is_open()){
-        while(getline(f, w)){
-//        for(int i=0; i < partition*10; i++){
-//            cout << i << " is counting partition" << endl;
+        for(int i=0; i < partition*10; i++){
+            
+            getline(f,w);
             cout << "w is " << w << endl;
             T.insert(w, 1);               // test test test test
-//        }
+        }
     }
-    }
-    
     t.elapsedUserTime(eTime);
     f.close();
     cout << "insertAllWords time of\t" << "partition\t" << partition << " is " << eTime << endl;
@@ -171,8 +168,8 @@ void findAllWords(BinarySearchTree& T, int partition, string& input_file){
     t.start();
     string w;
     if(f.is_open()){
-        while(getline(f, w)){
-//        for(int i=0; i < partition*4500; i++){
+        for(int i=0; i < partition*10; i++){
+            getline(f, w);
             T.find(w);               // test test test test
         }
     }
