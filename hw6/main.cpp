@@ -234,7 +234,7 @@ int main(int argc, char* argv[]){
     
     const char* input_file = argc == 2? argv[1] : "random.txt";
     
-    BST<string, int> D;
+    BST D;
     measureAll(input_file, D);
     
     return 0;
