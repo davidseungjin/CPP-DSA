@@ -6,18 +6,19 @@
 
 using namespace std;
 
+template <typename KeyType, typename ElementType>
 class BST
 {
-    struct node{
-        string data;
-        int info;
-        node* left;
-        node* right;
+    struct Node{
+        KeyType data;
+        ElementType info;
+        Node* left;
+        Node* right;
     };
     
-    node* root;
+    Node* root;
     
-    node* makeEmpty(node* t){
+    Node* makeEmpty(Node* t){
         if(t == NULL)
             return NULL;
         {
@@ -28,10 +29,10 @@ class BST
         return NULL;
     }
     
-    node* insert(string w, node* t){
+Node* insert(KeyType w, Node* t){
         if(t == NULL)
         {
-            t = new node;
+            t = new Node;
             t->data = w;
             t->info = 1;
             t->left = NULL;
@@ -44,7 +45,7 @@ class BST
         return t;
     }
     
-    node* successor(node* t){
+    Node* successor(Node* t){
         if(t == NULL)
             return NULL;
         else if(t->left == NULL)
@@ -53,7 +54,7 @@ class BST
             return successor(t->left);
     }
     
-    node* predecessor(node* t){
+    Node* predecessor(Node* t){
         if(t == NULL)
             return NULL;
         else if(t->right == NULL)
@@ -62,7 +63,7 @@ class BST
             return predecessor(t->right);
     }
  
-    node* find(string w, node* t)
+    Node* find(KeyType w, Node* t)
     {
         if(t == NULL)
             return NULL;
@@ -73,38 +74,35 @@ class BST
         else
             return t;
     }
-    
-    node* remove(string w, node* t){
-        node* temp;
-        node* find(string w, node* t);
-//        if(t == NULL)
-//            return NULL;
-//        else if(w < t->data)
-//            t->left = remove(w, t->left);
-//        else if(w > t->data)
-//            t->right = remove(w, t->right);
-
+   
+    Node* remove(KeyType w, Node* t){
+        Node* temp;
+        if(t == NULL){
+            return NULL;
+        }else if(w < t->data){
+            t->left = remove(w, t->left);
+        }else if(w > t->data){
+            t->right = remove(w, t->right);
+        }else if (t->left == NULL && t-> right == NULL){
+            return NULL;
+        }else if (t->left == NULL && t-> right != NULL){
             temp = successor(t->right);
-            t->data = temp->data;
+            t = temp;
             delete temp;
-            //            t->right = remove(t->data, t->right);
-//        }
-//
-//        else
-//        {
-//            temp = t;
-//            if(t->left == NULL)
-//                t = t->right;
-//            else if(t->right == NULL)
-//                t = t->left;
-//            delete temp;
-//        }
-//
+        }else if (t-> left != NULL && t->right == NULL){
+            temp = predecessor(t->left);
+            t = temp;
+            delete temp;
+        }else{
+        // two pointers are alive.
+            temp = successor(t->right);
+            t = temp;
+            delete temp;
+        }
         return t;
     }
     
-    void inorder(node* t)
-    {
+    void inorder(Node* t){
         if(t == NULL)
             return;
         inorder(t->left);
@@ -112,8 +110,7 @@ class BST
         inorder(t->right);
     }
     
-    void preorder(node* t)
-    {
+    void preorder(Node* t){
         if(t == NULL)
             return;
         cout << t->data << endl;
@@ -121,16 +118,13 @@ class BST
         inorder(t->right);
     }
     
-    void postorder(node* t)
-    {
+    void postorder(Node* t){
         if(t == NULL)
             return;
         inorder(t->left);
         inorder(t->right);
         cout << t->data << endl;;
     }
-    
-    
     
 public:
     BST(){
@@ -167,24 +161,20 @@ public:
     
     void search(string w){
         root = find(w, root);
-        cout << "in search function calling find function" << endl;
-//        cout << root -> left -> data << " is found" << endl;
     }
 };
 
-
-void insertAllWords(BST& T, int partition, string& input_file){
+template <typename KeyType, typename ElementType>
+void insertAllWords(BST& T, int partition, KeyType& input_file){
     Timer t;
     double eTime;
     ifstream f(input_file.c_str());
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*45000; i++){
-            
+        for(int i=0; i < partition*4500; i++){
             getline(f,w);
-            cout << "w is " << w << endl;
-            T.insert(w);         // test test test test
+            T.insert(w);
         }
     }
     t.elapsedUserTime(eTime);
@@ -192,18 +182,17 @@ void insertAllWords(BST& T, int partition, string& input_file){
     cout << "insertAllWords time of\t" << "partition\t" << partition << " is " << eTime << endl;
 }
 
-void findAllWords(BST& T, int partition, string& input_file){
+template <typename KeyType, typename ElementType>
+void findAllWords(BST& T, int partition, KeyType& input_file){
     Timer t;
     double eTime;
     ifstream f(input_file.c_str());
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*45000; i++){
+        for(int i=0; i < partition*4500; i++){
             getline(f, w);
-            T.search(w);      // test test test test
-            cout << "after T.search" << endl;
-            
+            T.search(w);
         }
     }
     t.elapsedUserTime(eTime);
@@ -211,14 +200,15 @@ void findAllWords(BST& T, int partition, string& input_file){
     cout << "findAllWords time of\t" << "partition\t" << partition << " is " << eTime << endl;
 }
 
-void removeAllWords(BST& T, int partition, string& input_file){
+template <typename KeyType, typename ElementType>
+void removeAllWords(BST& T, int partition, KeyType& input_file){
     Timer t;
     double eTime;
     ifstream f(input_file.c_str());
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*10; i++){
+        for(int i=0; i < partition*4500; i++){
             getline(f, w);
             T.remove(w);
         }
@@ -228,22 +218,14 @@ void removeAllWords(BST& T, int partition, string& input_file){
     cout << "removeAllWords time of\t" << "partition\t" << partition << " is " << eTime << endl;
 }
 
-
-void measureAll(string input_file, BST& T){
-    for (int i=1; i<=1; ++i){
+template <typename KeyType, typename ElementType>
+void measureAll(KeyType input_file, BST& T){
+    for (int i=1; i<=10; ++i){
         cout << " ========= " << "Partition" << i << " ========= " << endl;
         insertAllWords(T, i, input_file);
-        T.display();
-        cout << "\n\n\n\n\n\n\n\n\n\n" ;
-
-//        T.display_pre();
-//        cout << "intenional blank line " << endl;
-//
-//        cout << "\n\n\n\n\n\n\n\n\n\n" ;
-//        T.display_post();
-        cout << "intenional blank line " << endl;
+//        T.display();
         findAllWords(T, i, input_file);
-//        removeAllWords(T, i, input_file);
+        removeAllWords(T, i, input_file);
     }
 }
 
