@@ -1,0 +1,924 @@
+dhcp-v066-249:hw6 davidlee$ g++ main.cpp
+main.cpp:168:21: error: use of class template 'BST' requires template arguments
+void insertAllWords(BST& T, int partition, KeyType& input_file){
+                    ^
+main.cpp:10:7: note: template is declared here
+class BST
+      ^
+main.cpp:186:19: error: use of class template 'BST' requires template arguments
+void findAllWords(BST& T, int partition, KeyType& input_file){
+                  ^
+main.cpp:10:7: note: template is declared here
+class BST
+      ^
+main.cpp:204:21: error: use of class template 'BST' requires template arguments
+void removeAllWords(BST& T, int partition, KeyType& input_file){
+                    ^
+main.cpp:10:7: note: template is declared here
+class BST
+      ^
+main.cpp:222:37: error: use of class template 'BST' requires template arguments
+void measureAll(KeyType input_file, BST& T){
+                                    ^
+main.cpp:10:7: note: template is declared here
+class BST
+      ^
+main.cpp:238:5: error: no matching function for call to 'measureAll'
+    measureAll(input_file, D);
+    ^~~~~~~~~~
+5 errors generated.
+dhcp-v066-249:hw6 davidlee$ clear
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+dhcp-v066-249:hw6 davidlee$ g++ main.cpp
+main.cpp:168:21: error: use of class template 'BST' requires template arguments
+void insertAllWords(BST& T, int partition, KeyType& input_file){
+                    ^
+main.cpp:10:7: note: template is declared here
+class BST
+      ^
+main.cpp:186:19: error: use of class template 'BST' requires template arguments
+void findAllWords(BST& T, int partition, KeyType& input_file){
+                  ^
+main.cpp:10:7: note: template is declared here
+class BST
+      ^
+main.cpp:204:21: error: use of class template 'BST' requires template arguments
+void removeAllWords(BST& T, int partition, KeyType& input_file){
+                    ^
+main.cpp:10:7: note: template is declared here
+class BST
+      ^
+main.cpp:222:37: error: use of class template 'BST' requires template arguments
+void measureAll(KeyType input_file, BST& T){
+                                    ^
+main.cpp:10:7: note: template is declared here
+class BST
+      ^
+main.cpp:237:5: error: use of class template 'BST' requires template arguments
+    BST D;
+    ^
+main.cpp:10:7: note: template is declared here
+class BST
+      ^
+5 errors generated.
+dhcp-v066-249:hw6 davidlee$ exit
+logout
+Saving session...
+...saving history...truncating history files...
+...completed.
+Deleting expired sessions...97 completed.
+
+[Process completed]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  [Restored May 13, 2019 at 9:34:10 AM]
+Last login: Mon May 13 09:34:08 on ttys000
+Restored session: Mon May 13 09:16:23 PDT 2019
+dhcp-v066-249:hw6 davidlee$ 
+  [Restored May 13, 2019 at 4:01:03 PM]
+Last login: Mon May 13 16:01:01 on ttys000
+dhcp-v033-103:hw6 davidlee$ g++ main.cpp
+main.cpp:168:21: error: use of class template 'BST' requires template arguments
+void insertAllWords(BST& T, int partition, KeyType& input_file){
+                    ^
+main.cpp:10:7: note: template is declared here
+class BST
+      ^
+main.cpp:186:19: error: use of class template 'BST' requires template arguments
+void findAllWords(BST& T, int partition, KeyType& input_file){
+                  ^
+main.cpp:10:7: note: template is declared here
+class BST
+      ^
+main.cpp:204:21: error: use of class template 'BST' requires template arguments
+void removeAllWords(BST& T, int partition, KeyType& input_file){
+                    ^
+main.cpp:10:7: note: template is declared here
+class BST
+      ^
+main.cpp:222:37: error: use of class template 'BST' requires template arguments
+void measureAll(KeyType input_file, BST& T){
+                                    ^
+main.cpp:10:7: note: template is declared here
+class BST
+      ^
+main.cpp:237:5: error: use of class template 'BST' requires template arguments
+    BST D;
+    ^
+main.cpp:10:7: note: template is declared here
+class BST
+      ^
+5 errors generated.
+dhcp-v033-103:hw6 davidlee$ g++ main.cpp
+main.cpp:10:7: error: explicit specialization of non-template class 'BST'
+class BST<string, int>
+      ^  ~~~~~~~~~~~~~
+main.cpp:186:19: error: use of class template 'BST' requires template arguments
+void findAllWords(BST& T, int partition, KeyType& input_file){
+                  ^
+main.cpp:10:7: note: template is declared here
+class BST<string, int>
+      ^
+main.cpp:204:21: error: use of class template 'BST' requires template arguments
+void removeAllWords(BST& T, int partition, KeyType& input_file){
+                    ^
+main.cpp:10:7: note: template is declared here
+class BST<string, int>
+      ^
+main.cpp:222:37: error: use of class template 'BST' requires template arguments
+void measureAll(KeyType input_file, BST& T){
+                                    ^
+main.cpp:10:7: note: template is declared here
+class BST<string, int>
+      ^
+main.cpp:237:5: error: use of class template 'BST' requires template arguments
+    BST D;
+    ^
+main.cpp:10:7: note: template is declared here
+class BST<string, int>
+      ^
+5 errors generated.
+dhcp-v033-103:hw6 davidlee$ g++ main.cpp
+main.cpp:10:7: error: explicit specialization of non-template class 'BST'
+class BST<string, int>
+      ^  ~~~~~~~~~~~~~
+main.cpp:237:5: error: use of class template 'BST' requires template arguments
+    BST D;
+    ^
+main.cpp:10:7: note: template is declared here
+class BST<string, int>
+      ^
+2 errors generated.
+dhcp-v033-103:hw6 davidlee$ g++ main.cpp
+main.cpp:10:7: error: explicit specialization of non-template class 'BST'
+class BST<string, int>
+      ^  ~~~~~~~~~~~~~
+main.cpp:238:5: error: no matching function for call to 'measureAll'
+    measureAll(input_file, D);
+    ^~~~~~~~~~
+main.cpp:222:6: note: candidate template ignored: couldn't infer template
+      argument 'ElementType'
+void measureAll(KeyType input_file, BST<string, int>& T){
+     ^
+2 errors generated.
+dhcp-v033-103:hw6 davidlee$ g++ main.cpp
+main.cpp:10:7: error: explicit specialization of non-template class 'BST'
+class BST<string, int>
+      ^  ~~~~~~~~~~~~~
+main.cpp:238:5: error: no matching function for call to 'measureAll'
+    measureAll(input_file, 1, D);
+    ^~~~~~~~~~
+main.cpp:222:6: note: candidate function template not viable: requires 2
+      arguments, but 3 were provided
+void measureAll(KeyType input_file, BST<string, int>& T){
+     ^
+2 errors generated.
+dhcp-v033-103:hw6 davidlee$ g++ main.cpp
+main.cpp:10:7: error: explicit specialization of non-template class 'BST'
+class BST<string, int>
+      ^  ~~~~~~~~~~~~~
+main.cpp:238:5: error: no matching function for call to 'measureAll'
+    measureAll(input_file, D);
+    ^~~~~~~~~~
+main.cpp:222:6: note: candidate template ignored: couldn't infer template
+      argument 'ElementType'
+void measureAll(KeyType input_file, BST<string, int>& T){
+     ^
+2 errors generated.
+dhcp-v033-103:hw6 davidlee$ g++ main.cpp
+main.cpp:10:7: error: explicit specialization of non-template class 'BST'
+class BST<string, int>
+      ^  ~~~~~~~~~~~~~
+main.cpp:225:9: error: no matching function for call to 'insertAllWords'
+        insertAllWords(T, i, input_file);
+        ^~~~~~~~~~~~~~
+main.cpp:238:5: note: in instantiation of function template specialization
+      'measureAll<const char *>' requested here
+    measureAll(input_file, D);
+    ^
+main.cpp:168:6: note: candidate template ignored: couldn't infer template
+      argument 'ElementType'
+void insertAllWords(BST<string, int>& T, int partition, KeyType& input_file){
+     ^
+main.cpp:227:9: error: no matching function for call to 'findAllWords'
+        findAllWords(T, i, input_file);
+        ^~~~~~~~~~~~
+main.cpp:186:6: note: candidate template ignored: couldn't infer template
+      argument 'ElementType'
+void findAllWords(BST<string, int>& T, int partition, KeyType& input_file){
+     ^
+main.cpp:228:9: error: no matching function for call to 'removeAllWords'
+        removeAllWords(T, i, input_file);
+        ^~~~~~~~~~~~~~
+main.cpp:204:6: note: candidate template ignored: couldn't infer template
+      argument 'ElementType'
+void removeAllWords(BST<string, int>& T, int partition, KeyType& input_file){
+     ^
+4 errors generated.
+dhcp-v033-103:hw6 davidlee$ g++ main.cpp
+main.cpp:10:7: error: explicit specialization of non-template class 'BST'
+class BST<string, int>
+      ^  ~~~~~~~~~~~~~
+main.cpp:238:5: error: no matching function for call to 'measureAll'
+    measureAll(input_file, D);
+    ^~~~~~~~~~
+main.cpp:222:6: note: candidate template ignored: couldn't infer template
+      argument 'ElementType'
+void measureAll(KeyType input_file, BST<string, int>& T){
+     ^
+2 errors generated.
+dhcp-v033-103:hw6 davidlee$ g++ main.cpp
+main.cpp:10:7: error: explicit specialization of non-template class 'BST'
+class BST<string, int>
+      ^  ~~~~~~~~~~~~~
+main.cpp:238:16: error: unexpected type name 'string': expected expression
+    measureAll(string input_file, BST<string, int> D);
+               ^
+main.cpp:238:52: error: expected
+      '(' for function-style cast or type construction
+    measureAll(string input_file, BST<string, int> D);
+                                  ~~~~~~~~~~~~~~~~ ^
+3 errors generated.
+dhcp-v033-103:hw6 davidlee$ g++ main.cpp
+main.cpp:10:7: error: explicit specialization of non-template class 'BST'
+class BST<string, int>
+      ^  ~~~~~~~~~~~~~
+main.cpp:238:16: error: unexpected type name 'string': expected expression
+    measureAll(string input_file, BST D);
+               ^
+main.cpp:238:35: error: use of class template 'BST' requires template arguments
+    measureAll(string input_file, BST D);
+                                  ^
+main.cpp:10:7: note: template is declared here
+class BST<string, int>
+      ^
+3 errors generated.
+dhcp-v033-103:hw6 davidlee$ g++ main.cpp
+main.cpp:10:7: error: explicit specialization of non-template class 'BST'
+class BST<string, int>
+      ^  ~~~~~~~~~~~~~
+main.cpp:239:5: error: expected expression
+    template <typename KeyType, typename ElementType>
+    ^
+2 errors generated.
+dhcp-v033-103:hw6 davidlee$ g++ main.cpp
+main.cpp:10:7: error: explicit specialization of non-template class 'BST'
+class BST<string, int>
+      ^  ~~~~~~~~~~~~~
+main.cpp:237:5: error: use of class template 'BST' requires template arguments
+    BST D;
+    ^
+main.cpp:10:7: note: template is declared here
+class BST<string, int>
+      ^
+main.cpp:239:5: error: expected expression
+    template <typename KeyType, typename ElementType>
+    ^
+3 errors generated.
+dhcp-v033-103:hw6 davidlee$ g++ main.cpp
+main.cpp:10:7: error: explicit specialization of non-template class 'BST'
+class BST<string, int>
+      ^  ~~~~~~~~~~~~~
+main.cpp:239:5: error: expected expression
+    template <typename KeyType, typename ElementType>
+    ^
+2 errors generated.
+dhcp-v033-103:hw6 davidlee$ g++ main.cpp
+main.cpp:10:7: error: explicit specialization of non-template class 'BST'
+class BST<string, int>
+      ^  ~~~~~~~~~~~~~
+main.cpp:239:5: error: expected expression
+    template <typename KeyType, typename ElementType>
+    ^
+2 errors generated.
+dhcp-v033-103:hw6 davidlee$ g++ main.cpp
+main.cpp:10:7: error: explicit specialization of non-template class 'BST'
+class BST<string, int>
+      ^  ~~~~~~~~~~~~~
+main.cpp:239:5: error: expected expression
+    template <typename KeyType, typename ElementType>
+    ^
+2 errors generated.
+dhcp-v033-103:hw6 davidlee$ 
+  [Restored May 14, 2019 at 7:49:02 AM]
+Last login: Tue May 14 07:49:00 on ttys000
+Restored session: Mon May 13 20:51:15 PDT 2019
+dhcp-v033-103:hw6 davidlee$ 
+  [Restored May 14, 2019 at 5:28:47 PM]
+Last login: Tue May 14 17:28:45 on ttys000
+dhcp-v115-007:hw6 davidlee$ 
+  [Restored May 14, 2019 at 5:42:12 PM]
+Last login: Tue May 14 17:42:10 on ttys000
+Restored session: Tue May 14 17:39:10 PDT 2019
+dhcp-v115-007:hw6 davidlee$ ls
+Timer.h		main.cpp	main_notem.cpp	optional	random_120.txt
+a.out		main_cs.cpp	main_old.cpp	random.txt	random_5.txt
+bstpaul.cpp	main_geek.cpp	main_st.cpp	random_1000.txt
+dhcp-v115-007:hw6 davidlee$ g+= main.cpp
+-bash: main.cpp: command not found
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:10:7: error: explicit specialization of non-template class 'BST'
+class BST<string, int>
+      ^  ~~~~~~~~~~~~~
+main.cpp:239:5: error: expected expression
+    template <typename KeyType, typename ElementType>
+    ^
+2 errors generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:5: error: expected expression
+    template <typename KeyType, typename ElementType>
+    ^
+1 error generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:16: error: use of undeclared identifier 'KeyType'
+    measureAll(KeyType input_file, BST<string, int> D);
+               ^
+1 error generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:16: error: unexpected type name 'string': expected expression
+    measureAll(string input_file, BST<string, int> D);
+               ^
+main.cpp:239:52: error: expected
+      '(' for function-style cast or type construction
+    measureAll(string input_file, BST<string, int> D);
+                                  ~~~~~~~~~~~~~~~~ ^
+2 errors generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:45: error: expected
+      '(' for function-style cast or type construction
+    measureAll(input_file, BST<string, int> D);
+                           ~~~~~~~~~~~~~~~~ ^
+1 error generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:28: error: use of class template 'BST' requires template arguments
+    measureAll(input_file, BST D);
+                           ^
+main.cpp:10:7: note: template is declared here
+class BST
+      ^
+1 error generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:5: error: no matching function for call to 'measureAll'
+    measureAll(input_file, D);
+    ^~~~~~~~~~
+main.cpp:222:6: note: candidate template ignored: couldn't infer template
+      argument 'ElementType'
+void measureAll(KeyType input_file, BST<string, int>& T){
+     ^
+1 error generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:16: error: unexpected type name 'string': expected expression
+    measureAll(string input_file, D);
+               ^
+1 error generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:16: error: use of undeclared identifier 'KeyType'
+    measureAll(KeyType input_file, D);
+               ^
+1 error generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:16: error: use of undeclared identifier 'KeyType'
+    measureAll(KeyType input_file, D);
+               ^
+1 error generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:5: error: expected expression
+    template <typename KeyType, typename ElementType>
+    ^
+1 error generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:16: error: use of undeclared identifier 'KeyType'
+    measureAll(KeyType input_file, D);
+               ^
+1 error generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:5: error: no matching function for call to 'measureAll'
+    measureAll(input_file, D);
+    ^~~~~~~~~~
+main.cpp:222:6: note: candidate template ignored: couldn't infer template
+      argument 'ElementType'
+void measureAll(KeyType input_file, BST<string, int>& T){
+     ^
+1 error generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:225:9: error: no matching function for call to 'insertAllWords'
+        insertAllWords(T, i, input_file);
+        ^~~~~~~~~~~~~~
+main.cpp:239:5: note: in instantiation of function template specialization
+      'measureAll<const char *>' requested here
+    measureAll(input_file, D);
+    ^
+main.cpp:168:6: note: candidate template ignored: couldn't infer template
+      argument 'ElementType'
+void insertAllWords(BST<string, int>& T, int partition, KeyType& input_file){
+     ^
+main.cpp:227:9: error: no matching function for call to 'findAllWords'
+        findAllWords(T, i, input_file);
+        ^~~~~~~~~~~~
+main.cpp:186:6: note: candidate template ignored: couldn't infer template
+      argument 'ElementType'
+void findAllWords(BST<string, int>& T, int partition, KeyType& input_file){
+     ^
+main.cpp:228:9: error: no matching function for call to 'removeAllWords'
+        removeAllWords(T, i, input_file);
+        ^~~~~~~~~~~~~~
+main.cpp:204:6: note: candidate template ignored: couldn't infer template
+      argument 'ElementType'
+void removeAllWords(BST<string, int>& T, int partition, KeyType& input_file){
+     ^
+3 errors generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:5: error: no matching function for call to 'measureAll'
+    measureAll(input_file, D);
+    ^~~~~~~~~~
+main.cpp:222:6: note: candidate template ignored: couldn't infer template
+      argument 'ElementType'
+void measureAll(KeyType input_file, BST<string, int>& T){
+     ^
+1 error generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:10: error: variable has incomplete type 'void'
+    void measureAll(input_file, D);
+         ^
+1 error generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:5: error: no matching function for call to 'measureAll'
+    measureAll(input_file, D);
+    ^~~~~~~~~~
+main.cpp:222:6: note: candidate template ignored: couldn't infer template
+      argument 'ElementType'
+void measureAll(KeyType input_file, BST<string, int>& T){
+     ^
+1 error generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:5: error: no matching function for call to 'measureAll'
+    measureAll(input_file, D);
+    ^~~~~~~~~~
+main.cpp:222:6: note: candidate template ignored: couldn't infer template
+      argument 'ElementType'
+void measureAll(KeyType input_file, BST<string, int>& T){
+     ^
+1 error generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:16: error: unexpected type name 'string': expected expression
+    measureAll(string "random.txt", D);
+               ^
+1 error generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:5: error: no matching function for call to 'measureAll'
+    measureAll("random.txt", D);
+    ^~~~~~~~~~
+main.cpp:222:6: note: candidate template ignored: couldn't infer template
+      argument 'ElementType'
+void measureAll(KeyType input_file, BST<string, int>& T){
+     ^
+1 error generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:20: error: expected
+      '(' for function-style cast or type construction
+    measureAll(char* input_file, D);
+               ~~~~^
+1 error generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:16: error: expected expression
+    measureAll(const char* input_file, D);
+               ^
+1 error generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:5: error: no matching function for call to 'measureAll'
+    measureAll(input_file, D);
+    ^~~~~~~~~~
+main.cpp:222:6: note: candidate template ignored: couldn't infer template
+      argument 'ElementType'
+void measureAll(KeyType input_file, BST<string, int>& T){
+     ^
+1 error generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:239:5: error: expected expression
+    template <typename KeyType, typename ElementType>
+    ^
+1 error generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:240:16: error: expected expression
+    measureAll(<string> input_file, D);
+               ^
+main.cpp:240:17: error: unexpected type name 'string': expected expression
+    measureAll(<string> input_file, D);
+                ^
+2 errors generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:225:9: error: no matching function for call to 'insertAllWords'
+        insertAllWords(T, i, input_file);
+        ^~~~~~~~~~~~~~
+main.cpp:168:6: note: candidate template ignored: couldn't infer template
+      argument 'KeyType'
+void insertAllWords(BST<string, int>& T, int partition, string& input_file){
+     ^
+main.cpp:227:9: error: no matching function for call to 'findAllWords'
+        findAllWords(T, i, input_file);
+        ^~~~~~~~~~~~
+main.cpp:186:6: note: candidate template ignored: couldn't infer template
+      argument 'KeyType'
+void findAllWords(BST<string, int>& T, int partition, string& input_file){
+     ^
+main.cpp:228:9: error: no matching function for call to 'removeAllWords'
+        removeAllWords(T, i, input_file);
+        ^~~~~~~~~~~~~~
+main.cpp:204:6: note: candidate template ignored: couldn't infer template
+      argument 'KeyType'
+void removeAllWords(BST<string, int>& T, int partition, string& input_file){
+     ^
+main.cpp:240:5: error: no matching function for call to 'measureAll'
+    measureAll(input_file, D);
+    ^~~~~~~~~~
+main.cpp:222:6: note: candidate template ignored: couldn't infer template
+      argument 'KeyType'
+void measureAll(string input_file, BST<string, int>& T){
+     ^
+4 errors generated.
+dhcp-v115-007:hw6 davidlee$ 
+dhcp-v115-007:hw6 davidlee$ 
+dhcp-v115-007:hw6 davidlee$ 
+dhcp-v115-007:hw6 davidlee$ 
+dhcp-v115-007:hw6 davidlee$ 
+dhcp-v115-007:hw6 davidlee$ 
+dhcp-v115-007:hw6 davidlee$ 
+dhcp-v115-007:hw6 davidlee$ 
+dhcp-v115-007:hw6 davidlee$ 
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:225:9: error: no matching function for call to 'insertAllWords'
+        insertAllWords(T, i, input_file);
+        ^~~~~~~~~~~~~~
+main.cpp:168:6: note: candidate template ignored: couldn't infer template
+      argument 'KeyType'
+void insertAllWords(BST<string, int>& T, int partition, string& input_file){
+     ^
+main.cpp:227:9: error: no matching function for call to 'findAllWords'
+        findAllWords(T, i, input_file);
+        ^~~~~~~~~~~~
+main.cpp:186:6: note: candidate template ignored: couldn't infer template
+      argument 'KeyType'
+void findAllWords(BST<string, int>& T, int partition, string& input_file){
+     ^
+main.cpp:228:9: error: no matching function for call to 'removeAllWords'
+        removeAllWords(T, i, input_file);
+        ^~~~~~~~~~~~~~
+main.cpp:204:6: note: candidate template ignored: couldn't infer template
+      argument 'KeyType'
+void removeAllWords(BST<string, int>& T, int partition, string& input_file){
+     ^
+main.cpp:240:5: error: no matching function for call to 'measureAll'
+    measureAll(input_file, D);
+    ^~~~~~~~~~
+main.cpp:222:6: note: candidate template ignored: couldn't infer template
+      argument 'KeyType'
+void measureAll(string input_file, BST<string, int>& T){
+     ^
+4 errors generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:225:9: error: no matching function for call to 'insertAllWords'
+        insertAllWords(T, i, input_file);
+        ^~~~~~~~~~~~~~
+main.cpp:168:6: note: candidate template ignored: couldn't infer template
+      argument 'KeyType'
+void insertAllWords(BST<string, int>& T, int partition, string input_file){
+     ^
+main.cpp:227:9: error: no matching function for call to 'findAllWords'
+        findAllWords(T, i, input_file);
+        ^~~~~~~~~~~~
+main.cpp:186:6: note: candidate template ignored: couldn't infer template
+      argument 'KeyType'
+void findAllWords(BST<string, int>& T, int partition, string input_file){
+     ^
+main.cpp:228:9: error: no matching function for call to 'removeAllWords'
+        removeAllWords(T, i, input_file);
+        ^~~~~~~~~~~~~~
+main.cpp:204:6: note: candidate template ignored: couldn't infer template
+      argument 'KeyType'
+void removeAllWords(BST<string, int>& T, int partition, string input_file){
+     ^
+main.cpp:240:5: error: no matching function for call to 'measureAll'
+    measureAll(input_file, D);
+    ^~~~~~~~~~
+main.cpp:222:6: note: candidate template ignored: couldn't infer template
+      argument 'KeyType'
+void measureAll(string input_file, BST<string, int>& T){
+     ^
+4 errors generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+dhcp-v115-007:hw6 davidlee$ ./a.out
+ ========= Partition1 ========= 
+insertAllWords time of	partition	1 is 0.041972
+findAllWords time of	partition	1 is 0.007012
+removeAllWords time of	partition	1 is 0.007118
+ ========= Partition2 ========= 
+insertAllWords time of	partition	2 is 0.090355
+findAllWords time of	partition	2 is 0.014152
+removeAllWords time of	partition	2 is 0.014106
+ ========= Partition3 ========= 
+insertAllWords time of	partition	3 is 0.140222
+findAllWords time of	partition	3 is 0.021085
+removeAllWords time of	partition	3 is 0.021114
+ ========= Partition4 ========= 
+insertAllWords time of	partition	4 is 0.193682
+findAllWords time of	partition	4 is 0.028257
+removeAllWords time of	partition	4 is 0.028354
+ ========= Partition5 ========= 
+insertAllWords time of	partition	5 is 0.252678
+findAllWords time of	partition	5 is 0.035333
+removeAllWords time of	partition	5 is 0.036075
+ ========= Partition6 ========= 
+insertAllWords time of	partition	6 is 0.302109
+findAllWords time of	partition	6 is 0.042405
+removeAllWords time of	partition	6 is 0.042614
+ ========= Partition7 ========= 
+insertAllWords time of	partition	7 is 0.359356
+findAllWords time of	partition	7 is 0.049545
+removeAllWords time of	partition	7 is 0.049899
+ ========= Partition8 ========= 
+insertAllWords time of	partition	8 is 0.416791
+findAllWords time of	partition	8 is 0.056653
+removeAllWords time of	partition	8 is 0.056737
+ ========= Partition9 ========= 
+insertAllWords time of	partition	9 is 0.47245
+findAllWords time of	partition	9 is 0.063762
+removeAllWords time of	partition	9 is 0.064363
+ ========= Partition10 ========= 
+insertAllWords time of	partition	10 is 0.532822
+findAllWords time of	partition	10 is 0.071962
+removeAllWords time of	partition	10 is 0.071057
+dhcp-v115-007:hw6 davidlee$ scp main.cpp seungl21@openlab.ics.uci.edu:./hw/hw6/
+seungl21@openlab.ics.uci.edu's password: 
+main.cpp                                      100% 5151   170.6KB/s   00:00    
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+dhcp-v115-007:hw6 davidlee$ ./a.out
+ ========= Partition1 ========= 
+insertAllWords time of	partition	1 is 0.042303
+findAllWords time of	partition	1 is 0.007102
+removeAllWords time of	random.txt	partition	1 is 0.006971
+ ========= Partition2 ========= 
+insertAllWords time of	partition	2 is 0.090497
+findAllWords time of	partition	2 is 0.014013
+removeAllWords time of	random.txt	partition	2 is 0.014035
+ ========= Partition3 ========= 
+insertAllWords time of	partition	3 is 0.14249
+findAllWords time of	partition	3 is 0.020976
+removeAllWords time of	random.txt	partition	3 is 0.020993
+ ========= Partition4 ========= 
+insertAllWords time of	partition	4 is 0.194173
+findAllWords time of	partition	4 is 0.028072
+removeAllWords time of	random.txt	partition	4 is 0.028181
+ ========= Partition5 ========= 
+insertAllWords time of	partition	5 is 0.249615
+findAllWords time of	partition	5 is 0.035248
+removeAllWords time of	random.txt	partition	5 is 0.035312
+ ========= Partition6 ========= 
+insertAllWords time of	partition	6 is 0.30347
+findAllWords time of	partition	6 is 0.042243
+removeAllWords time of	random.txt	partition	6 is 0.043071
+ ========= Partition7 ========= 
+insertAllWords time of	partition	7 is 0.36295
+findAllWords time of	partition	7 is 0.052805
+removeAllWords time of	random.txt	partition	7 is 0.050031
+ ========= Partition8 ========= 
+insertAllWords time of	partition	8 is 0.417371
+findAllWords time of	partition	8 is 0.056339
+removeAllWords time of	random.txt	partition	8 is 0.056651
+ ========= Partition9 ========= 
+insertAllWords time of	partition	9 is 0.475957
+findAllWords time of	partition	9 is 0.064341
+removeAllWords time of	random.txt	partition	9 is 0.064093
+ ========= Partition10 ========= 
+insertAllWords time of	partition	10 is 0.533019
+findAllWords time of	partition	10 is 0.071097
+removeAllWords time of	random.txt	partition	10 is 0.070541
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+dhcp-v115-007:hw6 davidlee$ ./a.out
+ ========= Partition1 ========= 
+insertAllWords time of	random.txt	partition	1 is	0.041533
+findAllWords time of	random.txt	partition	1 is	0.006945
+removeAllWords time of	random.txt	partition	1 is	0.006903
+ ========= Partition2 ========= 
+insertAllWords time of	random.txt	partition	2 is	0.090291
+findAllWords time of	random.txt	partition	2 is	0.013792
+removeAllWords time of	random.txt	partition	2 is	0.013813
+ ========= Partition3 ========= 
+insertAllWords time of	random.txt	partition	3 is	0.140481
+findAllWords time of	random.txt	partition	3 is	0.020669
+removeAllWords time of	random.txt	partition	3 is	0.02072
+ ========= Partition4 ========= 
+insertAllWords time of	random.txt	partition	4 is	0.194084
+findAllWords time of	random.txt	partition	4 is	0.02761
+removeAllWords time of	random.txt	partition	4 is	0.027847
+ ========= Partition5 ========= 
+insertAllWords time of	random.txt	partition	5 is	0.247929
+findAllWords time of	random.txt	partition	5 is	0.034792
+removeAllWords time of	random.txt	partition	5 is	0.03582
+ ========= Partition6 ========= 
+insertAllWords time of	random.txt	partition	6 is	0.306279
+findAllWords time of	random.txt	partition	6 is	0.041796
+removeAllWords time of	random.txt	partition	6 is	0.041768
+ ========= Partition7 ========= 
+insertAllWords time of	random.txt	partition	7 is	0.357322
+findAllWords time of	random.txt	partition	7 is	0.04969
+removeAllWords time of	random.txt	partition	7 is	0.048954
+ ========= Partition8 ========= 
+insertAllWords time of	random.txt	partition	8 is	0.418193
+findAllWords time of	random.txt	partition	8 is	0.056834
+removeAllWords time of	random.txt	partition	8 is	0.056935
+ ========= Partition9 ========= 
+insertAllWords time of	random.txt	partition	9 is	0.476002
+findAllWords time of	random.txt	partition	9 is	0.062731
+removeAllWords time of	random.txt	partition	9 is	0.063163
+ ========= Partition10 ========= 
+insertAllWords time of	random.txt	partition	10 is	0.532428
+findAllWords time of	random.txt	partition	10 is	0.069892
+removeAllWords time of	random.txt	partition	10 is	0.06962
+dhcp-v115-007:hw6 davidlee$ valgrind a.out
+-bash: valgrind: command not found
+dhcp-v115-007:hw6 davidlee$ scp main.cpp seungl21@openlab.ics.uci.edu:./hw/hw6/
+seungl21@openlab.ics.uci.edu's password: 
+main.cpp                                      100% 5202     1.1MB/s   00:00    
+dhcp-v115-007:hw6 davidlee$ ls
+Timer.h		main.cpp	main_notem.cpp	optional	random_120.txt
+a.out		main_cs.cpp	main_old.cpp	random.txt	random_5.txt
+bstpaul.cpp	main_geek.cpp	main_st.cpp	random_1000.txt
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+Undefined symbols for architecture x86_64:
+  "BST::Node::Node()", referenced from:
+      BST::insert(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, BST::Node*) in main-425b0c.o
+  "BST::Node::~Node()", referenced from:
+      BST::remove(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, BST::Node*) in main-425b0c.o
+      BST::clean(BST::Node*) in main-425b0c.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+main.cpp:151:9: error: use of undeclared identifier 'preorder'
+        preorder(root);
+        ^
+main.cpp:156:9: error: use of undeclared identifier 'postorder'
+        postorder(root);
+        ^
+2 errors generated.
+dhcp-v115-007:hw6 davidlee$ g++ main.cpp
+dhcp-v115-007:hw6 davidlee$ ./a.out
+ ========= Partition1 ========= 
+insertAllWords time of	random.txt	partition	1 is	0.044075
+findAllWords time of	random.txt	partition	1 is	0.006928
+removeAllWords time of	random.txt	partition	1 is	0.007056
+ ========= Partition2 ========= 
+insertAllWords time of	random.txt	partition	2 is	0.092866
+findAllWords time of	random.txt	partition	2 is	0.014454
+removeAllWords time of	random.txt	partition	2 is	0.014052
+ ========= Partition3 ========= 
+insertAllWords time of	random.txt	partition	3 is	0.151814
+findAllWords time of	random.txt	partition	3 is	0.02068
+removeAllWords time of	random.txt	partition	3 is	0.020891
+ ========= Partition4 ========= 
+insertAllWords time of	random.txt	partition	4 is	0.199736
+findAllWords time of	random.txt	partition	4 is	0.02776
+removeAllWords time of	random.txt	partition	4 is	0.027952
+ ========= Partition5 ========= 
+insertAllWords time of	random.txt	partition	5 is	0.255491
+findAllWords time of	random.txt	partition	5 is	0.035522
+removeAllWords time of	random.txt	partition	5 is	0.03694
+ ========= Partition6 ========= 
+insertAllWords time of	random.txt	partition	6 is	0.30609
+findAllWords time of	random.txt	partition	6 is	0.04159
+removeAllWords time of	random.txt	partition	6 is	0.042603
+ ========= Partition7 ========= 
+insertAllWords time of	random.txt	partition	7 is	0.390167
+findAllWords time of	random.txt	partition	7 is	0.050178
+removeAllWords time of	random.txt	partition	7 is	0.048701
+ ========= Partition8 ========= 
+insertAllWords time of	random.txt	partition	8 is	0.421365
+findAllWords time of	random.txt	partition	8 is	0.055875
+removeAllWords time of	random.txt	partition	8 is	0.056131
+ ========= Partition9 ========= 
+insertAllWords time of	random.txt	partition	9 is	0.493538
+findAllWords time of	random.txt	partition	9 is	0.068548
+removeAllWords time of	random.txt	partition	9 is	0.067062
+ ========= Partition10 ========= 
+insertAllWords time of	random.txt	partition	10 is	0.65293
+findAllWords time of	random.txt	partition	10 is	0.07362
+removeAllWords time of	random.txt	partition	10 is	0.077944
+dhcp-v115-007:hw6 davidlee$ ls
+Timer.h		main.cpp	main_geek.cpp	main_st.cpp	random_1000.txt
+a.out		main2.cpp	main_notem.cpp	optional	random_120.txt
+bstpaul.cpp	main_cs.cpp	main_old.cpp	random.txt	random_5.txt
+dhcp-v115-007:hw6 davidlee$ g++ main2.cpp
+dhcp-v115-007:hw6 davidlee$ ./a.out
+ ========= Partition1 ========= 
+insertAllWords time of	random.txt	partition	1 is	0.041656
+findAllWords time of	random.txt	partition	1 is	0.007023
+removeAllWords time of	random.txt	partition	1 is	0.006933
+ ========= Partition2 ========= 
+insertAllWords time of	random.txt	partition	2 is	0.090904
+findAllWords time of	random.txt	partition	2 is	0.013821
+removeAllWords time of	random.txt	partition	2 is	0.01382
+ ========= Partition3 ========= 
+insertAllWords time of	random.txt	partition	3 is	0.140467
+findAllWords time of	random.txt	partition	3 is	0.020639
+removeAllWords time of	random.txt	partition	3 is	0.020976
+ ========= Partition4 ========= 
+insertAllWords time of	random.txt	partition	4 is	0.194851
+findAllWords time of	random.txt	partition	4 is	0.027566
+removeAllWords time of	random.txt	partition	4 is	0.027792
+ ========= Partition5 ========= 
+insertAllWords time of	random.txt	partition	5 is	0.24866
+findAllWords time of	random.txt	partition	5 is	0.034912
+removeAllWords time of	random.txt	partition	5 is	0.035245
+ ========= Partition6 ========= 
+insertAllWords time of	random.txt	partition	6 is	0.304041
+findAllWords time of	random.txt	partition	6 is	0.041768
+removeAllWords time of	random.txt	partition	6 is	0.041811
+ ========= Partition7 ========= 
+insertAllWords time of	random.txt	partition	7 is	0.364113
+findAllWords time of	random.txt	partition	7 is	0.04864
+removeAllWords time of	random.txt	partition	7 is	0.049498
+ ========= Partition8 ========= 
+insertAllWords time of	random.txt	partition	8 is	0.415932
+findAllWords time of	random.txt	partition	8 is	0.055761
+removeAllWords time of	random.txt	partition	8 is	0.055869
+ ========= Partition9 ========= 
+insertAllWords time of	random.txt	partition	9 is	0.476887
+findAllWords time of	random.txt	partition	9 is	0.062929
+removeAllWords time of	random.txt	partition	9 is	0.062683
+ ========= Partition10 ========= 
+insertAllWords time of	random.txt	partition	10 is	0.532886
+findAllWords time of	random.txt	partition	10 is	0.070537
+removeAllWords time of	random.txt	partition	10 is	0.069507
+dhcp-v115-007:hw6 davidlee$ scp main2.cpp seungl21@openlab.ics.uci.edu:./hw/hw6/ 
+seungl21@openlab.ics.uci.edu's password: 
+main2.cpp                                     100% 5221     1.1MB/s   00:00    
+dhcp-v115-007:hw6 davidlee$ scp main2.cpp seungl21@openlab.ics.uci.edu:./hw/hw6/
+seungl21@openlab.ics.uci.edu's password: 
+main2.cpp                                     100% 5225     1.4MB/s   00:00    
+dhcp-v115-007:hw6 davidlee$ scp main2.cpp seungl21@openlab.ics.uci.edu:./hw/hw6/
+Warning: Permanently added the ECDSA host key for IP address '128.195.6.58' to the list of known hosts.
+seungl21@openlab.ics.uci.edu's password: 
+main2.cpp                                     100% 5223   250.7KB/s   00:00    
+dhcp-v115-007:hw6 davidlee$ scp main2.cpp seungl21@openlab.ics.uci.edu:./hw/hw6/
+seungl21@openlab.ics.uci.edu's password: 
+main2.cpp                                     100% 5223   744.9KB/s   00:00    
+dhcp-v115-007:hw6 davidlee$ scp main2.cpp seungl21@openlab.ics.uci.edu:./hw/hw6/
+seungl21@openlab.ics.uci.edu's password: 
+main2.cpp                                     100% 5223     1.3MB/s   00:00    
+dhcp-v115-007:hw6 davidlee$ g++ main2.cpp
+dhcp-v115-007:hw6 davidlee$ scp main2.cpp seungl21@openlab.ics.uci.edu:./hw/hw6/
+seungl21@openlab.ics.uci.edu's password: 
+main2.cpp                                     100% 5321     1.4MB/s   00:00    
+dhcp-v115-007:hw6 davidlee$ g++ main2.cpp
+dhcp-v115-007:hw6 davidlee$ scp main2.cpp seungl21@openlab.ics.uci.edu:./hw/hw6/
+seungl21@openlab.ics.uci.edu's password: 
+main2.cpp                                     100% 5244   347.1KB/s   00:00    
+dhcp-v115-007:hw6 davidlee$ scp main2.cpp seungl21@openlab.ics.uci.edu:./hw/hw6/
+Warning: Permanently added the ECDSA host key for IP address '128.195.6.57' to the list of known hosts.
+seungl21@openlab.ics.uci.edu's password: 
+main2.cpp                                     100% 5242   320.1KB/s   00:00    
+dhcp-v115-007:hw6 davidlee$ g++ main2.cpp
+

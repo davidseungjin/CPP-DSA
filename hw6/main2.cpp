@@ -19,7 +19,7 @@ class BST
     Node* clean(Node* t){
         if(t == NULL)
             return NULL;
-        {
+        else{
             clean(t->left);
             clean(t->right);
             delete t;
@@ -171,7 +171,7 @@ void insertAllWords(BST& T, int partition, string input_file){
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*4500; i++){
+        for(int i=0; i < partition*10; i++){
             getline(f,w);
             T.insert(w);
         }
@@ -188,8 +188,8 @@ void findAllWords(BST& T, int partition, string input_file){
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*4500; i++){
-            getline(f, w);
+        for(int i=0; i < partition*10; i++){
+            getline(f,w);
             T.search(w);
         }
     }
@@ -205,9 +205,9 @@ void removeAllWords(BST& T, int partition, string input_file){
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*4500; i++){
-            getline(f, w);
-            T.remove(w);
+        for(int i=0; i < partition*10; i++){
+            getline(f,w);
+            T.insert(w);
         }
     }
     t.elapsedUserTime(eTime);
@@ -216,7 +216,7 @@ void removeAllWords(BST& T, int partition, string input_file){
 }
 
 void measureAll(string input_file, BST& T){
-    for (int i=1; i<=10; ++i){
+    for (int i=1; i<=5; ++i){
         cout << " ========= " << "Partition" << i << " ========= " << endl;
         insertAllWords(T, i, input_file);
 //        T.display();

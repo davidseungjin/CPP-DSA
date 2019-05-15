@@ -14,6 +14,7 @@ class BST
         Node* left;
         Node* right;
     };
+    
     Node* root;
     
     Node* clean(Node* t){
@@ -107,8 +108,7 @@ class BST
         cout << t->data << endl;
         inorder(t->right);
     }
-
-    /*
+    
     void preorder(Node* t){
         if(t == NULL)
             return;
@@ -124,12 +124,12 @@ class BST
         inorder(t->right);
         cout << t->data << endl;;
     }
-    */
-     
+    
 public:
     BST(){
         root = NULL;
     }
+    
     ~BST(){
         root = clean(root);
     }
@@ -147,7 +147,6 @@ public:
         cout << endl;
     }
 
-    /*
     void display_pre(){
         preorder(root);
         cout << endl;
@@ -157,7 +156,7 @@ public:
         postorder(root);
         cout << endl;
     }
-     */
+
     
     void search(string w){
         root = find(w, root);
