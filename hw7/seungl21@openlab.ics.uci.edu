@@ -122,7 +122,7 @@ public:
         
         int i = (low-1); // Index of smaller element
         
-        for (int j = low; j < high- 1; j++)
+        for (int j = low; j <= high- 1; j++)
         {
             // If current element is smaller than or
             // equal to pivot
@@ -138,7 +138,6 @@ public:
     
     void sort(int low, int high)
     {
-        cout << "quicksort start " << endl;
         int K = 10;
         if(high-low < K){
             Insertionsort::sort(low, high);
@@ -219,79 +218,75 @@ public:
 };
 
 
-
+/*
 void measureAll(string file_name)
 {
-    Insertionsort t(100);
-    Sorting& T1 = t;
-    
-    Quicksort u(100);
-    Sorting& T2 = u;
-    
-    Heapsort v(100);
-    Sorting& T3 = v;
-    
     for (int partition = 1; partition <= 1; partition++){
         cout << " ========= " << "Partition" << partition << " ========= " << endl;
-//        cout << "insertion sort" << endl;
-//        T1.insertAllFromFile(partition, file_name);         // insertion sort
-//
-//        T1.print();
-//        cout << "\nbefore sorted\n" << endl;
-//
-//        T1.sort(0, 100);
-//        cout << "\nafter sorted\n" << endl;
-//        T1.print();
-//
-        cout << "\nquick sort" << endl;
-        T2.insertAllFromFile(partition, file_name);         // Quick sort
-
-        T2.print();
-        cout << "\nbefore sorted\n" << endl;
-        
-        T2.sort(0, 100);
-        cout << "\nafter sorted\n" << endl;
-        T2.print();
-
+        cout << "insertion sort" << endl;
+        T.insertAllFromFile(partition, file_name);         // insertion sort
+//        cout << "\nquick sort" << endl;
+//        b.insertAllFromFile(partition, file_name);         // Quick sort
 //        cout << "\nheap sort" << endl;
-//        T3.insertAllFromFile(partition, file_name);         // Heap sort
-//
-//        T3.print();
-//        cout << "\nbefore sorted\n" << endl;
-//
-//        T3.sort(0, 100);
-//        cout << "\nafter sorted\n" << endl;
-//        T3.print();
-//
+//        c.insertAllFromFile(partition, file_name);         // Heap sort
     }
 }
-
+*/
 
 
 int main(int argc, char* argv[])
 {
     const char* input_file = argc == 2 ? argv[1]: "random.txt";
-//
-//    Insertionsort t(100);
-//    Sorting& T1 = t;
+    
+    Insertionsort t(100);
+    Sorting& T1 = t;
     
     // because measureAll funtion is not working....
-    measureAll(input_file);
+    for(int i = 1 ; i < 2 ; i++){
+        T1.insertAllFromFile(i, input_file);
+    }
     
-//    for(int i = 1 ; i < 2 ; i++){
-//        T1.insertAllFromFile(i, input_file);
-//    }
-//
+    T1.print();
+    cout << "\nbefore sorted\n" << endl;
+    
+    T1.sort(0, 100);
+    cout << "\nafter sorted\n" << endl;
+    T1.print();
+
+    
+    Quicksort u(100);
+    Sorting& T2 = u;
+    
     
 //     because measureAll funtion is not working....
-//    for(int i = 1 ; i < 2 ; i++){
-//        T2.insertAllFromFile(i, input_file);
-//    }
+    for(int i = 1 ; i < 2 ; i++){
+        T2.insertAllFromFile(i, input_file);
+    }
+    
+    T2.print();
+    cout << "\nbefore sorted\n" << endl;
+    
+    T2.sort(0, 100);
+    cout << "\nafter sorted\n" << endl;
+    T2.print();
+
+    
+    Heapsort v(100);
+    Sorting& T3 = v;
+    
     
 //     because measureAll funtion is not working....
-//    for(int i = 1 ; i < 2 ; i++){
-//        T3.insertAllFromFile(i, input_file);
-//    }
+    for(int i = 1 ; i < 2 ; i++){
+        T3.insertAllFromFile(i, input_file);
+    }
+    
+    T3.print();
+    cout << "\nbefore sorted\n" << endl;
+    
+    T3.sort(0, 100);
+    cout << "\nafter sorted\n" << endl;
+    T3.print();
+    
 
     return 0;
 
