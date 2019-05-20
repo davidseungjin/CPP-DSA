@@ -29,6 +29,7 @@ public:
             for(int i = 0; i< partition*10; i++){
                 getline(f, w);
                 push(w);
+                cout << "intentional line   " << i << endl;
             }
         }
         t.elapsedUserTime(eTime);
@@ -48,19 +49,21 @@ public:
 };
 
 
+/*
 void measureAll(string file_name)
 {
-    for (int i=1; i<=3; ++i)
-    {
-        cout << " ========= " << "Partition" << i << " ========= " << endl;
+    for (int partition = 1; partition <= 1; partition++){
+        cout << " ========= " << "Partition" << partition << " ========= " << endl;
         cout << "insertion sort" << endl;
-        T.insertAllFromFile(i, file_name);         // insertion sort
+        T.insertAllFromFile(partition, file_name);         // insertion sort
 //        cout << "\nquick sort" << endl;
-//        b.insertAllFromFile(i, file_name);         // Quick sort
+//        b.insertAllFromFile(partition, file_name);         // Quick sort
 //        cout << "\nheap sort" << endl;
-//        c.insertAllFromFile(i, file_name);         // Heap sort
+//        c.insertAllFromFile(partition, file_name);         // Heap sort
     }
 }
+*/
+
 
 int main(int argc, char* argv[])
 {
@@ -70,14 +73,18 @@ int main(int argc, char* argv[])
 
     Sorting& T = s;
     
-    T.insertAllFromFile(int partition, input_file);
-    T.print();
+    for(int i = 1 ; i < 3 ; i++){
+        T.insertAllFromFile(i, input_file);
+    }
+//    measureAll(input_file);
 
+    T.print();
+    cout << "test" << endl;
     
     T.sort(0, 6);
+    cout << "test 222 " << endl;
     T.print();
 
-    measureAll(input_file);
     
     return 0;
 
