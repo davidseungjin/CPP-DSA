@@ -27,7 +27,7 @@ public:
         t.start();
         string w;
         if(f.is_open()){
-            for(int i = 0; i< partition*100; i++){
+            for(int i = 0; i< partition*2000; i++){
                 getline(f, w);
                 push(w);
 //                cout << "intentional line   " << i << endl;
@@ -141,11 +141,16 @@ public:
         cout << "quicksort start " << endl;
         int K = 10;
         if(high-low < K){
+            cout << "high / low / difference is " << high << "\t" <<  low <<
+            "\t" << high - low << endl;
+            cout << "change to Insertionsort" << endl;
             Insertionsort::sort(low, high);
-            cout << "\nquicksort but using insertion sort " << endl;
         }
         else if (low < high)
         {
+            cout << "high / low / difference is " << high << "\t" <<  low <<
+            "\t" << high - low << endl;
+            cout << "continue to use quicksort" << endl;
             /* pi is partitioning index, arr[p] is now
              at right place */
             int pi = partition(low, high);
@@ -225,7 +230,7 @@ void measureAll(string file_name)
     Insertionsort t(100);
     Sorting& T1 = t;
     
-    Quicksort u(100);
+    Quicksort u(2000);
     Sorting& T2 = u;
     
     Heapsort v(100);
@@ -249,7 +254,7 @@ void measureAll(string file_name)
         T2.print();
         cout << "\nbefore sorted\n" << endl;
         
-        T2.sort(0, 100);
+        T2.sort(0, 2000);
         cout << "\nafter sorted\n" << endl;
         T2.print();
 
