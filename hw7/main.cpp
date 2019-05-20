@@ -6,21 +6,29 @@ using namespace std;
 
 
 class Sorting{
+    string* arr;
+    int low;
+    int high;
+    int index;
+
 public:
-    Sorting(){
-        cout << "Sorting constructor called" << endl;
-    }
+    Sorting();
+//    Sorting(int maxsize)
+//        : arr(new string[maxsize]), index(0), low(0), high(maxsize){
+//            cout << "Sorting constructor called" << endl;
+//    }
 
 //    insertAllFromFile(int partition, char *fileName);        // should be implemented in this
 //    void print(ostream & out);                               // should be implemented in this
-    virtual void sort()=0;           // it is pure virtual. should not be implemented in this
+//    virtual void sort()=0;           // it is pure virtual. should not be implemented in this
+    virtual void sort(string arr[], int low, int high)=0;
     virtual void push(string w)=0;
     virtual void print_test()=0;
     ~Sorting(){
         cout << "Sorting destructor called" << endl;
     }
 };
-
+/*
 class Insertionsort:public Sorting{
     string* arr;
     int index;
@@ -40,9 +48,6 @@ public:
             key = arr[i];
             j = i - 1;
             
-            /* Move elements of arr[0..i-1], that are
-             greater than key, to one position ahead
-             of their current position */
             while (j >= 0 && arr[j] > key)
             {
                 arr[j + 1] = arr[j];
@@ -62,47 +67,44 @@ public:
     }
 };
 
+*/
 
 class Quicksort:public Sorting{
     string* arr;
+    int low;
+    int high;
     int index;
-    int capacity;
 
 public:
     Quicksort(int maxsize)
-    : arr(new string[maxsize]), index(0), capacity(maxsize){
+    : arr(new string[maxsize]), index(0), low(0), high(maxsize){
         cout << "Quicksort constructor called" << endl;
     }
+    virtual void push(string w) { arr[index++] = w; }
 
-    void swap(string* a, string* b)
-    {
+    
+    void swap(string* a, string* b){
         string t = *a;
         *a = *b;
         *b = t;
     }
 
-    string median_of_three(string arr[], int low, int high)
-    {
+    string median_of_three(string* arr, int low, int high){
         int mid = low + (high - low)/2;
-        if (arr[mid] < arr[low]) swap( arr[low], arr[mid] );
-        if (arr[high] < arr[mid]) swap( arr[mid], arr[high] );
-        return A[mid];
+        if (arr[mid] < arr[low]) swap( &arr[low], &arr[mid] );
+        if (arr[high] < arr[mid]) swap( &arr[mid], &arr[high] );
+        return arr[mid];
     }
-
     
-    virtual void push(string w) { arr[index++] = w; }
-    
-    int partition (string arr[], int low, int high)
-    {
-        string pivot = arr[high]; // pivot
+    int partition (string* arr, int low, int high){
+        int mid = low + (high - low)/2;
+        string pivot = arr[mid]; // pivot
         int i = (low - 1); // Index of smaller element
         
-        for (int j = low; j <= high- 1; j++)
-        {
+        for (int j = low; j <= high- 1; j++){
             // If current element is smaller than or
             // equal to pivot
-            if (arr[j] <= pivot)
-            {
+            if (arr[j] <= pivot){
                 i++; // increment index of smaller element
                 swap(&arr[i], &arr[j]);
             }
@@ -110,23 +112,16 @@ public:
         swap(&arr[i + 1], &arr[high]);
         return (i + 1);
     }
-    virtual void sort(string arr[], int low, int high)
-    {
-        if (low < high)
-        {
-            /* pi is partitioning index, arr[p] is now
-             at right place */
+    virtual void sort(string* arr, int low, int high){
+        if (low < high){
             int pi = partition(arr, low, high);
-            
-            // Separately sort elements before
-            // partition and after partition
-            quickSort(arr, low, pi - 1);
-            quickSort(arr, pi + 1, high);
+            sort(arr, low, pi - 1);
+            sort(arr, pi + 1, high);
         }
     }
-    void printArray(string arr[], int capacity);
+    void printArray(string arr[], int high);
     virtual void print_test(){
-        for(int i=0; i<capacity; i++)
+        for(int i=0; i<high; i++)
             cout << arr[i] << endl;
     }
     ~Quicksort(){
@@ -135,8 +130,6 @@ public:
     
     
 };
-
-
 
 
 void makearray(string file_name, Sorting& L){
@@ -151,25 +144,27 @@ void makearray(string file_name, Sorting& L){
 }
     
     
-int main(int argc, char* argv[]){
-    const char* input_file = argc == 2? argv[1] : "random_5.txt";
+int main(){
+    const char* input_file = "random_5.txt";
 
-    Insertionsort A(6);
+//    Insertionsort A(6);
+//
+//    Sorting& s = A;
+//    makearray(input_file, s);
+//    s.print_test();
+//
+//    s.sort();
+//    s.print_test();
+//
     
-    Quicksort B(6);
-    
-    Sorting& s = A;
-    makearray(input_file, s);
-    s.print_test();
-        
-    s.sort();
-    s.print_test();
+    Quicksort B(5);
     
     Sorting& t = B;
     makearray(input_file, t);
     t.print_test();
+    cout << "\nSorted below\n" << endl;
     
-    t.sort();
+    t.sort(arr, 0, 6);
     t.print_test();
     
     return 0;
