@@ -234,7 +234,7 @@ void measureAll(string file_name)
     for (int partition = 1; partition <= 10; partition++){
         cout << " ========= " << "Partition" << partition << " ========= " << endl;
         
-        cout << "insertion sort" << endl;
+        cout << "Insertion sort\t";
         Insertionsort t(partition*4500);
         Sorting& T1 = t;
 
@@ -242,13 +242,13 @@ void measureAll(string file_name)
 
 //        T1.print();           printing function
 
-        cout << "\nquick sort" << endl;
+        cout << "Quick sort\t";
         Quicksort u(partition*4500);
         Sorting& T2 = u;
         
         T2.insertAllFromFile(partition, file_name);         // Quick sort
 
-        cout << "Heap sort" << endl;
+        cout << "Heap sort\t";
         Heapsort v(partition*4500);
         Sorting& T3 = v;
 
