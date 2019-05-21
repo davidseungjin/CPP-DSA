@@ -19,6 +19,8 @@ public:
             cout << "Sorting constructor called" << endl;
     }
     virtual void push(string w) { arr[index++] = w; }
+    virtual void sort(int low, int high)=0;
+
     void insertAllFromFile(int partition, string file_name){
         Timer t;
         double eTime;
@@ -26,19 +28,18 @@ public:
         ifstream f(file_name.c_str());
         t.start();
         string w;
-        if(f.is_open()){
-            for(int i = 0; i< partition*2000; i++){
-                getline(f, w);
-                push(w);
+        f.is_open();
+        for(int i = 0; i< partition*4500; i++){
+            getline(f, w);
+            push(w);
 //                cout << "intentional line   " << i << endl;
-            }
         }
-        t.elapsedUserTime(eTime);
+        sort(low, high);
         f.close();
-        cout << "partition " << partition << " insert time is " << eTime << endl;
+        t.elapsedUserTime(eTime);
+        cout << "partition " << partition <<
+        " insert and sort time is " << eTime << endl;
     }
-    
-    virtual void sort(int low, int high)=0;
     
     void print(){      // should be implemented in this
         for(int i = 0 ; i < high ; i++){
@@ -74,7 +75,7 @@ public:
             {
 //                cout << "key is " << key << endl;
 //                cout << "arr[j] is " << arr[j] << endl;
-                
+//
                 arr[j + 1] = arr[j];
                 j = j - 1;
 //                cout << "j in for and while loop = " << j << endl;
@@ -110,7 +111,7 @@ public:
         int mid = low + (high - low) / 2;
         if ( arr[mid] < arr[low] ) swap( &arr[low], &arr[mid] );
         if ( arr[mid] > arr[high] ) swap( &arr[mid], &arr[high] );
-        cout << "arr[mid] is " << arr[mid] << " and mid index is " << mid << endl;
+//        cout << "arr[mid] is " << arr[mid] << " and mid index is " << mid << endl;
         return arr[mid];
     }
 
@@ -118,7 +119,7 @@ public:
     int partition (int low, int high)
     {
         string pivot = median_of_three(low, high); // pivot
-        cout << "pivot value is " << pivot << endl;
+//        cout << "pivot value is " << pivot << endl;
         
         int i = (low-1); // Index of smaller element
         
@@ -138,19 +139,19 @@ public:
     
     void sort(int low, int high)
     {
-        cout << "quicksort start " << endl;
-        int K = 10;
-        if(high-low < K){
-            cout << "high / low / difference is " << high << "\t" <<  low <<
-            "\t" << high - low << endl;
-            cout << "change to Insertionsort" << endl;
-            Insertionsort::sort(low, high);
-        }
-        else if (low < high)
+////        cout << "quicksort start " << endl;
+//        int K = 10;
+//        if(high-low < K){
+////            cout << "high / low / difference is " << high << "\t" <<  low <<
+////            "\t" << high - low << endl;
+////            cout << "change to Insertionsort" << endl;
+//            Insertionsort::sort(low, high);
+//        }
+        if (low < high)
         {
-            cout << "high / low / difference is " << high << "\t" <<  low <<
-            "\t" << high - low << endl;
-            cout << "continue to use quicksort" << endl;
+//            cout << "high / low / difference is " << high << "\t" <<  low <<
+//            "\t" << high - low << endl;
+//            cout << "continue to use quicksort" << endl;
             /* pi is partitioning index, arr[p] is now
              at right place */
             int pi = partition(low, high);
@@ -227,47 +228,33 @@ public:
 
 void measureAll(string file_name)
 {
-    Insertionsort t(100);
-    Sorting& T1 = t;
     
-    Quicksort u(2000);
-    Sorting& T2 = u;
+
     
-    Heapsort v(100);
-    Sorting& T3 = v;
-    
-    for (int partition = 1; partition <= 1; partition++){
+    for (int partition = 1; partition <= 10; partition++){
         cout << " ========= " << "Partition" << partition << " ========= " << endl;
-//        cout << "insertion sort" << endl;
-//        T1.insertAllFromFile(partition, file_name);         // insertion sort
-//
-//        T1.print();
-//        cout << "\nbefore sorted\n" << endl;
-//
-//        T1.sort(0, 100);
-//        cout << "\nafter sorted\n" << endl;
-//        T1.print();
-//
+        
+        cout << "insertion sort" << endl;
+        Insertionsort t(partition*4500);
+        Sorting& T1 = t;
+
+        T1.insertAllFromFile(partition, file_name);         // insertion sort
+
+//        T1.print();           printing function
+
         cout << "\nquick sort" << endl;
+        Quicksort u(partition*4500);
+        Sorting& T2 = u;
+        
         T2.insertAllFromFile(partition, file_name);         // Quick sort
 
-        T2.print();
-        cout << "\nbefore sorted\n" << endl;
-        
-        T2.sort(0, 2000);
-        cout << "\nafter sorted\n" << endl;
-        T2.print();
+        cout << "Heap sort" << endl;
+        Heapsort v(partition*4500);
+        Sorting& T3 = v;
 
-//        cout << "\nheap sort" << endl;
-//        T3.insertAllFromFile(partition, file_name);         // Heap sort
-//
-//        T3.print();
-//        cout << "\nbefore sorted\n" << endl;
-//
-//        T3.sort(0, 100);
-//        cout << "\nafter sorted\n" << endl;
-//        T3.print();
-//
+        T3.insertAllFromFile(partition, file_name);         // Heap sort
+        
+
     }
 }
 
@@ -276,28 +263,9 @@ void measureAll(string file_name)
 int main(int argc, char* argv[])
 {
     const char* input_file = argc == 2 ? argv[1]: "random.txt";
-//
-//    Insertionsort t(100);
-//    Sorting& T1 = t;
-    
-    // because measureAll funtion is not working....
+
     measureAll(input_file);
     
-//    for(int i = 1 ; i < 2 ; i++){
-//        T1.insertAllFromFile(i, input_file);
-//    }
-//
-    
-//     because measureAll funtion is not working....
-//    for(int i = 1 ; i < 2 ; i++){
-//        T2.insertAllFromFile(i, input_file);
-//    }
-    
-//     because measureAll funtion is not working....
-//    for(int i = 1 ; i < 2 ; i++){
-//        T3.insertAllFromFile(i, input_file);
-//    }
-
     return 0;
 
 }
