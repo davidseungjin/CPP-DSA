@@ -37,7 +37,7 @@ public:
         sort(low, high);
         f.close();
         t.elapsedUserTime(eTime);
-        cout << "partition " << partition <<
+        cout << file_name << " partition " << partition <<
         " insert and sort time is " << eTime << endl;
     }
     
