@@ -1,0 +1,116 @@
+insertion sort
+random.txt partition 4 insert and sort time is 4.4468
+
+quick sort
+random.txt partition 4 insert and sort time is 0.02756
+Heap sort
+random.txt partition 4 insert and sort time is 0.027333
+ ========= Partition5 ========= 
+insertion sort
+random.txt partition 5 insert and sort time is 6.91552
+
+quick sort
+random.txt partition 5 insert and sort time is 0.035307
+Heap sort
+random.txt partition 5 insert and sort time is 0.035476
+ ========= Partition6 ========= 
+insertion sort
+random.txt partition 6 insert and sort time is 9.97802
+
+quick sort
+random.txt partition 6 insert and sort time is 0.04273
+Heap sort
+random.txt partition 6 insert and sort time is 0.043396
+ ========= Partition7 ========= 
+insertion sort
+random.txt partition 7 insert and sort time is 13.5792
+
+quick sort
+random.txt partition 7 insert and sort time is 0.048293
+Heap sort
+random.txt partition 7 insert and sort time is 0.051863
+ ========= Partition8 ========= 
+insertion sort
+random.txt partition 8 insert and sort time is 17.6697
+
+quick sort
+random.txt partition 8 insert and sort time is 0.05722
+Heap sort
+random.txt partition 8 insert and sort time is 0.059916
+ ========= Partition9 ========= 
+insertion sort
+random.txt partition 9 insert and sort time is 22.3125
+
+quick sort
+random.txt partition 9 insert and sort time is 0.062287
+Heap sort
+random.txt partition 9 insert and sort time is 0.067742
+ ========= Partition10 ========= 
+insertion sort
+random.txt partition 10 insert and sort time is 27.5499
+
+quick sort
+random.txt partition 10 insert and sort time is 0.071569
+Heap sort
+random.txt partition 10 insert and sort time is 0.077136
+seungl21@andromeda-35 19:02:06 ~/hw/hw7 
+$ clear
+
+seungl21@andromeda-35 19:02:46 ~/hw/hw7 
+$ g++ main.cpp
+seungl21@andromeda-35 19:02:53 ~/hw/hw7 
+$ ./a.out
+ ========= Partition1 ========= 
+Insertion sort	random.txt partition 1 insert and sort time is 0.268261
+Quick sort	random.txt partition 1 insert and sort time is 0.005633
+Heap sort	random.txt partition 1 insert and sort time is 0.005901
+ ========= Partition2 ========= 
+Insertion sort	random.txt partition 2 insert and sort time is 1.06911
+Quick sort	random.txt partition 2 insert and sort time is 0.012986
+Heap sort	random.txt partition 2 insert and sort time is 0.012267
+ ========= Partition3 ========= 
+Insertion sort	random.txt partition 3 insert and sort time is 2.40117
+Quick sort	random.txt partition 3 insert and sort time is 0.020005
+Heap sort	random.txt partition 3 insert and sort time is 0.019731
+ ========= Partition4 ========= 
+Insertion sort	random.txt partition 4 insert and sort time is 4.30777
+Quick sort	random.txt partition 4 insert and sort time is 0.028134
+Heap sort	random.txt partition 4 insert and sort time is 0.027489
+ ========= Partition5 ========= 
+Insertion sort	random.txt partition 5 insert and sort time is 6.65064
+Quick sort	random.txt partition 5 insert and sort time is 0.035408
+Heap sort	random.txt partition 5 insert and sort time is 0.035393
+ ========= Partition6 ========= 
+Insertion sort	random.txt partition 6 insert and sort time is 9.59916
+Quick sort	random.txt partition 6 insert and sort time is 0.042014
+Heap sort	random.txt partition 6 insert and sort time is 0.044003
+ ========= Partition7 ========= 
+Insertion sort	random.txt partition 7 insert and sort time is 13.0641
+Quick sort	random.txt partition 7 insert and sort time is 0.048726
+Heap sort	random.txt partition 7 insert and sort time is 0.051758
+ ========= Partition8 ========= 
+Insertion sort	random.txt partition 8 insert and sort time is 16.908
+Quick sort	random.txt partition 8 insert and sort time is 0.05805
+Heap sort	random.txt partition 8 insert and sort time is 0.060435
+ ========= Partition9 ========= 
+Insertion sort	random.txt partition 9 insert and sort time is 21.474
+Quick sort	random.txt partition 9 insert and sort time is 0.063558
+Heap sort	random.txt partition 9 insert and sort time is 0.06824
+ ========= Partition10 ========= 
+Insertion sort	random.txt partition 10 insert and sort time is 26.4592
+Quick sort	random.txt partition 10 insert and sort time is 0.071485
+Heap sort	random.txt partition 10 insert and sort time is 0.075356
+seungl21@andromeda-35 19:04:45 ~/hw/hw7 
+$ 
+
+
+
+
+
+
+
+
+
+
+
+
