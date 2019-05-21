@@ -16,7 +16,7 @@ public:
 //    Sorting();
     Sorting(int maxsize)
         : arr(new string[maxsize]), index(0), low(0), high(maxsize){
-            cout << "Sorting constructor called" << endl;
+//            cout << "Sorting constructor called" << endl;
     }
     virtual void push(string w) { arr[index++] = w; }
     virtual void sort(int low, int high)=0;
@@ -48,7 +48,7 @@ public:
         cout << "\nSorting class print function\n" << endl;
     }
     ~Sorting(){
-        cout << "Sorting destructor called" << endl;
+//        cout << "Sorting destructor called" << endl;
     }
 };
 
@@ -58,7 +58,7 @@ public:
     Insertionsort(int maxsize)
     : Sorting(maxsize)
     {
-        cout << "Insertionsort constructor called" << endl;
+//        cout << "Insertionsort constructor called" << endl;
     }
     virtual void sort(int low, int high){
         int i, j;
@@ -85,7 +85,7 @@ public:
         }
     }
     ~Insertionsort(){
-        cout << "Insertionsort destructor called" << endl;
+//        cout << "Insertionsort destructor called" << endl;
     }
 };
 
@@ -95,7 +95,7 @@ public:
     Quicksort(int maxsize)
     : Insertionsort(maxsize)
     {
-        cout << "Quicksort constructor called" << endl;
+//        cout << "Quicksort constructor called" << endl;
     }
 
     
@@ -164,7 +164,7 @@ public:
     }
     
     ~Quicksort(){
-        cout << "Quicksort destructor called" << endl;
+//        cout << "Quicksort destructor called" << endl;
     }
 };
 
@@ -175,7 +175,7 @@ public:
     Heapsort(int maxsize)
     : Sorting(maxsize)
     {
-        cout << "Heapsort constructor called" << endl;
+//        cout << "Heapsort constructor called" << endl;
     }
 
     void heapify(int high, int low)
@@ -220,7 +220,7 @@ public:
     }
     
     ~Heapsort(){
-        cout << "Heapsort destructor called" << endl;
+//        cout << "Heapsort destructor called" << endl;
     }
 };
 
