@@ -43,7 +43,8 @@ public:
         }
         cout << "\nSorting class print function\n" << endl;
     }
-    ~Sorting(){}
+    ~Sorting(){
+	delete[] arr;}
 };
 
 class Insertionsort:public Sorting{
@@ -68,7 +69,7 @@ public:
         }
     }
     ~Insertionsort(){
-    }
+	}
 };
 
 class Quicksort:public Insertionsort{
@@ -159,7 +160,7 @@ public:
 };
 
 void measureAll(string file_name){
-    for (int partition = 1; partition <= 10; partition++){
+    for (int partition = 1; partition <= 1; partition++){
         cout << " ========= " << "Partition" << partition << " ========= " << endl;
         
         cout << "Insertion sort\t";
@@ -167,6 +168,7 @@ void measureAll(string file_name){
         Sorting& T1 = t;
         T1.insertAllFromFile(partition, file_name);         // Insertion sort
 //        T1.print();           printing function
+
 
         cout << "Quick sort\t";
         Quicksort u(partition*4500);
@@ -177,6 +179,7 @@ void measureAll(string file_name){
         Heapsort v(partition*4500);
         Sorting& T3 = v;
         T3.insertAllFromFile(partition, file_name);         // Heap sort
+
     }
 }
 
