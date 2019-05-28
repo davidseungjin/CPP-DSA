@@ -4,10 +4,7 @@
 
 using namespace std;
 
-
-
-class Edge
-{
+class Edge{
 public:
     int src;
     int dst;
@@ -15,8 +12,10 @@ public:
     
 public:
     Edge(int s, int d, int w)
-    :src(s), dst(d), weight(w){}
-    ~Edge();
+    :src(s), dst(d), weight(w){ cout << "Edge constructor" << endl;}
+    ~Edge(){
+        cout << "Edge destructor" << endl;
+    }
 };
 
 class Vertex{
@@ -26,20 +25,35 @@ public:
     
 public:
     Vertex()
-    : id(0), edges(0){}
+    : id(){ cout << "Vertex constructor" << endl;}
     
     void add_edge(const Edge& e){
+        e(src, dst, weight);
+        cout << "src is: " << e.src << endl;
+        cout << "dst is: " << e.dst << endl;
+        cout << "weight is: " << e.weight << endl;
+        
+        //                    .src = src;
+        //                    e.dst = dst;
+        //                    e.weight = weight;
+    }
+//    {
         // push_back? what is syntax of vector?
         // inserts the Edges into the edges vector
-    }
+        
+//        e.push_back(make_pair(weight, make_pair(src, dst)));
+//    }
     
     void print(ostream& out){}
-    ~Vertex();
+    ~Vertex(){
+        edges.clear();
+        cout << "Vertex destructor" << endl;
+    }
     
 };
 
-class Graph
-{
+
+class Graph{
     int num_edge;
     int num_vertex;
     Vertex* vertices;
@@ -52,17 +66,28 @@ public:
             num_vertex = value;
             vertices = new Vertex[num_vertex];
         }else{
-            cout << "file not found\n";
+            cerr << "file not found\n";
         }
         for(int i = 0; i < num_vertex; ++i){
             Vertex& v = vertices[i];
             v.id = i;
+
             // anything else is necessary?
+            num_edge++;            // num_of_edge counting;
             
         }
         for(;;){
             if(in >> src >> dst >> weight){
-                add_edge(src, dst, weight);
+                Vertex::add_edge(const Edge& e){
+                    e(src, dst, weight);
+                    cout << "src is: " << e.src << endl;
+                    cout << "dst is: " << e.dst << endl;
+                    cout << "weight is: " << e.weight << endl;
+                    
+                    //                    .src = src;
+                    //                    e.dst = dst;
+                    //                    e.weight = weight;
+                }
             }else{
                 break;
             }
@@ -77,7 +102,9 @@ public:
     /*
      Adds a new edge with the given values to the appropriate Vertex(s) in this Graph
     */
-    ~Graph();
+    ~Graph(){
+        delete[] vertices;
+    };
 };
 
 

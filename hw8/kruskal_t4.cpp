@@ -1,46 +1,21 @@
-#include <iostream>
-
-using namespace std;
-
-
-class Vertex{
-    int id;
-    vector<Edge> edges;
-    
-public:
-    Vertex(int i)
-    : id(i), edges(0){}
-    
-    void add_edge(const Edge& e){
-        // push_back? what is syntax of vector?
-        // inserts the Edges into the edges vector
-    }
-    
-    void print(ostream& out){}
-    
-};
-
-
+// C++ program for Kruskal's algorithm to find Minimum Spanning Tree
+// of a given connected, undirected and weighted graph
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 // a structure to represent a weighted edge in graph
-class Edge
+struct Edge
 {
-    int src;
-    int dst;
-    int weight;
-    
-public:
-    Edge(int s, int d, int w)
-    :src(s), dst(d), weight(w){}
+    int src, dest, weight;
 };
-
-
-
 
 // a structure to represent a connected, undirected
 // and weighted graph
-class Graph
+struct Graph
 {
+    // V-> Number of vertices, E-> Number of edges
+    int V, E;
     
     // graph is represented as an array of edges.
     // Since the graph is undirected, the edge
