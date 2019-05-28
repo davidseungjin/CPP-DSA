@@ -14,10 +14,7 @@ private:
     int V; // number of vertices/nodes in graph
 public:
     Graph(string filename){
-        
-//i 0 1 2 3 4 5
-//parent[i] 0 1 2 3 4 5
-
+     
 	cout << "test constructor" << endl;
 
         int value;
