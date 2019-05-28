@@ -6,22 +6,18 @@ using namespace std;
 
 //#define edge pair<int,int>
 
-class Vertex{
-public:
-    int id;
-    
-    
-};
-
 class Graph {
 private:
     vector<pair<int, pair<int, int> > > G; // graph
     vector<pair<int, pair<int, int> > > T; // mst
-    Vertex *vertices;
+    int *vertices;
     int V; // number of vertices/nodes in graph
 public:
     Graph(string filename){
-     
+        
+//i 0 1 2 3 4 5
+//vertices[i] 0 1 2 3 4 5
+
 	cout << "test constructor" << endl;
 
         int value;
@@ -32,15 +28,15 @@ public:
             cout << "3.     test\n";
             V= value;
             cout << "4.     test\n";
-            vertices = new Vertex[V];
+            vertices = new int[V];
         }
 //        else{
 //            cerr << "file not found\n";
 //        }
         cout << "5.     test\n";
         for (int i = 0; i < V; ++i){
-            vertices.id = i;
-            cout << "vertices -> id is : " << vertices -> id << endl;
+            vertices[i] = i;
+            cout << "vertices[" << i << "] is : " << vertices[i] << endl;
             cout << "6.     test\n";
             
         }
@@ -128,8 +124,7 @@ public:
     }
 };
 
-//int main() {
-//
+
 int main(int argc, char* argv[]){
     const char* input_file = argc == 2 ? argv[1]: "rdm.graph";
     
@@ -138,12 +133,5 @@ int main(int argc, char* argv[]){
 
     Graph a(input_file);
 
-//    Graph g(6);
-
-//    a.print();
-//
-//    a.kruskal();
-//
-//    a.print();
     return 0;
 }
