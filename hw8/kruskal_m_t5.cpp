@@ -6,11 +6,18 @@ using namespace std;
 
 //#define edge pair<int,int>
 
+class Vertex{
+public:
+    int id;
+    
+    
+};
+
 class Graph {
 private:
     vector<pair<int, pair<int, int> > > G; // graph
     vector<pair<int, pair<int, int> > > T; // mst
-    int *parent;
+    Vertex *vertices;
     int V; // number of vertices/nodes in graph
 public:
     Graph(string filename){
@@ -25,15 +32,15 @@ public:
             cout << "3.     test\n";
             V= value;
             cout << "4.     test\n";
-            parent = new int[V];
+            vertices = new Vertex[V];
         }
 //        else{
 //            cerr << "file not found\n";
 //        }
         cout << "5.     test\n";
         for (int i = 0; i < V; ++i){
-            parent[i] = i;
-            cout << "parent[" << i << "] is : " << parent[i] << endl;
+            vertices.id = i;
+            cout << "vertices -> id is : " << vertices -> id << endl;
             cout << "6.     test\n";
             
         }
@@ -62,18 +69,18 @@ public:
         G.push_back(make_pair(w, make_pair(u, v)));
     }
     int find_set(int i){
-        // If i is the parent of itself
-        if (i == parent[i])
+        // If i is the vertices of itself
+        if (i == vertices[i])
             return i;
         else
-            // Else if i is not the parent of itself
+            // Else if i is not the vertices of itself
             // Then i is not the representative of his set,
-            // so we recursively call Find on its parent
-            return find_set(parent[i]);
+            // so we recursively call Find on its vertices
+            return find_set(vertices[i]);
     }
     
     void union_set(int u, int v){
-        parent[u] = parent[v];
+        vertices[u] = vertices[v];
     }
     
     void kruskal(){
@@ -116,7 +123,7 @@ public:
     ~Graph(){
         T.clear();
         G.clear();
-        delete[] parent;
+        delete[] vertices;
         cout << "destructor called" << endl;
     }
 };
