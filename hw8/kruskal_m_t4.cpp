@@ -10,8 +10,6 @@ struct Edge
     int src, dest, weight;
 };
 
-// a structure to represent a connected, undirected
-// and weighted graph
 struct Graph
 {
     // V-> Number of vertices, E-> Number of edges
@@ -44,8 +42,6 @@ struct subset
     int rank;
 };
 
-// A utility function to find set of an element i
-// (uses path compression technique)
 int find(struct subset subsets[], int i)
 {
     // find root and make root as parent of i

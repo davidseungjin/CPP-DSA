@@ -11,7 +11,7 @@ private:
     vector<pair<int, pair<int, int> > > G; // graph
     vector<pair<int, pair<int, int> > > T; // mst
     int *vertices;
-    int V; // number of vertices/nodes in graph
+    int numvertex; // number of vertices/nodes in graph
 public:
     Graph(string filename){
 
@@ -21,13 +21,13 @@ public:
         int src, dst, weight;
         ifstream in(filename);
         if(in >> value){
-            V= value;
-            vertices = new int[V];
+            numvertex= value;
+            vertices = new int[numvertex];
         }
         else{
             cerr << "file not found\n";
         }
-        for (int i = 0; i < V; ++i){
+        for (int i = 0; i < numvertex; ++i){
             vertices[i] = i;
             cout << "vertices[" << i << "] is : " << vertices[i] << endl;
             

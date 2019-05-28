@@ -22,20 +22,19 @@ class Vertex{
 public:
     int id;
     vector<Edge> edges;
-    
+
 public:
-    Vertex()
-    : id(){ cout << "Vertex constructor" << endl;}
+    Vertex(int i)
+    : id(i){ cout << "Vertex constructor" << endl;}
     
-    void add_edge(const Edge& e){
-        e(src, dst, weight);
-        cout << "src is: " << e.src << endl;
-        cout << "dst is: " << e.dst << endl;
-        cout << "weight is: " << e.weight << endl;
-        
-        //                    .src = src;
-        //                    e.dst = dst;
-        //                    e.weight = weight;
+    void add_edge(Edge& e){
+
+        edges = e;
+//        e.src = 2;
+//        e.dst = 3;
+//        e.weight = 4;
+        cout << e.src << endl << e.dst << endl << e.weight;
+//        (2,3,4);
     }
 //    {
         // push_back? what is syntax of vector?
@@ -46,13 +45,11 @@ public:
     
     void print(ostream& out){}
     ~Vertex(){
-        edges.clear();
         cout << "Vertex destructor" << endl;
     }
-    
 };
 
-
+/*
 class Graph{
     int num_edge;
     int num_vertex;
@@ -74,46 +71,45 @@ public:
 
             // anything else is necessary?
             num_edge++;            // num_of_edge counting;
-            
+            cout << v.id << endl;
         }
+        
         for(;;){
             if(in >> src >> dst >> weight){
-                Vertex::add_edge(const Edge& e){
-                    e(src, dst, weight);
-                    cout << "src is: " << e.src << endl;
-                    cout << "dst is: " << e.dst << endl;
-                    cout << "weight is: " << e.weight << endl;
-                    
-                    //                    .src = src;
-                    //                    e.dst = dst;
-                    //                    e.weight = weight;
-                }
+                add_edge(src, dst, weight);
             }else{
                 break;
             }
+         
         }
         in.close();
     }
-    /*
+ 
      Constructor that takes in a .graph file; it should open the file and initialize this Graph using the data in the file**, assume that the file is valid
-     */
-    
-    void add_edge(int src, int dist, int weight){}
-    /*
+ 
+    void add_edge(int src, int dst, int weight){
+        cout << "src/dst/weight are: \t" << "src:" <<src << "\tdst:" << dst << "\tweight:" << weight << endl;
+        
+        vertices->edges = Edge(src, dst, weight); //void Vertex::add_edge(const Edge& e)<< endl;
+    }
+
      Adds a new edge with the given values to the appropriate Vertex(s) in this Graph
-    */
+
     ~Graph(){
         delete[] vertices;
-    };
+    }
 };
-
+*/
 
 
 
 int main(int argc, char* argv[]){
     const char* input_file = argc == 2 ? argv[1]: "smallgraph.txt";
     
-    Graph a(input_file);
+//    Graph a(input_file);
+    Vertex a(3);
+    Edge b(5,6,7);
+    a.add_edge(b);
     
     return 0;
 }
