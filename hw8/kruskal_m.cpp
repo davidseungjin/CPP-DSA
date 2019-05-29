@@ -12,7 +12,7 @@ public:
     
 public:
     Edge(int s, int d, int w)
-    :src(s), dst(d), weight(w){ cout << "Edge constructor" << endl;}
+    :src(s=2), dst(d=3), weight(w=4){ cout << "Edge constructor" << endl;}
     ~Edge(){
         cout << "Edge destructor" << endl;
     }
@@ -21,24 +21,23 @@ public:
 class Vertex{
 public:
     int id;
-    vector<Edge> edges;
+    Edge* edge;
 
 public:
     Vertex(int i)
-    : id(i){ cout << "Vertex constructor" << endl;}
+    : id(i){ cout << "Vertex constructor" << endl;
+        edge = new Edge;
+        add_edge(edge);
+    }
     
     void add_edge(Edge& e){
 
-        edges = e;
-//        e.src = 2;
-//        e.dst = 3;
-//        e.weight = 4;
         cout << e.src << endl << e.dst << endl << e.weight;
 //        (2,3,4);
     }
 //    {
         // push_back? what is syntax of vector?
-        // inserts the Edges into the edges vector
+        // inserts the Edges into the edge vector
         
 //        e.push_back(make_pair(weight, make_pair(src, dst)));
 //    }
@@ -90,7 +89,7 @@ public:
     void add_edge(int src, int dst, int weight){
         cout << "src/dst/weight are: \t" << "src:" <<src << "\tdst:" << dst << "\tweight:" << weight << endl;
         
-        vertices->edges = Edge(src, dst, weight); //void Vertex::add_edge(const Edge& e)<< endl;
+        vertices->edge = Edge(src, dst, weight); //void Vertex::add_edge(const Edge& e)<< endl;
     }
 
      Adds a new edge with the given values to the appropriate Vertex(s) in this Graph
@@ -108,8 +107,8 @@ int main(int argc, char* argv[]){
     
 //    Graph a(input_file);
     Vertex a(3);
-    Edge b(5,6,7);
-    a.add_edge(b);
-    
+//    Edge b(5,6,7);
+//    a.add_edge(b);
+//
     return 0;
 }

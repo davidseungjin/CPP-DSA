@@ -1,24 +1,20 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-//#include <algorithm>
+#include <algorithm>
 using namespace std;
-
-//#define edge pair<int,int>
 
 class Graph {
 private:
     vector<pair<int, pair<int, int> > > G; // graph
-    vector<pair<int, pair<int, int> > > T; // mst
-    int *vertices;
-    int numvertex; // number of vertices/nodes in graph
+    vector<pair<int, pair<int, int> > > K_MST; // mst
+    int* vertices;
+    int numvertex;
 public:
     Graph(string filename){
 
-//    cout << "test constructor" << endl;
-
         int value;
-        int src, dst, weight;
+        int src, dst, wgt;
         ifstream in(filename);
         if(in >> value){
             numvertex= value;
@@ -29,13 +25,11 @@ public:
         }
         for (int i = 0; i < numvertex; ++i){
             vertices[i] = i;
-            cout << "vertices[" << i << "] is : " << vertices[i] << endl;
-            
         }
         for(;;){
-            if(in>> src >> dst>> weight){
-                addedge(src, dst, weight);
-//                cout << "src, dst, weight is\t" << src << "\t" << dst << "\t" << weight << endl;
+            if(in>> src >> dst>> wgt){
+                addedge(src, dst, wgt);
+
             }else{
                 break;
             }
@@ -58,58 +52,43 @@ public:
             // so we recursively call Find on its vertices
             return find_set(vertices[i]);
     }
-    
     void union_set(int u, int v){
         vertices[u] = vertices[v];
     }
-    
     void kruskal(){
-        int i, uRep, vRep;
-        sort(G.begin(), G.end()); // ascending sorting
+        int i, u_rep, v_rep;
+        sort(G.begin(), G.end()); // make it ascending sorting
         for (i = 0; i < G.size(); i++) {
-            uRep = find_set(G[i].second.first);
-            vRep = find_set(G[i].second.second);
-            cout << "3.   kruskal for-statement\n";
+            u_rep = find_set(G[i].second.first);
+            v_rep = find_set(G[i].second.second);
 
-            if (uRep != vRep) {
+            if (u_rep != v_rep) {
 
-                T.push_back(G[i]); // add to tree
-                union_set(uRep, vRep);
+                K_MST.push_back(G[i]); // add to tree
+                union_set(u_rep, v_rep);
             }
         }
     }
-    
     void print(){
-//        cout << "Edge :" << " Weight" << endl;
         int total=0;
-        for (int i = 0; i < T.size(); i++) {
-            total = total + T[i].first;
-//            total += T[i].first;
-//            cout << total << endl;
-            cout << endl;
+        for (int i = 0; i < K_MST.size(); i++) {
+            total = total + K_MST[i].first;
         }
         cout << "minimum total is: " << total << endl;
-        for (int i = 0; i < T.size(); i++) {
-            cout << T[i].second.first << " - " << T[i].second.second << " : "
-            << T[i].first;
-            cout << endl;
+        for (int i = 0; i < K_MST.size(); i++) {
+            cout << "["<<K_MST[i].second.first << " - " << K_MST[i].second.second << "]\t("
+            << K_MST[i].first << ")" << endl;
         }
-        
     }
     ~Graph(){
-        T.clear();
+        K_MST.clear();
         G.clear();
         delete[] vertices;
-        cout << "destructor called" << endl;
     }
 };
 
-
 int main(int argc, char* argv[]){
     const char* input_file = argc == 2 ? argv[1]: "rdm.graph";
-    
-
-	cout << "test" << endl;
 
     Graph a(input_file);
 
