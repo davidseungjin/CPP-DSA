@@ -12,12 +12,13 @@ using namespace std;
 class AVL{
 public:
     struct Node{
-    public:
         string data;
         Node *left;
         Node *right;
         int height;
     };
+    
+    Node* root;
     
     int height(Node *N){
         if (N == NULL)
@@ -63,12 +64,25 @@ public:
         return height(N->left) - height(N->right);
     }
 
-    Node* insert(Node* node, string data){
-        node = new Node();
+    
+    Node* newNode(string data)
+    {
+        Node* node = new Node();
         node->data = data;
         node->left = NULL;
         node->right = NULL;
-        node->height = 1;
+        node->height = 1; // new node is initially
+        // added at leaf
+        return(node);
+    }
+    
+    Node* insert(Node* node, string data){
+        if (node == NULL){
+            cout << "NULL if statement" << endl;
+            return(newNode(data));}
+        
+        cout << "node -> data after if-statement is : " << node->data << endl;
+        cout << "data is " << data << endl;
         
         if (data < node->data)
             node->left = insert(node->left, data);
@@ -77,8 +91,13 @@ public:
         else // Equal keys are not allowed in BST
             return node;
         
-        node->height = 1 + max(height(node->left),
-                               height(node->right));
+        node->height = 1 + max(height(node->left), height(node->right));
+        
+        cout << "node -> data is : " << node->data << endl;
+        cout << "node -> left is : " << node->left << endl;
+        cout << "node -> right is : " << node->right << endl;
+        cout << "node -> height is : " << node->height << endl;
+        
         
         int balance = getBalance(node);
         
@@ -99,6 +118,7 @@ public:
             node->right = rR(node->right);
             return lR(node);
         }
+        
         return node;
     }
 
@@ -113,12 +133,11 @@ public:
 
     Node* find(Node* node, string data)
     {
+        node = new Node();
         cout << "1. find func" << endl;
-        cout << node->data << endl;
         if(node == NULL){
             cout << "2. find func" << endl;
             return NULL;}
-        /*
         else if(data < (node->data)){
             cout << "3. find func" << endl;
             return find(node->left, data);}
@@ -128,7 +147,6 @@ public:
         else{
             cout << "5. before return in find" << endl;
             return node;}
-    */
         return 0;
     }
     
@@ -260,12 +278,12 @@ void removeAllWords(AVL& T, int partition, string input_file){
 
 
 void measureAll(string input_file, AVL& T){
-    for (int i=1; i<=5; ++i){
+    for (int i=1; i<=2; ++i){
         cout << " ========= " << "Partition" << i << " ========= " << endl;
         insertAllWords(T, i, input_file);
         //        T.display();
-        findAllWords(T, i, input_file);
-        removeAllWords(T, i, input_file);
+//        findAllWords(T, i, input_file);
+//        removeAllWords(T, i, input_file);
     }
 }
     
@@ -276,59 +294,8 @@ int main(int argc, char* argv[]){
     const char* input_file = argc == 2? argv[1] : "random.txt";
     
     AVL D;
-    
-    
+
     measureAll(input_file, D);
-
-    //    Node *root = NULL;
-    //
-    /* Constructing tree given in
-     the above figure */
-    //    root = insert(root, "a");
-    //    root = insert(root, "b");
-    //    root = insert(root, "c");
-    //    root = insert(root, "d");
-    //    root = insert(root, "e");
-    //    root = insert(root, "f");
-    //    root = insert(root, "g");
-    //    root = insert(root, "h");
-    //    root = insert(root, "i");
-    //    root = insert(root, "j");
-    //    root = insert(root, "k");
-    
-    /* The constructed AVL Tree would be
-     30
-     / \
-     20 40
-     / \ \
-     10 25 50
-     */
-    //    cout << "Preorder traversal of the "
-    //    "constructed AVL tree is \n\n";
-    //    preOrder(root);
-    //
-    //    root = deleteNode(root, "d");
-    //
-    /* The AVL Tree after deletion of 10
-     1
-     / \
-     0 9
-     / / \
-     -1 5     11
-     / \
-     2 6
-     
-    
-    cout << "\nPreorder traversal after"
-    << " deletion of 10 \n\n";
-    preOrder(root);
-    
-    return 0;
-}
-
-// This code is contributed by
-// rathbhupendra
-*/
     
     return 0;
 }
