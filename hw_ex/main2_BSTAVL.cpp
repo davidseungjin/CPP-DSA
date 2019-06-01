@@ -14,7 +14,7 @@ class BST
         Node* left;
         Node* right;
     };
-    Node* root;
+    Node* t;
     
     Node* clean(Node* t){
         if(t == NULL)
@@ -40,7 +40,7 @@ class BST
             t->left = insert(w, t->left);
         else if(w > t->data)
             t->right = insert(w, t->right);
-        cout << t->data <<"\t" << t-> left << "\t" << t->right<< endl;
+        cout << t->data <<"\t t-> left is \t" << t-> left << "\t t->right is \t" << t->right<< endl;
         return t;
     }
     
@@ -64,31 +64,72 @@ class BST
  
     Node* find(string w, Node* t)
     {
-        if(t == NULL)
-            return NULL;
-        else if(w < t->data)
-            return find(w, t->left);
-        else if(w > t->data)
-            return find(w, t->right);
-        else
-            return t;
+        cout << "w is " << w << endl;
+        cout << "t data/left/right are " << t->data <<"\t"<< t->left <<"\t"<< t->right << endl;
+        cout << "t decendants are " << t->left->data <<"\t"<< t->right->data <<"\t"<< endl;
+        
+        
+        while ( t != NULL )
+            if ( w  <  t->data ){
+                cout << "w is " << w << " and t-> data is " << t->data << " so " << endl;
+                cout << "go to t-> left" << endl;
+                t = t->left;
+            }else if ( w  >  t->data ){
+                cout << "w is " << w << " and t-> data is " << t->data << " so " << endl;
+                cout << "go to t-> right" << endl;
+                t = t->right;
+            }else{ // found it!
+                cout << " fount it because w and t-> data is " << w << "\t /" << t-> data << endl;
+                return t;
+            }
+        return NULL;
     }
+
+        /*
+        if(t == NULL){
+            cout << "NULL" << endl;
+            return NULL;
+        }
+        else if(w < t->data){
+            cout << "w is " << w << " and t is " << t->data << " t is not NULL, but less than t->data so, go to find(w, t->left)" << endl;
+            return find(w, t->left);
+        }
+        else if(w > t->data){
+            cout << "w is " << w << " and t is " << t->data << " t is not NULL, but greater than t->data so, go to find(w, t->right)" << endl;
+            return find(w, t->right);
+        }
+        else{
+            cout << "w is " << w << " and Found in nodes contain " << t->data << endl;
+            return t;
+        }
+     
+    }
+         */
    
     Node* remove(string w, Node* t){
+        cout << "remove starting" << endl;
+        cout << "w is " << w << endl;
+        cout << "t -> data is " << t-> data << endl;
         Node* temp;
         if(t == NULL){
+            cout << "1. return if-statement: NULL" << endl;
             return NULL;
         }else if(w < t->data){
+            cout << "condition when w < t-> data: go remove(w, t->left)" << endl;
             t->left = remove(w, t->left);
         }else if(w > t->data){
+            cout << "condition when w > t-> data: go remove(w, t->right)" << endl;
             t->right = remove(w, t->right);
         }else if (t->left == NULL && t-> right == NULL){
+            cout << "both left, right are null" << endl;
             return NULL;
         }else if (t->left == NULL && t-> right != NULL){
+            cout << "left is NULL, right is NOT null" << endl;
             temp = successor(t->right);
             t = temp;
             delete temp;
         }else if (t-> left != NULL && t->right == NULL){
+            cout << "left is NOT NULL, right is null" << endl;
             temp = predecessor(t->left);
             t = temp;
             delete temp;
@@ -98,6 +139,7 @@ class BST
             t = temp;
             delete temp;
         }
+        cout << "w is " << w << " and t-> data now is " << t->data << endl;
         return t;
     }
     
@@ -129,22 +171,23 @@ class BST
      
 public:
     BST(){
-        root = NULL;
+        t = NULL;
     }
     ~BST(){
-        root = clean(root);
+        t = clean(t);
     }
     
     void insert(string w){
-        root = insert(w, root);
+        t = insert(w, t);
+        
     }
     
     void remove(string w){
-        root = remove(w, root);
+        t = remove(w, t);
     }
     
     void display(){
-        inorder(root);
+        inorder(t);
         cout << endl;
     }
 
@@ -161,7 +204,7 @@ public:
      */
     
     void search(string w){
-        root = find(w, root);
+        t = find(w, t);
     }
 };
 
@@ -172,7 +215,7 @@ void insertAllWords(BST& T, int partition, string input_file){
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*3; i++){
+        for(int i=0; i < partition*200; i++){
             getline(f,w);
             T.insert(w);
         }
@@ -189,7 +232,7 @@ void findAllWords(BST& T, int partition, string input_file){
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*3; i++){
+        for(int i=0; i < partition*200; i++){
             getline(f,w);
             T.search(w);
         }
@@ -206,9 +249,9 @@ void removeAllWords(BST& T, int partition, string input_file){
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*3; i++){
+        for(int i=0; i < partition*1; i++){
             getline(f,w);
-            T.insert(w);
+            T.remove(w);
         }
     }
     t.elapsedUserTime(eTime);
@@ -217,12 +260,13 @@ void removeAllWords(BST& T, int partition, string input_file){
 }
 
 void measureAll(string input_file, BST& T){
-    for (int i=1; i<=3; ++i){
+    for (int i=1; i<=1; ++i){
         cout << " ========= " << "Partition" << i << " ========= " << endl;
         insertAllWords(T, i, input_file);
 //        T.display();
-//        findAllWords(T, i, input_file);
+        findAllWords(T, i, input_file);
 //        removeAllWords(T, i, input_file);
+        T.display();
     }
 }
 
