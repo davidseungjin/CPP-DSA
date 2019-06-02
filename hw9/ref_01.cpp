@@ -5,19 +5,14 @@
 #define V 5
 
 
-int minDistance(int dist[V], bool sptSet[V])
-{
+int minDistance(int dist[V], bool sptSet[V]){
     int min = INT_MAX, min_index;
-    
-    for (int v = 0; v < V; v++)
-    {
-        if (!sptSet[v] && min > dist[v])
-        {
+    for (int v = 0; v < V; v++){
+        if (!sptSet[v] && min > dist[v]){
             min_index = v;
             min = dist[v];
         }
     }
-    
     return min_index;
 }
 
