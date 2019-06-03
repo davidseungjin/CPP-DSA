@@ -3,11 +3,10 @@
 // The program is for adjacency matrix
 // representation of the graph.
 #include <iostream>
-#include <stdio.h>
+#include <stdlib.h>
 #include <fstream>
 #include <vector>
 #define INF 77777
-
 
 using namespace std;
 
@@ -18,7 +17,7 @@ public:
     vector<vector<int> > graph;
     
 public:
-    Graph(string filename){
+    Graph(string filename, int num){
         ifstream in(filename);
         in >> V;
 
@@ -33,15 +32,15 @@ public:
         }
         in.close();
          
-        dijkstra(graph, 2);
+        dijkstra(graph, num);
     }
 
-    void printPath(int parent[], int j){
+    void pathfind(int parent[], int j){
         if (parent[j] == - 1){
             cout << j ;
             return;
         }
-        printPath(parent, parent[j]);
+        pathfind(parent, parent[j]);
         cout << "-" << j;
     }
 
@@ -50,7 +49,7 @@ public:
         for (int i = 0; i < V; i++){
             cout << i << "\t"<< "\t";
             cout << "[" ; //<< src;
-            printPath(parent, i);
+            pathfind(parent, i);
             cout << "]" << " (" << dist[i] << ")" << endl;
         }
     }
@@ -96,12 +95,12 @@ public:
     }
     */
     
-    int minVindex(int dist[], bool sptSet[]){
+    int minVindex(int dist[], bool check_visit[]){
         int min = INF;
         int min_index;
         
         for (int v = 0; v < V; v++){
-            if (sptSet[v] == false && dist[v] < min){
+            if (check_visit[v] == false && dist[v] < min){
                 min = dist[v], min_index = v;
             }
         }
@@ -110,13 +109,13 @@ public:
 
     void dijkstra(vector<vector<int> > graph, int src){
         int dist[V];
-        bool sptSet[V];
+        bool check_visit[V];
         int parent[V];
 
         for (int i = 0; i < V; i++){
             parent[src] = -1;
             dist[i] = INF;
-            sptSet[i] = false;
+            check_visit[i] = false;
         }
 
         dist[src] = 0;
@@ -125,13 +124,13 @@ public:
         for (int i = 0; i < V - 1; i++){
 // Pick the minimum distance vertex from the set of
 // vertices not yet processed. u is always equal to src in first iteration.
-            int u = minVindex(dist, sptSet);
+            int u = minVindex(dist, check_visit);
             // if I use priority queue, u should be Q.extract_min().
-            sptSet[u] = true;
+            check_visit[u] = true;
             
             for (int v = 0; v < V; v++)
                 
-                if (!sptSet[v] && graph[u][v] &&
+                if (!check_visit[v] && graph[u][v] &&
                     dist[u] + graph[u][v] < dist[v])
                 {
                     parent[v] = u;
@@ -146,14 +145,17 @@ public:
 // Driver Code
 int main(int argc, char* argv[]){
 //    const char* input_file = argc == 2 ? argv[1]: "largegraph.txt";
-    argc = 3;
+    if(argc != 3){
+        
+        cout << "This program should have two arguments.\n The First one should be a starting vertex, \nand the other one is graph file.\n";
+    }else{
     
-    
-    Graph a(argv[2]);
-    
-    cout << "argv[1] is " << argv[1] << endl;
-    int num = argv[1] + 1;
-    cout << "num is " << num;
-    
+        cout << "argv[1] is " << argv[1] << endl;
+        int num = atoi(argv[1]);
+        cout << "num is " << num << endl;
+        cout << "num + 1 is " << num + 1 << endl;
+        Graph a(argv[2], num);
+        
+    }
     return 0;
 }
