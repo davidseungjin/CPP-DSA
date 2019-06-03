@@ -58,7 +58,7 @@ public:
                 cout << matrix[i][j] << "\t";}
             cout << " ]" << endl;}
     
-        dijkstra(1);
+        dijkstra(0);
     }
 
 //    int minDistance(int dist, bool check){
@@ -111,7 +111,7 @@ public:
         
         
         
-        dist[src] = 0;   // initial condition as well as self is zero.
+        dist[src] = 1;   // initial condition as well as self is zero.
         
         for(int i = 0; i < vertexnumber; i++){
             if(!david_check[src][i] && matrix[src][i] && (dist[i]>(dist[src]+matrix[src][i]))){
@@ -123,7 +123,7 @@ public:
                 cout << "1st for-loop david_check status change \n";
                 david_check[src][i] = true;
                 
-                for(int j = (vertexnumber-1); j >= vertexnumber; j--){
+                for(int j = 0; j < vertexnumber; j++){
                     if(!david_check[i][j] && matrix[i][j] && (dist[j]>(dist[i]+matrix[i][j]))){
                         dist[j] = dist[i] + matrix[i][j];
                         cout << "from " << i << " to " << j << " : dist[" << j << "] is " << dist[j] << endl;
@@ -142,7 +142,7 @@ public:
         cout << "distance matrix FOR itself" << endl;
         cout << "[ ";
         for(int i = 0 ; i < vertexnumber ; i++){
-            cout << dist[i] << "\t";
+            cout << dist[i] << " ";
         }cout << " ]" << endl;
         
         
@@ -150,7 +150,7 @@ public:
         for(int i = 0 ; i < vertexnumber ; i++){
             cout << "[ ";
             for(int j=0; j < vertexnumber; j++){
-                cout << david_check[i][j] << "\t";
+                cout << david_check[i][j] << " ";
             }
             cout << " ]" << endl;
         }
@@ -223,8 +223,9 @@ public:
      */
             
 int main(int argc, char* argv[]){
-    const char* input_file = argc == 2 ? argv[1]: "smallgraph.txt";
-                
+    const char* input_file = argc == 2 ? argv[1]: "largegraph.txt";
+    
+    
     Graph a(input_file);
                 
     return 0;

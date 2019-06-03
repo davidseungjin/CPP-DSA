@@ -126,9 +126,9 @@ int main()
     DijkstraComputePaths(0, adjacency_list, min_distance, previous);
     std::cout << "Distance from 0 to 4: " << min_distance[4] << std::endl;
     std::list<vertex_t> path = DijkstraGetShortestPathTo(4, previous);
-    std::cout << "Path : ";
+    std::cout << "Path : [";
     std::copy(path.begin(), path.end(), std::ostream_iterator<vertex_t>(std::cout, " "));
-    std::cout << std::endl;
+    std::cout << "]" << std::endl;
     
     return 0;
 }

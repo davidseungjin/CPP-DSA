@@ -125,5 +125,5 @@ int main()
         c++;
     }
     bell(am);
-    getch();
+//    getch();
 }
