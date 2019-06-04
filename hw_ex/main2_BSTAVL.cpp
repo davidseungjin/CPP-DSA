@@ -28,19 +28,20 @@ class BST
     }
     
     Node* insert(string w, Node* t){
-        if(t == NULL)
-        {
+        if(t == NULL){
             t = new Node;
             t->data = w;
             t->info = 1;
             t->left = NULL;
             t->right = NULL;
-        }
-        else if(w < t->data)
+        }else if(w < t->data){
+            cout << "go to left\n";
             t->left = insert(w, t->left);
-        else if(w > t->data)
+        }else if(w > t->data){
+            cout << "go to right\n";
             t->right = insert(w, t->right);
-        cout << t->data <<"\t t-> left is \t" << t-> left << "\t t->right is \t" << t->right<< endl;
+        }
+        cout << t->data << "  t address is " << t << "  t-> left is  " << t-> left << "  t->right is  " << t->right<< endl;
         return t;
     }
     
@@ -64,12 +65,11 @@ class BST
  
     Node* find(string w, Node* t)
     {
-        cout << "w is " << w << endl;
-        cout << "t data/left/right are " << t->data <<"\t"<< t->left <<"\t"<< t->right << endl;
-        cout << "t decendants are " << t->left->data <<"\t"<< t->right->data <<"\t"<< endl;
-        
-        
-        while ( t != NULL )
+        while ( t != NULL ){
+            cout << "w is " << w << endl;
+            cout << "t data/address/left/right are " << t->data <<"  "<< t << "  " << t->left <<"  "<< t->right << endl;
+//            cout << "t decendants are " << t->left->data <<"\t"<< t->right->data <<"\t"<< endl;
+//          If it is included, segmentation error occurs because I guess t->left crashes becuase of asking no allocated memory location.
             if ( w  <  t->data ){
                 cout << "w is " << w << " and t-> data is " << t->data << " so " << endl;
                 cout << "go to t-> left" << endl;
@@ -82,65 +82,109 @@ class BST
                 cout << " fount it because w and t-> data is " << w << "\t /" << t-> data << endl;
                 return t;
             }
+        }
         return NULL;
     }
-
         /*
         if(t == NULL){
             cout << "NULL" << endl;
             return NULL;
-        }
-        else if(w < t->data){
+        }else if(w < t->data){
             cout << "w is " << w << " and t is " << t->data << " t is not NULL, but less than t->data so, go to find(w, t->left)" << endl;
             return find(w, t->left);
-        }
-        else if(w > t->data){
+        }else if(w > t->data){
             cout << "w is " << w << " and t is " << t->data << " t is not NULL, but greater than t->data so, go to find(w, t->right)" << endl;
             return find(w, t->right);
-        }
-        else{
+        }else{
             cout << "w is " << w << " and Found in nodes contain " << t->data << endl;
             return t;
         }
      
-    }
-         */
+    }*/
+
    
     Node* remove(string w, Node* t){
-        cout << "remove starting" << endl;
-        cout << "w is " << w << endl;
-        cout << "t -> data is " << t-> data << endl;
+        cout << "Remove\t\tstarting" << endl;
+        cout << "w is\t\t" << w << endl;
+        cout << "t is " << t << endl;
+        cout << "t -> data is \t"<< t-> data << endl;
         Node* temp;
+
+        /*
         if(t == NULL){
             cout << "1. return if-statement: NULL" << endl;
             return NULL;
         }else if(w < t->data){
             cout << "condition when w < t-> data: go remove(w, t->left)" << endl;
-            t->left = remove(w, t->left);
+            t= t->left;
+            cout << "t -> left -> data is " << t->data << endl;
+            remove(w, t);
         }else if(w > t->data){
             cout << "condition when w > t-> data: go remove(w, t->right)" << endl;
-            t->right = remove(w, t->right);
+            t = t->right;
+            cout << "t -> right -> data is " << t->data << endl;
+            remove(w, t);
+        }else{
+            return t;
+        }
+        */
+        find(w, t);
+        if(t == NULL){
+            cout << "return NULL" << endl;
+            return NULL;
         }else if (t->left == NULL && t-> right == NULL){
-            cout << "both left, right are null" << endl;
+            cout << "\t\tBOTH NULL" << endl;
             return NULL;
         }else if (t->left == NULL && t-> right != NULL){
-            cout << "left is NULL, right is NOT null" << endl;
+            cout << "\t\tLeft only NULL" << endl;
             temp = successor(t->right);
             t = temp;
             delete temp;
+            return t;
         }else if (t-> left != NULL && t->right == NULL){
-            cout << "left is NOT NULL, right is null" << endl;
+            cout << "\t\tRight only NULL" << endl;
             temp = predecessor(t->left);
             t = temp;
             delete temp;
+            return t;
         }else{
         // two pointers are alive.
+            
+            cout << "\t\tBoth Alive" << endl;
+//            cout << "t-> right: successor is " << t->right->data << endl;
+            cout << "t address/data/left/right before successor is " << t << "  " << t->data << "  " << t->left << "  " << t->right << endl;
             temp = successor(t->right);
-            t = temp;
+//            t -> data = temp -> data;
+            
+            cout << "t address/data/left/right after successor is " << t  << "  " << t->data  << "  " << t->left << "  " << t->right << endl;
+            
             delete temp;
+            return t;
+             /*
+            temp = t->right;
+            Node* tempParent;
+            
+            while (temp->left != NULL) {
+                tempParent = temp;
+                temp = temp->left;
+            }
+            
+            // Delete successor.  Since successor
+            // is always left child of its parent
+            // we can safely make successor's right
+            // right child as left of its parent.
+            tempParent->left = temp->right;
+            
+            // Copy Successor Data to root
+            t->data = temp->data;
+            
+            // Delete Successor and return root
+            delete temp;
+            return t;
+              */
         }
-        cout << "w is " << w << " and t-> data now is " << t->data << endl;
-        return t;
+//        cout << "w is " << w << " and t-> data now is " << t->data << endl;
+
     }
     
     void inorder(Node* t){
@@ -215,8 +259,9 @@ void insertAllWords(BST& T, int partition, string input_file){
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*200; i++){
+        for(int i=0; i < partition*10; i++){
             getline(f,w);
+            cout << "w is " << w << endl;
             T.insert(w);
         }
     }
@@ -232,7 +277,7 @@ void findAllWords(BST& T, int partition, string input_file){
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*200; i++){
+        for(int i=0; i < partition*10; i++){
             getline(f,w);
             T.search(w);
         }
@@ -249,7 +294,7 @@ void removeAllWords(BST& T, int partition, string input_file){
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*1; i++){
+        for(int i=0; i < partition*10; i++){
             getline(f,w);
             T.remove(w);
         }
@@ -264,8 +309,8 @@ void measureAll(string input_file, BST& T){
         cout << " ========= " << "Partition" << i << " ========= " << endl;
         insertAllWords(T, i, input_file);
 //        T.display();
-        findAllWords(T, i, input_file);
-//        removeAllWords(T, i, input_file);
+//        findAllWords(T, i, input_file);
+        removeAllWords(T, i, input_file);
         T.display();
     }
 }
