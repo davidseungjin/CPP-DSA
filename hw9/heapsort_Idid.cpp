@@ -26,7 +26,7 @@ public:
         t.start();
         string w;
         f.is_open();
-        for(int i = 0; i< partition*4500; i++){
+        for(int i = 0; i< partition*10; i++){
             getline(f, w);
             push(w);
         }
@@ -46,77 +46,6 @@ public:
     ~Sorting(){
 	delete[] arr;}
 };
-
-class Insertionsort:public Sorting{
-    
-public:
-    Insertionsort(int maxsize)
-    : Sorting(maxsize)
-    {}
-    virtual void sort(int low, int high){
-        int i, j;
-        string key;
-        for (i = 1; i < high; i++)
-        {
-            key = arr[i];
-            j = i - 1;
-            while (j >= 0 && arr[j] > key)
-            {
-                arr[j + 1] = arr[j];
-                j = j - 1;
-            }
-            arr[j + 1] = key;
-        }
-    }
-    ~Insertionsort(){
-	}
-};
-
-class Quicksort:public Insertionsort{
-    
-public:
-    Quicksort(int maxsize)
-    : Insertionsort(maxsize)
-    {}
-    
-    void swap(string* a, string* b){
-        string t = *a;
-        *a = *b;
-        *b = t;
-    }
-    
-    string median_of_three( int low, int high ){
-        int mid = low + (high - low) / 2;
-        if ( arr[mid] < arr[low] ) swap( &arr[low], &arr[mid] );
-        if ( arr[mid] > arr[high] ) swap( &arr[mid], &arr[high] );
-        return arr[mid];
-    }
-
-    
-    int partition (int low, int high){
-        string pivot = median_of_three(low, high);
-        int i = (low-1);
-        for (int j = low; j < high- 1; j++){
-            if (arr[j] <= pivot){
-                i++;
-                swap(&arr[i], &arr[j]);
-            }
-        }
-        swap(&arr[i + 1], &arr[high]);
-        return (i + 1);
-    }
-    
-    void sort(int low, int high){
-        if(low < high){
-            int pi = partition(low, high);
-            sort(low, pi - 1);
-            sort(pi + 1, high);
-        }
-    }
-    
-    ~Quicksort(){}
-};
-
 
 class Heapsort:public Sorting{
     
@@ -156,13 +85,19 @@ public:
         }
     }
     
+//    void print(){
+//        for(int i = 0; i < (sizeof(arr)/sizeof(arr[0]));i++){
+//            cout << arr[i] << endl;
+//        }
+//    }
+    
     ~Heapsort(){}
 };
 
 void measureAll(string file_name){
     for (int partition = 1; partition <= 1; partition++){
         cout << " ========= " << "Partition" << partition << " ========= " << endl;
-        
+/*
         cout << "Insertion sort\t";
         Insertionsort t(partition*4500);
         Sorting& T1 = t;
@@ -174,17 +109,17 @@ void measureAll(string file_name){
         Quicksort u(partition*4500);
         Sorting& T2 = u;
         T2.insertAllFromFile(partition, file_name);         // Quick sort
-
+*/
         cout << "Heap sort\t";
-        Heapsort v(partition*4500);
+        Heapsort v(partition*10);
         Sorting& T3 = v;
         T3.insertAllFromFile(partition, file_name);         // Heap sort
-
+        T3.print();
     }
 }
 
 int main(int argc, char* argv[]){
-    const char* input_file = argc == 2 ? argv[1]: "words.txt";
+    const char* input_file = argc == 2 ? argv[1]: "random_q.txt";
 
     measureAll(input_file);
     

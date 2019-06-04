@@ -35,25 +35,62 @@ public:
         dijkstra(graph, num);
     }
 
-    void pathfind(int parent[], int j){
-        if (parent[j] == - 1){
+    void pathfinder(int prev[], int j){
+        if (prev[j] == - 1){
             cout << j ;
             return;
         }
-        pathfind(parent, parent[j]);
+        pathfinder(prev, prev[j]);
         cout << "-" << j;
     }
 
-    void printSolution(int dist[], int n, int parent[]){
+    void printSolution(int dist[], int n, int prev[]){
         int src = 0;
         for (int i = 0; i < V; i++){
             cout << i << "\t"<< "\t";
             cout << "[" ; //<< src;
-            pathfind(parent, i);
+            pathfinder(prev, i);
             cout << "]" << " (" << dist[i] << ")" << endl;
         }
     }
-
+    class Heap{
+    public:
+        int* arr;
+        int n;
+        int low;
+    public:
+        Heap(int num)
+        :arr(new int[num]),low(0), n(num){}
+        void push(int a){arr[low++]=a;}
+        void sort(int low, int n){
+            for(int i = (n/2) - 1; i >= 0; i--){
+                heapify(n, i);
+            }
+            for(int i = n-1; i>=0; i--){
+                swap(arr[0], arr[i]);
+                heapify(i,0);
+            }
+        }
+        void heapify(int n, int low){
+            int i = low;
+            int largest = i; // Initialize largest as root
+            int l = 2 * i + 1; // left = 2*i + 1
+            int r = 2 * i + 2; // right = 2*i + 2
+            
+            if (l < n && arr[l] > arr[largest])
+                largest = l;
+            
+            if (r < n && arr[r] > arr[largest])
+                largest = r;
+            
+            if (largest != i) {
+                swap(arr[i], arr[largest]);
+                
+                heapify(n, largest);
+            }
+        }
+        sort(low, n);
+    }
     
     // A utility function to find the
     // vertex with minimum distance
@@ -62,8 +99,7 @@ public:
     // path tree
     /*
     int* arr;
-    void minheapify(int high, int low)
-    {
+    void minheapify(int high, int low){
         
         int smallest;
         int largest = i; // Initialize largest as root
@@ -76,7 +112,7 @@ public:
         if (r < high && arr[r] > arr[largest])
             largest = r;
         
-        if (largest != i) {
+        if (largest != i){
             swap(arr[i], arr[largest]);
             
             heapify(high, largest);
@@ -95,6 +131,34 @@ public:
     }
     */
     
+//    void min_heapify (int Arr[ ] , int i, int N)
+//    {
+//        int left  = 2*i;
+//        int right = 2*i+1;
+//        int smallest;
+//        if(left <= N and Arr[left] < Arr[ i ] )
+//            smallest = left;
+//        else
+//            smallest = i;
+//        if(right <= N and Arr[right] < Arr[smallest] )
+//            smallest = right;
+//        if(smallest != i)
+//        {
+//            swap (Arr[ i ], Arr[ smallest ]);
+//            min_heapify (Arr, smallest,N);
+//        }
+//    }
+//    void build_minheap (int Arr[ ])
+//    {
+//        for( int i = N/2 ; i >= 1 ; i--)
+//            min_heapify (Arr, i);
+//    }
+//    
+//    class Heapsort{
+//        int N;
+//        int* array;
+//    }
+    
     int minVindex(int dist[], bool check_visit[]){
         int min = INF;
         int min_index;
@@ -110,10 +174,10 @@ public:
     void dijkstra(vector<vector<int> > graph, int src){
         int dist[V];
         bool check_visit[V];
-        int parent[V];
+        int prev[V];
 
         for (int i = 0; i < V; i++){
-            parent[src] = -1;
+            prev[src] = -1;
             dist[i] = INF;
             check_visit[i] = false;
         }
@@ -130,24 +194,20 @@ public:
             
             for (int v = 0; v < V; v++)
                 
-                if (!check_visit[v] && graph[u][v] &&
-                    dist[u] + graph[u][v] < dist[v])
-                {
-                    parent[v] = u;
+                if (!check_visit[v] && graph[u][v] && dist[u] + graph[u][v] < dist[v]){
+                    prev[v] = u;
                     dist[v] = dist[u] + graph[u][v];
                     // Q.decrease_priority(v, alt)
                 }
         }
-        printSolution(dist, V, parent);
+        printSolution(dist, V, prev);
     }
 };
 
-// Driver Code
 int main(int argc, char* argv[]){
-//    const char* input_file = argc == 2 ? argv[1]: "largegraph.txt";
     if(argc != 3){
         
-        cout << "This program should have two arguments.\n The First one should be a starting vertex, \nand the other one is graph file.\n";
+        cout << "This program should have two arguments.\n\nThe First one should be a starting vertex, \n\nand the other one is graph file.\n";
     }else{
     
         cout << "argv[1] is " << argv[1] << endl;
