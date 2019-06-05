@@ -178,37 +178,35 @@ public:
     
     
     Node* remove(string w, Node* t){
-  //      Node* temp;
-        if(t == NULL){
-            return NULL;
-        }else if(w < t -> data){
-            t -> left = remove(w, t -> left);
-        }else if(w > t -> data){
-            t -> right = remove(w, t -> right);
+        Node* root_t;
+        if(root_t == NULL){
+            return root_t;
+        }else if(w < root_t -> data){
+            root_t->left = remove(w, root_t -> left);
+        }else if(w > root_t->data){
+            root_t->right = remove(w, root_t -> right);
         }else{
-            if((t -> left == NULL)||(t -> right == NULL) ){
-                Node *temp = t -> left ?
-                t -> left :
-                t -> right;
+            if((root_t->left == NULL)||(root_t->right == NULL) ){
+                Node *temp = root_t->left ?
+                root_t->left :
+                root_t->right;
                 
                 if (temp == NULL){
-                    temp = t;
-                    t = NULL;
+                    temp = root_t;
+                    root_t = NULL;
                 }else // One child case
-                    *t = *temp; // Copy the contents of
+                    *root_t = *temp; // Copy the contents of
                 delete temp;
-                
             }else{
-                Node* temp = successor(t -> right);
+                Node* temp = successor(root_t->right);
                 
-                t -> data = temp->data;
+                root_t->data = temp->data;
                 
-                t -> right = remove(temp->data, t -> right);
+                root_t->right = remove(temp->data, root_t -> right);
             }
         }
         
         /*
- * former root_t, now t
         if (root_t == NULL)
             return root_t;
         
@@ -236,7 +234,7 @@ public:
         }
          */
         
-        return t;
+        return root_t;
     }
 
     void inorder(Node* t){
@@ -256,11 +254,9 @@ public:
     
     ~AVL(){
         cout << "AVL destructor called" << endl;
-//        while( t != NULL){
-//           delete t;
-         t = clean(t);
-        delete[] t;
-//        }
+        while( t != NULL){
+            t = clean(t);
+        }
 //        t = clean(t);
     }
     
@@ -284,14 +280,14 @@ public:
 };
 
 void insertAllWords(AVL& T, int partition, string input_file){
-//    cout << "1. insertallwords" << endl;
+    cout << "1. insertallwords" << endl;
     Timer t;
     double eTime;
     ifstream f(input_file.c_str());
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*4500; i++){
+        for(int i=0; i < partition*25000; i++){
             getline(f, w);
 //            cout << "3. insertallwords" << endl;
             T.insert(w);
@@ -311,7 +307,7 @@ void findAllWords(AVL& T, int partition, string input_file){
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*4500; i++){
+        for(int i=0; i < partition*25000; i++){
             getline(f, w);
             T.search(w);
         }
@@ -328,7 +324,7 @@ void removeAllWords(AVL& T, int partition, string input_file){
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*4500; i++){
+        for(int i=0; i < partition*25000; i++){
             getline(f, w);
             T.remove(w);
         }
@@ -340,13 +336,13 @@ void removeAllWords(AVL& T, int partition, string input_file){
 
 
 void measureAll(string input_file, AVL& T){
-    for (int i=1; i<=10; ++i){
+    for (int i=1; i<=1; ++i){
         cout << " ========= " << "Partition" << i << " ========= " << endl;
         insertAllWords(T, i, input_file);
-//                T.display();
+//                T.display();vim 
         findAllWords(T, i, input_file);
-//        removeAllWords(T, i, input_file);
-//        T.display();
+        removeAllWords(T, i, input_file);
+        T.display();
     }
 }
     
