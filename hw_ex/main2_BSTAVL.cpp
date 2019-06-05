@@ -35,13 +35,13 @@ class BST
             t->left = NULL;
             t->right = NULL;
         }else if(w < t->data){
-            cout << "go to left\n";
+//            cout << "go to left\n";
             t->left = insert(w, t->left);
         }else if(w > t->data){
-            cout << "go to right\n";
+//            cout << "go to right\n";
             t->right = insert(w, t->right);
         }
-        cout << t->data << "  t address is " << t << "  t-> left is  " << t-> left << "  t->right is  " << t->right<< endl;
+//        cout << t->data << "  t address is " << t << "  t-> left is  " << t-> left << "  t->right is  " << t->right<< endl;
         return t;
     }
     
@@ -69,24 +69,24 @@ class BST
 //            t = t -> right;
 //            cout << t << "  " << t-> data << endl;
 //
-             cout << "w is " << w << endl;
-            cout << "t data/address/left/right are " << t->data <<"  "<< t << "  " << t->left <<"  "<< t->right << endl;
+//             cout << "w is " << w << endl;
+//            cout << "t data/address/left/right are " << t->data <<"  "<< t << "  " << t->left <<"  "<< t->right << endl;
 //            cout << "t decendants are " << t->left->data <<"\t"<< t->right->data <<"\t"<< endl;
 //          If it is included, segmentation error occurs because I guess t->left crashes becuase of asking no allocated memory location.
             if ( w  <  t->data ){
-                cout << "w is " << w << " and t-> data is " << t->data << " so " << endl;
-                cout << "go to t-> left" << endl;
+//                cout << "w is " << w << " and t-> data is " << t->data << " so " << endl;
+//                cout << "go to t-> left" << endl;
                 find(w, t -> left);
 //                t = t->left;
                 break;
             }else if ( w  >  t->data ){
-                cout << "w is " << w << " and t-> data is " << t->data << " so " << endl;
-                cout << "go to t-> right" << endl;
+//                cout << "w is " << w << " and t-> data is " << t->data << " so " << endl;
+//                cout << "go to t-> right" << endl;
                 find(w, t -> right);
                 break;
 //                t = t->right;
             }else{ // found it!
-                cout << " fount it because w and t-> data is " << w << "\t /" << t-> data << endl;
+//                cout << " fount it because w and t-> data is " << w << "\t /" << t-> data << endl;
                 return t;
              
                 
@@ -122,10 +122,10 @@ class BST
 
    
     Node* remove(string w, Node* t){
-        cout << "Remove\t\tstarting" << endl;
-        cout << "w is\t\t" << w << endl;
+//        cout << "Remove\t\tstarting" << endl;
+//        cout << "w is\t\t" << w << endl;
 //        cout << "t is " << t << endl;
-        cout << "t -> data is \t"<< t-> data << endl;
+//        cout << "t -> data is \t"<< t-> data << endl;
         Node* temp;
         
         /*
@@ -146,79 +146,53 @@ class BST
             return t;
         }
         */
-        cout << " ===== before find function =====" << endl;
+        
+//        cout << " ===== before find function =====" << endl;
         find(w, t);
-        cout << " ===== after find function =====" << endl;
+//        cout << " ===== after find function =====" << endl;
         if(t == NULL){
-            cout << "return NULL" << endl;
+//            cout << "return NULL" << endl;
             delete temp;
             return NULL;
         }else if (t->left == NULL && t-> right == NULL){
-            cout << "\t\tBOTH NULL" << endl;
+//            cout << "\t\tBOTH NULL" << endl;
             delete temp;
             return NULL;
         }else if (t->left == NULL && t-> right != NULL){
-            cout << "\t\tLeft only NULL" << endl;
+//            cout << "\t\tLeft only NULL" << endl;
             temp = t->right;
             t = temp;
             delete temp;
             return t;
         }else if (t-> left != NULL && t->right == NULL){
-            cout << "\t\tRight only NULL" << endl;
+//            cout << "\t\tRight only NULL" << endl;
             temp = t->left;
             t = temp;
             delete temp;
             return t;
         }else{
         // two pointers are alive.
-            cout << "\t\tBoth Alive" << endl;
+//            cout << "\t\tBoth Alive" << endl;
 //            cout << "t-> right: successor is " << t->right->data << endl;
 //            cout << "t address/data/left/right before successor is \n: " << t << "  " << t->data << "  " << t->left << "  " << t->right << endl;
 //
+//            cout << "successor is " << successor(t -> right) << endl;
+//            cout << "predecessor(successor) is " << predecessor(successor(t ->right)) << endl;
+//
             temp = predecessor(successor(t -> right));
-
-            cout << "temp and its address, left, right is \n: " << temp << "  " << temp -> data << "  " << temp -> left << "  " << temp -> right << endl;
-            cout << "t address/data/left/right after successor is\n: " << t  << "  " << t->data  << "  " << t->left << "  " << t->right << endl;
-
             swap(temp->data, t->data);
-            cout << "temp -> data: " << temp -> data << endl;
-//            temp = NULL;
             
 //            cout << "temp and its address, left, right is \n: " << temp << "  " << temp -> data << "  " << temp -> left << "  " << temp -> right << endl;
-//            cout << "t address/data/left/right after swap is\n: " << t  << "  " << t->data  << "  " << t->left << "  " << t->right << endl;
+//            cout << "t address/data/left/right after successor is\n: " << t  << "  " << t->data  << "  " << t->left << "  " << t->right << endl;
 
+//            cout << "temp -> data before NULL: " << temp -> data << endl;
+            
             remove(w, temp);
-//            while(temp->right != NULL){
-//                temp = temp -> right;
-//            }
-
-//            delete temp;
+//            cout << "temp after NULL: " << temp << endl;
+            
+            
             return t;
-             /*
-            temp = t->right;
-            Node* tempParent;
-            
-            while (temp->left != NULL) {
-                tempParent = temp;
-                temp = temp->left;
-            }
-            
-            // Delete successor.  Since successor
-            // is always left child of its parent
-            // we can safely make successor's right
-            // right child as left of its parent.
-            tempParent->left = temp->right;
-            
-            // Copy Successor Data to root
-            t->data = temp->data;
-            
-            // Delete Successor and return root
-            delete temp;
-            return t;
-              */
         }
-//        cout << "w is " << w << " and t-> data now is " << t->data << endl;
-
     }
     
     void inorder(Node* t){
@@ -230,7 +204,6 @@ class BST
         inorder(t->right);
     }
 
-    /*
     void preorder(Node* t){
         if(t == NULL)
             return;
@@ -246,8 +219,7 @@ class BST
         postorder(t->right);
         cout << t->data << endl;;
     }
-    */
-     
+    
 public:
     BST(){
         t = NULL;
@@ -262,7 +234,7 @@ public:
     }
     
     void remove(string w){
-        t = remove(w, t);
+        remove(w, t);
     }
     
     void display(){
@@ -270,17 +242,15 @@ public:
         cout << endl;
     }
 
-    /*
     void display_pre(){
-        preorder(root);
+        preorder(t);
         cout << endl;
     }
 
     void display_post(){
-        postorder(root);
+        postorder(t);
         cout << endl;
     }
-     */
     
     void search(string w){
         find(w, t);
@@ -294,9 +264,9 @@ void insertAllWords(BST& A, int partition, string input_file){
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*5; i++){
+        for(int i=0; i < partition*5000; i++){
             getline(f,w);
-            cout << "w is " << w << endl;
+//            cout << "w is " << w << endl;
             A.insert(w);
         }
     }
@@ -312,7 +282,7 @@ void findAllWords(BST& A, int partition, string input_file){
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*5; i++){
+        for(int i=0; i < partition*5000; i++){
             getline(f,w);
             A.search(w);
         }
@@ -329,7 +299,7 @@ void removeAllWords(BST& A, int partition, string input_file){
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*5; i++){
+        for(int i=0; i < partition*5000; i++){
             getline(f,w);
             A.remove(w);
         }
@@ -340,23 +310,22 @@ void removeAllWords(BST& A, int partition, string input_file){
 }
 
 void measureAll(string input_file, BST& T){
-    for (int i=1; i<=1; ++i){
+    for (int i=1; i<=5; ++i){
         cout << " ========= " << "Partition" << i << " ========= " << endl;
         insertAllWords(T, i, input_file);
-        T.display();
+//        T.display();
         findAllWords(T, i, input_file);
         removeAllWords(T, i, input_file);
-        T.display();
+//        T.display();
     }
 }
 
 
 int main(int argc, char* argv[]){
     
-    const char* input_file = argc == 2? argv[1] : "asdf.txt";
+    const char* input_file = argc == 2? argv[1] : "random.txt";
     
     BST D;
-
     
     measureAll(input_file, D);
     

@@ -18,7 +18,7 @@ public:
         int height;
     };
     
-    Node* root;
+//    Node* root;
     
     int height(Node *N){
         if (N == NULL)
@@ -37,10 +37,8 @@ public:
         x->right = y;
         y->left = T2;
         
-        y->height = max(height(y->left),
-                        height(y->right)) + 1;
-        x->height = max(height(x->left),
-                        height(x->right)) + 1;
+        y->height = max(height(y->left),height(y->right)) + 1;
+        x->height = max(height(x->left),height(x->right)) + 1;
         
         return x;
     }
@@ -64,32 +62,43 @@ public:
         return height(N->left) - height(N->right);
     }
 
-    
-    Node* newNode(string data)
-    {
-        Node* node = new Node();
-        node->data = data;
-        node->left = NULL;
-        node->right = NULL;
-        node->height = 1; // new node is initially
-        // added at leaf
-        return(node);
-    }
+//
+//    Node* newNode(string data){
+//        Node* node = new Node();
+//        node->data = data;
+//        node->left = NULL;
+//        node->right = NULL;
+//        node->height = 1; // new node is initially
+//        // added at leaf
+//        return(node);
+//    }
     
     Node* insert(Node* node, string data){
-        if (node == NULL){
+        cout << "1. Node* insert" << endl;
+        cout << "node data is " << endl;
+        cout << node -> data << endl;
+        if(node == NULL){
             cout << "NULL if statement" << endl;
-            return(newNode(data));}
+            node = new Node;
+            node -> data = data;
+            node -> left = NULL;
+            node -> right = NULL;
+            node -> height = 1;
+            return node;
+        }else if(data < node -> data){
+            cout << "2. Node* insert condition" << endl;
+            node -> left = insert(node -> left, data);
+        }else if (data > node -> data){
+            cout << "3. Node* insert condition" << endl;
+            node ->right = insert(node -> right, data);
+        }else // Equal keys are not allowed in BST
+            return node;
+        
+        cout << "4. Node* insert condition" << endl;
         
         cout << "node -> data after if-statement is : " << node->data << endl;
         cout << "data is " << data << endl;
-        
-        if (data < node->data)
-            node->left = insert(node->left, data);
-        else if (data > node->data)
-            node->right = insert(node->right, data);
-        else // Equal keys are not allowed in BST
-            return node;
+
         
         node->height = 1 + max(height(node->left), height(node->right));
         
@@ -131,8 +140,7 @@ public:
         return current;
     }
 
-    Node* find(Node* node, string data)
-    {
+    Node* find(Node* node, string data){
         node = new Node();
         cout << "1. find func" << endl;
         if(node == NULL){
@@ -150,19 +158,15 @@ public:
         return 0;
     }
     
-    Node* remove(string data)
-    {
+    Node* remove(string data){
         Node* root;
-        if (root == NULL)
+        if(root == NULL){
             return root;
-        
-        if ( data < root->data )
+        }else if(data < root -> data){
             root->left = remove(data);
-        
-        else if( data > root->data )
+        }else if(data > root->data){
             root->right = remove(data);
-        
-        else{
+        }else{
             if((root->left == NULL)||(root->right == NULL) ){
                 Node *temp = root->left ?
                 root->left :
@@ -222,15 +226,19 @@ public:
 };
 
 void insertAllWords(AVL& T, int partition, string input_file){
+    cout << "1. insertallwords" << endl;
     Timer t;
     double eTime;
     ifstream f(input_file.c_str());
     t.start();
     string w;
     AVL::Node* node;
+    cout << "2. insertallwords, about node" << endl;
+//    cout << node << "  <-- node, node->data -->  " << node->data << endl;
     if(f.is_open()){
-        for(int i=0; i < partition*3; i++){
+        for(int i=0; i < partition*1; i++){
             getline(f, w);
+            cout << "3. insertallwords" << endl;
             T.insert(node, w);
         }
     }
