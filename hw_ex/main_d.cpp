@@ -6,6 +6,9 @@
 
 using namespace std;
 
+//template <typename A>
+
+
 class BST{
     struct Node{
         string data;
