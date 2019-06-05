@@ -63,53 +63,71 @@ class BST
             return predecessor(t->right);
     }
  
-    Node* find(string w, Node* t)
-    {
+    Node* find(string w, Node* t){
         while ( t != NULL ){
-            cout << "w is " << w << endl;
+//            cout << t << "  " << t-> data << endl;
+//            t = t -> right;
+//            cout << t << "  " << t-> data << endl;
+//
+             cout << "w is " << w << endl;
             cout << "t data/address/left/right are " << t->data <<"  "<< t << "  " << t->left <<"  "<< t->right << endl;
 //            cout << "t decendants are " << t->left->data <<"\t"<< t->right->data <<"\t"<< endl;
 //          If it is included, segmentation error occurs because I guess t->left crashes becuase of asking no allocated memory location.
             if ( w  <  t->data ){
                 cout << "w is " << w << " and t-> data is " << t->data << " so " << endl;
                 cout << "go to t-> left" << endl;
-                t = t->left;
+                find(w, t -> left);
+//                t = t->left;
+                break;
             }else if ( w  >  t->data ){
                 cout << "w is " << w << " and t-> data is " << t->data << " so " << endl;
                 cout << "go to t-> right" << endl;
-                t = t->right;
+                find(w, t -> right);
+                break;
+//                t = t->right;
             }else{ // found it!
                 cout << " fount it because w and t-> data is " << w << "\t /" << t-> data << endl;
                 return t;
+             
+                
             }
         }
         return NULL;
     }
-        /*
-        if(t == NULL){
-            cout << "NULL" << endl;
-            return NULL;
-        }else if(w < t->data){
-            cout << "w is " << w << " and t is " << t->data << " t is not NULL, but less than t->data so, go to find(w, t->left)" << endl;
-            return find(w, t->left);
-        }else if(w > t->data){
-            cout << "w is " << w << " and t is " << t->data << " t is not NULL, but greater than t->data so, go to find(w, t->right)" << endl;
-            return find(w, t->right);
-        }else{
-            cout << "w is " << w << " and Found in nodes contain " << t->data << endl;
-            return t;
-        }
-     
-    }*/
+
+//    {
+////        Node* temp = new Node;
+////        temp = t;
+////
+////        cout << t << t-> data << t -> left << t -> right << endl;
+////        cout << temp << temp-> data << temp -> left << temp -> right << endl;
+////
+//
+//        if(t == NULL){
+//            cout << "NULL" << endl;
+//            return NULL;
+//        }else if(w < temp->data){
+//            cout << "w is " << w << " and t is " << temp->data << " t is not NULL, but less than t->data so, go to find(w, t->left)" << endl;
+//            return find(w, temp->left);
+//        }else if(w > temp->data){
+//            cout << "w is " << w << " and t is " << temp->data << " t is not NULL, but greater than t->data so, go to find(w, t->right)" << endl;
+//            return find(w, temp->right);
+//        }else{
+//            cout << "w is " << w << " and Found in nodes contain " << temp->data << endl;
+////            delete temp;
+//            return t;
+//        }
+//
+//    }
 
    
     Node* remove(string w, Node* t){
         cout << "Remove\t\tstarting" << endl;
         cout << "w is\t\t" << w << endl;
-        cout << "t is " << t << endl;
+//        cout << "t is " << t << endl;
         cout << "t -> data is \t"<< t-> data << endl;
         Node* temp;
-
+        
         /*
         if(t == NULL){
             cout << "1. return if-statement: NULL" << endl;
@@ -128,37 +146,53 @@ class BST
             return t;
         }
         */
+        cout << " ===== before find function =====" << endl;
         find(w, t);
+        cout << " ===== after find function =====" << endl;
         if(t == NULL){
             cout << "return NULL" << endl;
+            delete temp;
             return NULL;
         }else if (t->left == NULL && t-> right == NULL){
             cout << "\t\tBOTH NULL" << endl;
+            delete temp;
             return NULL;
         }else if (t->left == NULL && t-> right != NULL){
             cout << "\t\tLeft only NULL" << endl;
-            temp = successor(t->right);
+            temp = t->right;
             t = temp;
             delete temp;
             return t;
         }else if (t-> left != NULL && t->right == NULL){
             cout << "\t\tRight only NULL" << endl;
-            temp = predecessor(t->left);
+            temp = t->left;
             t = temp;
             delete temp;
             return t;
         }else{
         // two pointers are alive.
-            
             cout << "\t\tBoth Alive" << endl;
 //            cout << "t-> right: successor is " << t->right->data << endl;
-            cout << "t address/data/left/right before successor is " << t << "  " << t->data << "  " << t->left << "  " << t->right << endl;
-            temp = successor(t->right);
-//            t -> data = temp -> data;
+//            cout << "t address/data/left/right before successor is \n: " << t << "  " << t->data << "  " << t->left << "  " << t->right << endl;
+//
+            temp = predecessor(successor(t -> right));
+
+            cout << "temp and its address, left, right is \n: " << temp << "  " << temp -> data << "  " << temp -> left << "  " << temp -> right << endl;
+            cout << "t address/data/left/right after successor is\n: " << t  << "  " << t->data  << "  " << t->left << "  " << t->right << endl;
+
+            swap(temp->data, t->data);
+            cout << "temp -> data: " << temp -> data << endl;
+//            temp = NULL;
             
-            cout << "t address/data/left/right after successor is " << t  << "  " << t->data  << "  " << t->left << "  " << t->right << endl;
-            
-            delete temp;
+//            cout << "temp and its address, left, right is \n: " << temp << "  " << temp -> data << "  " << temp -> left << "  " << temp -> right << endl;
+//            cout << "t address/data/left/right after swap is\n: " << t  << "  " << t->data  << "  " << t->left << "  " << t->right << endl;
+
+            remove(w, temp);
+//            while(temp->right != NULL){
+//                temp = temp -> right;
+//            }
+
+//            delete temp;
             return t;
              /*
             temp = t->right;
@@ -188,8 +222,9 @@ class BST
     }
     
     void inorder(Node* t){
-        if(t == NULL)
+        if(t == NULL){
             return;
+        }
         inorder(t->left);
         cout << t->data << endl;
         inorder(t->right);
@@ -200,15 +235,15 @@ class BST
         if(t == NULL)
             return;
         cout << t->data << endl;
-        inorder(t->left);
-        inorder(t->right);
+        preorder(t->left);
+        preorder(t->right);
     }
     
     void postorder(Node* t){
         if(t == NULL)
             return;
-        inorder(t->left);
-        inorder(t->right);
+        postorder(t->left);
+        postorder(t->right);
         cout << t->data << endl;;
     }
     */
@@ -248,21 +283,21 @@ public:
      */
     
     void search(string w){
-        t = find(w, t);
+        find(w, t);
     }
 };
 
-void insertAllWords(BST& T, int partition, string input_file){
+void insertAllWords(BST& A, int partition, string input_file){
     Timer t;
     double eTime;
     ifstream f(input_file.c_str());
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*10; i++){
+        for(int i=0; i < partition*5; i++){
             getline(f,w);
             cout << "w is " << w << endl;
-            T.insert(w);
+            A.insert(w);
         }
     }
     t.elapsedUserTime(eTime);
@@ -270,16 +305,16 @@ void insertAllWords(BST& T, int partition, string input_file){
     cout << "insertAllWords time of\t" << input_file << "\tpartition\t" << partition << " is\t" << eTime << endl;
 }
 
-void findAllWords(BST& T, int partition, string input_file){
+void findAllWords(BST& A, int partition, string input_file){
     Timer t;
     double eTime;
     ifstream f(input_file.c_str());
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*10; i++){
+        for(int i=0; i < partition*5; i++){
             getline(f,w);
-            T.search(w);
+            A.search(w);
         }
     }
     t.elapsedUserTime(eTime);
@@ -287,16 +322,16 @@ void findAllWords(BST& T, int partition, string input_file){
     cout << "findAllWords time of\t" << input_file << "\tpartition\t" << partition << " is\t" << eTime << endl;
 }
 
-void removeAllWords(BST& T, int partition, string input_file){
+void removeAllWords(BST& A, int partition, string input_file){
     Timer t;
     double eTime;
     ifstream f(input_file.c_str());
     t.start();
     string w;
     if(f.is_open()){
-        for(int i=0; i < partition*10; i++){
+        for(int i=0; i < partition*5; i++){
             getline(f,w);
-            T.remove(w);
+            A.remove(w);
         }
     }
     t.elapsedUserTime(eTime);
@@ -308,8 +343,8 @@ void measureAll(string input_file, BST& T){
     for (int i=1; i<=1; ++i){
         cout << " ========= " << "Partition" << i << " ========= " << endl;
         insertAllWords(T, i, input_file);
-//        T.display();
-//        findAllWords(T, i, input_file);
+        T.display();
+        findAllWords(T, i, input_file);
         removeAllWords(T, i, input_file);
         T.display();
     }
@@ -318,7 +353,7 @@ void measureAll(string input_file, BST& T){
 
 int main(int argc, char* argv[]){
     
-    const char* input_file = argc == 2? argv[1] : "random.txt";
+    const char* input_file = argc == 2? argv[1] : "asdf.txt";
     
     BST D;
 
