@@ -6,10 +6,7 @@
 
 using namespace std;
 
-//template <typename A>
-
-
-class BST{
+class AVL{
     struct Node{
         string data;
         int height;
@@ -34,31 +31,32 @@ class BST{
         return N->height;
     }
     
+    
     int max(int a, int b){
         return (a > b) ? a : b;
     }
     
-    Node* rR(Node *y){
-        Node *x = y->left;
-        Node *T2 = x->right;
+    Node* rR(Node* t){
+        Node* x = t->left;
+        Node* T2 = x->right;
         
-        x->right = y;
-        y->left = T2;
+        x->right = t;
+        t->left = T2;
         
         x->height = max(height(x->left),height(x->right)) + 1;
-        y->height = max(height(y->left),height(y->right)) + 1;
+        t->height = max(height(t->left),height(t->right)) + 1;
         
         return x;
     }
     
-    Node* lR(Node *x){
-        Node *y = x->right;
-        Node *T2 = y->left;
+    Node* lR(Node* t){
+        Node* y = t->right;
+        Node* T2 = y->left;
         
-        x->right = T2;
-        y->left = x;
+        t->right = T2;
+        y->left = t;
         
-        x->height = max(height(x->left), height(x->right)) + 1;
+        t->height = max(height(t->left), height(t->right)) + 1;
         y->height = max(height(y->left), height(y->right)) + 1;
         
         return y;
@@ -66,6 +64,7 @@ class BST{
     int getBalance(Node* t){
         return t == NULL ? 0 : (height(t->left) - height(t->right));
     }
+    
     
     Node* insert(string w, Node* t){
         if(t == NULL){
@@ -82,25 +81,23 @@ class BST{
 
         int balance = getBalance(t);
 
-        if (balance > 1 && (w < (t -> left -> data))){
+        if (balance > 1){
+            if(w > (t -> left -> data)){
+                t -> left = lR(t -> left);
+            }
             return rR(t);
         }
 
-        if (balance < -1 && (w > (t -> right -> data))){
+        if (balance < -1){
+            if((w < (t -> right -> data))){
+                t->right = rR(t -> right);
+            }
             return lR(t);
         }
-
-        if (balance > 1 && (w > (t -> left -> data))){
-            t -> left = lR(t -> left);
-            return rR(t);
-        }
-
-        if (balance < -1 && (w < (t -> right -> data))){
-            t->right = rR(t -> right);
-            return lR(t);
-        }
+        
         return t;
     }
+ 
     
     Node* successor(Node* t){
         if(t == NULL)
@@ -134,7 +131,7 @@ class BST{
         }
         return NULL;
     }
-
+    
     Node* remove(string w, Node* t){
         find(w, t);
         if(t == NULL){
@@ -158,41 +155,40 @@ class BST{
             temp = NULL;
             delete temp;
         }
+
         if (t == NULL)
             return t;
         t->height = 1 + max(height(t->left), height(t->right));
         int balance = getBalance(t);
         
-        if (balance > 1 && getBalance(t->left) >= 0){
+        if (balance > 1){
+            if(w > (t -> left -> data)){
+                t -> left = lR(t -> left);
+            }
             return rR(t);
         }
         
-        if (balance > 1 && getBalance(t->left) < 0){
-            t->left = lR(t->left);
-            return rR(t);
-        }
-        
-        if (balance < -1 && getBalance(t->right) <= 0){
+        if (balance < -1){
+            if((w < (t -> right -> data))){
+                t->right = rR(t -> right);
+            }
             return lR(t);
         }
-        
-        if (balance < -1 && getBalance(t->right) > 0){
-            t->right = rR(t->right);
-            return lR(t);
-        }
+
         return t;
     }
-    
+     
+     
     void inorder(Node* t){
         if(t == NULL){
             return;
         }
         inorder(t->left);
-        cout << t->data << endl;
+        cout << t->data << "  " << t->height<< endl;
         inorder(t->right);
     }
-
-    void preorder(Node* t){
+   
+     void preorder(Node* t){
         if(t == NULL)
             return;
         cout << t->data << endl;
@@ -200,20 +196,22 @@ class BST{
         preorder(t->right);
     }
     
-    void postorder(Node* t){
+    /*
+     void postorder(Node* t){
         if(t == NULL)
             return;
         postorder(t->left);
         postorder(t->right);
         cout << t->data << endl;;
     }
-    
+    */
 public:
-    BST(){
-//        cout << "BST constructor called" << endl;
+
+    AVL(){
+//        cout << "AVL constructor called" << endl;
         t = NULL;
     }
-    ~BST(){
+    ~AVL(){
         t = clean(t);
 //        delete[] t;
     }
@@ -235,18 +233,20 @@ public:
         cout << endl;
     }
 
+    
     void display_pre(){
         preorder(t);
         cout << endl;
     }
-
+/*
     void display_post(){
         postorder(t);
         cout << endl;
     }
+    */
 };
 
-void insertAllWords(BST& A, int partition, string input_file){
+void insertAllWords(AVL& A, int partition, string input_file){
     Timer t;
     double eTime;
     ifstream f(input_file.c_str());
@@ -264,7 +264,7 @@ void insertAllWords(BST& A, int partition, string input_file){
     cout << "insertAllWords time of\t" << input_file << "\tpartition\t" << partition << " is\t" << eTime << endl;
 }
 
-void findAllWords(BST& A, int partition, string input_file){
+void findAllWords(AVL& A, int partition, string input_file){
     Timer t;
     double eTime;
     ifstream f(input_file.c_str());
@@ -281,7 +281,7 @@ void findAllWords(BST& A, int partition, string input_file){
     cout << "findAllWords time of\t" << input_file << "\tpartition\t" << partition << " is\t" << eTime << endl;
 }
 
-void removeAllWords(BST& A, int partition, string input_file){
+void removeAllWords(AVL& A, int partition, string input_file){
     Timer t;
     double eTime;
     ifstream f(input_file.c_str());
@@ -298,11 +298,15 @@ void removeAllWords(BST& A, int partition, string input_file){
     cout << "removeAllWords time of\t" << input_file << "\tpartition\t" << partition << " is\t" << eTime << endl;
 }
 
-void measureAll(string input_file, BST& T){
-    for (int i=1; i<=10; ++i){
+
+void measureAll(string input_file, AVL& T){
+    for (int i=1; i<=1; ++i){
         cout << " ========= " << "Partition" << i << " ========= " << endl;
         insertAllWords(T, i, input_file);
-//        T.display();
+        T.display();
+        cout << "\n\n\n\n\n" << endl;
+        T.display();
+        
         findAllWords(T, i, input_file);
         removeAllWords(T, i, input_file);
 //        T.display();
@@ -314,9 +318,9 @@ int main(int argc, char* argv[]){
     
     const char* input_file = argc == 2? argv[1] : "words.txt";
     
-    BST D;
+    AVL D;
     
-    measureAll(input_file, D);
+    measureAll (input_file, D);
     
     return 0;
 }

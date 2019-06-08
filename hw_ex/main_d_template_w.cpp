@@ -6,12 +6,10 @@
 
 using namespace std;
 
-//template <typename A>
-
-
-class BST{
+template <class EXHW>
+class AVL{
     struct Node{
-        string data;
+        EXHW data;
         int height;
         Node* left;
         Node* right;
@@ -34,6 +32,7 @@ class BST{
         return N->height;
     }
     
+    /*
     int max(int a, int b){
         return (a > b) ? a : b;
     }
@@ -66,8 +65,10 @@ class BST{
     int getBalance(Node* t){
         return t == NULL ? 0 : (height(t->left) - height(t->right));
     }
+    */
     
-    Node* insert(string w, Node* t){
+    template <class EXHW>
+    Node* insert(EXHW w, Node* t){
         if(t == NULL){
             t = new Node;
             t->data = w;
@@ -80,6 +81,7 @@ class BST{
             t->right = insert(w, t->right);
         }
 
+        /*
         int balance = getBalance(t);
 
         if (balance > 1 && (w < (t -> left -> data))){
@@ -99,9 +101,11 @@ class BST{
             t->right = rR(t -> right);
             return lR(t);
         }
+        */
         return t;
     }
-    
+ 
+    /*
     Node* successor(Node* t){
         if(t == NULL)
             return NULL;
@@ -120,7 +124,8 @@ class BST{
             return predecessor(t->right);
     }
  
-    Node* find(string w, Node* t){
+    template <class EXHW>
+    Node* find(EXHW w, Node* t){
         while ( t != NULL ){
             if ( w  <  t->data ){
                 find(w, t -> left);
@@ -135,7 +140,8 @@ class BST{
         return NULL;
     }
 
-    Node* remove(string w, Node* t){
+    template <class EXHW>
+    Node* remove(EXHW w, Node* t){
         find(w, t);
         if(t == NULL){
             return NULL;
@@ -158,6 +164,7 @@ class BST{
             temp = NULL;
             delete temp;
         }
+
         if (t == NULL)
             return t;
         t->height = 1 + max(height(t->left), height(t->right));
@@ -180,9 +187,13 @@ class BST{
             t->right = rR(t->right);
             return lR(t);
         }
+ 
         return t;
     }
-    
+ */
+     
+     
+    /*
     void inorder(Node* t){
         if(t == NULL){
             return;
@@ -191,7 +202,6 @@ class BST{
         cout << t->data << endl;
         inorder(t->right);
     }
-
     void preorder(Node* t){
         if(t == NULL)
             return;
@@ -207,34 +217,42 @@ class BST{
         postorder(t->right);
         cout << t->data << endl;;
     }
-    
+    */
 public:
-    BST(){
-//        cout << "BST constructor called" << endl;
+
+    template <class EXHW>
+    AVL(){
+//        cout << "AVL constructor called" << endl;
         t = NULL;
     }
-    ~BST(){
+    ~AVL(){
         t = clean(t);
 //        delete[] t;
     }
     
-    void insert(string w){
+    template <class EXHW>
+    void insert(EXHW w){
         t = insert(w, t);
     }
     
-    void search(string w){
+    /*
+    template <class EXHW>
+    void search(EXHW w){
         find(w, t);
     }
     
-    void remove(string w){
+    template <class EXHW>
+    void remove(EXHW w){
         remove(w, t);
     }
-    
+    */
+     
     void display(){
         inorder(t);
         cout << endl;
     }
 
+    /*
     void display_pre(){
         preorder(t);
         cout << endl;
@@ -244,14 +262,16 @@ public:
         postorder(t);
         cout << endl;
     }
+    */
 };
 
-void insertAllWords(BST& A, int partition, string input_file){
+template <class EXHW>
+void insertAllWords(AVL& A, int partition, EXHW input_file){
     Timer t;
     double eTime;
     ifstream f(input_file.c_str());
     t.start();
-    string w;
+    EXHW w;
     if(f.is_open()){
         for(int i=0; i < partition*4500; i++){
             getline(f,w);
@@ -264,12 +284,15 @@ void insertAllWords(BST& A, int partition, string input_file){
     cout << "insertAllWords time of\t" << input_file << "\tpartition\t" << partition << " is\t" << eTime << endl;
 }
 
-void findAllWords(BST& A, int partition, string input_file){
+/*
+
+template <class EXHW>
+void findAllWords(AVL& A, int partition, EXHW input_file){
     Timer t;
     double eTime;
     ifstream f(input_file.c_str());
     t.start();
-    string w;
+    EXHW w;
     if(f.is_open()){
         for(int i=0; i < partition*4500; i++){
             getline(f,w);
@@ -281,12 +304,13 @@ void findAllWords(BST& A, int partition, string input_file){
     cout << "findAllWords time of\t" << input_file << "\tpartition\t" << partition << " is\t" << eTime << endl;
 }
 
-void removeAllWords(BST& A, int partition, string input_file){
+template <class EXHW>
+void removeAllWords(AVL& A, int partition, EXHW input_file){
     Timer t;
     double eTime;
     ifstream f(input_file.c_str());
     t.start();
-    string w;
+    EXHW w;
     if(f.is_open()){
         for(int i=0; i < partition*4500; i++){
             getline(f,w);
@@ -297,14 +321,16 @@ void removeAllWords(BST& A, int partition, string input_file){
     f.close();
     cout << "removeAllWords time of\t" << input_file << "\tpartition\t" << partition << " is\t" << eTime << endl;
 }
+*/
 
-void measureAll(string input_file, BST& T){
-    for (int i=1; i<=10; ++i){
+template <class EXHW>
+void measureAll(EXHW input_file, AVL& T){
+    for (int i=1; i<=1; ++i){
         cout << " ========= " << "Partition" << i << " ========= " << endl;
         insertAllWords(T, i, input_file);
 //        T.display();
-        findAllWords(T, i, input_file);
-        removeAllWords(T, i, input_file);
+//        findAllWords(T, i, input_file);
+//        removeAllWords(T, i, input_file);
 //        T.display();
     }
 }
@@ -312,11 +338,11 @@ void measureAll(string input_file, BST& T){
 
 int main(int argc, char* argv[]){
     
-    const char* input_file = argc == 2? argv[1] : "words.txt";
+    const char* input_file = argc == 2? argv[1] : "random.txt";
     
-    BST D;
+    AVL<string> D;
     
-    measureAll(input_file, D);
+    measureAll (input_file, D);
     
     return 0;
 }

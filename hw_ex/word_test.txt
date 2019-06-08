@@ -1,0 +1,192 @@
+removeAllWords time of	random.txt	partition	8 is	0.006027
+ ========= Partition9 ========= 
+insertAllWords time of	random.txt	partition	9 is	0.008146
+findAllWords time of	random.txt	partition	9 is	0.00626
+removeAllWords time of	random.txt	partition	9 is	0.006874
+ ========= Partition10 ========= 
+insertAllWords time of	random.txt	partition	10 is	0.008393
+findAllWords time of	random.txt	partition	10 is	0.007055
+removeAllWords time of	random.txt	partition	10 is	0.007896
+seungl21@andromeda-4 13:41:53 ~/hw/hw_ex 
+$ vim main_d.cpp
+seungl21@andromeda-4 13:42:49 ~/hw/hw_ex 
+$ g++ main_d.cpp
+seungl21@andromeda-4 13:42:52 ~/hw/hw_ex 
+$ ./a.out
+ ========= Partition1 ========= 
+insertAllWords time of	random.txt	partition	1 is	0.008753
+findAllWords time of	random.txt	partition	1 is	0.00615
+removeAllWords time of	random.txt	partition	1 is	0.006821
+ ========= Partition2 ========= 
+insertAllWords time of	random.txt	partition	2 is	0.018512
+findAllWords time of	random.txt	partition	2 is	0.013629
+removeAllWords time of	random.txt	partition	2 is	0.01549
+ ========= Partition3 ========= 
+insertAllWords time of	random.txt	partition	3 is	0.028925
+findAllWords time of	random.txt	partition	3 is	0.021523
+removeAllWords time of	random.txt	partition	3 is	0.024168
+ ========= Partition4 ========= 
+insertAllWords time of	random.txt	partition	4 is	0.039167
+findAllWords time of	random.txt	partition	4 is	0.024702
+removeAllWords time of	random.txt	partition	4 is	0.02228
+ ========= Partition5 ========= 
+insertAllWords time of	random.txt	partition	5 is	0.033004
+findAllWords time of	random.txt	partition	5 is	0.025226
+removeAllWords time of	random.txt	partition	5 is	0.028706
+ ========= Partition6 ========= 
+insertAllWords time of	random.txt	partition	6 is	0.056852
+findAllWords time of	random.txt	partition	6 is	0.047191
+removeAllWords time of	random.txt	partition	6 is	0.04896
+ ========= Partition7 ========= 
+insertAllWords time of	random.txt	partition	7 is	0.048522
+findAllWords time of	random.txt	partition	7 is	0.037346
+removeAllWords time of	random.txt	partition	7 is	0.042314
+ ========= Partition8 ========= 
+insertAllWords time of	random.txt	partition	8 is	0.056559
+findAllWords time of	random.txt	partition	8 is	0.04249
+removeAllWords time of	random.txt	partition	8 is	0.049006
+ ========= Partition9 ========= 
+insertAllWords time of	random.txt	partition	9 is	0.0655
+findAllWords time of	random.txt	partition	9 is	0.049785
+removeAllWords time of	random.txt	partition	9 is	0.083334
+ ========= Partition10 ========= 
+insertAllWords time of	random.txt	partition	10 is	0.091641
+findAllWords time of	random.txt	partition	10 is	0.0558
+removeAllWords time of	random.txt	partition	10 is	0.0628
+seungl21@andromeda-4 13:42:56 ~/hw/hw_ex 
+$ clear
+
+seungl21@andromeda-4 13:43:20 ~/hw/hw_ex 
+$ ./a.out
+ ========= Partition1 ========= 
+insertAllWords time of	random.txt	partition	1 is	0.008666
+findAllWords time of	random.txt	partition	1 is	0.006139
+removeAllWords time of	random.txt	partition	1 is	0.006889
+ ========= Partition2 ========= 
+insertAllWords time of	random.txt	partition	2 is	0.018491
+findAllWords time of	random.txt	partition	2 is	0.0135
+removeAllWords time of	random.txt	partition	2 is	0.01507
+ ========= Partition3 ========= 
+insertAllWords time of	random.txt	partition	3 is	0.029136
+findAllWords time of	random.txt	partition	3 is	0.020641
+removeAllWords time of	random.txt	partition	3 is	0.022893
+ ========= Partition4 ========= 
+insertAllWords time of	random.txt	partition	4 is	0.03843
+findAllWords time of	random.txt	partition	4 is	0.029777
+removeAllWords time of	random.txt	partition	4 is	0.027705
+ ========= Partition5 ========= 
+insertAllWords time of	random.txt	partition	5 is	0.033882
+findAllWords time of	random.txt	partition	5 is	0.024562
+removeAllWords time of	random.txt	partition	5 is	0.027859
+ ========= Partition6 ========= 
+insertAllWords time of	random.txt	partition	6 is	0.040843
+findAllWords time of	random.txt	partition	6 is	0.031362
+removeAllWords time of	random.txt	partition	6 is	0.035345
+ ========= Partition7 ========= 
+insertAllWords time of	random.txt	partition	7 is	0.049394
+findAllWords time of	random.txt	partition	7 is	0.036703
+removeAllWords time of	random.txt	partition	7 is	0.041962
+ ========= Partition8 ========= 
+insertAllWords time of	random.txt	partition	8 is	0.057352
+findAllWords time of	random.txt	partition	8 is	0.042853
+removeAllWords time of	random.txt	partition	8 is	0.048704
+ ========= Partition9 ========= 
+insertAllWords time of	random.txt	partition	9 is	0.066171
+findAllWords time of	random.txt	partition	9 is	0.049348
+removeAllWords time of	random.txt	partition	9 is	0.055587
+ ========= Partition10 ========= 
+insertAllWords time of	random.txt	partition	10 is	0.105665
+findAllWords time of	random.txt	partition	10 is	0.069838
+removeAllWords time of	random.txt	partition	10 is	0.062576
+seungl21@andromeda-4 13:43:24 ~/hw/hw_ex 
+$ g++ main_d.cpp
+seungl21@andromeda-4 13:44:29 ~/hw/hw_ex 
+$ ./a.out
+ ========= Partition1 ========= 
+insertAllWords time of	random.txt	partition	1 is	0.007792
+findAllWords time of	random.txt	partition	1 is	0.006268
+removeAllWords time of	random.txt	partition	1 is	0.006928
+ ========= Partition2 ========= 
+insertAllWords time of	random.txt	partition	2 is	0.018468
+findAllWords time of	random.txt	partition	2 is	0.013768
+removeAllWords time of	random.txt	partition	2 is	0.015712
+ ========= Partition3 ========= 
+insertAllWords time of	random.txt	partition	3 is	0.028918
+findAllWords time of	random.txt	partition	3 is	0.021719
+removeAllWords time of	random.txt	partition	3 is	0.024119
+ ========= Partition4 ========= 
+insertAllWords time of	random.txt	partition	4 is	0.039783
+findAllWords time of	random.txt	partition	4 is	0.023331
+removeAllWords time of	random.txt	partition	4 is	0.022512
+ ========= Partition5 ========= 
+insertAllWords time of	random.txt	partition	5 is	0.034358
+findAllWords time of	random.txt	partition	5 is	0.025766
+removeAllWords time of	random.txt	partition	5 is	0.028838
+ ========= Partition6 ========= 
+insertAllWords time of	random.txt	partition	6 is	0.059355
+findAllWords time of	random.txt	partition	6 is	0.047509
+removeAllWords time of	random.txt	partition	6 is	0.053418
+ ========= Partition7 ========= 
+insertAllWords time of	random.txt	partition	7 is	0.074469
+findAllWords time of	random.txt	partition	7 is	0.051872
+removeAllWords time of	random.txt	partition	7 is	0.042013
+ ========= Partition8 ========= 
+insertAllWords time of	random.txt	partition	8 is	0.057699
+findAllWords time of	random.txt	partition	8 is	0.0441
+removeAllWords time of	random.txt	partition	8 is	0.04875
+ ========= Partition9 ========= 
+insertAllWords time of	random.txt	partition	9 is	0.065196
+findAllWords time of	random.txt	partition	9 is	0.049864
+removeAllWords time of	random.txt	partition	9 is	0.055616
+ ========= Partition10 ========= 
+insertAllWords time of	random.txt	partition	10 is	0.097695
+findAllWords time of	random.txt	partition	10 is	0.078326
+removeAllWords time of	random.txt	partition	10 is	0.062555
+seungl21@andromeda-4 13:44:32 ~/hw/hw_ex 
+$ vim main_d.cpp
+seungl21@andromeda-4 13:46:26 ~/hw/hw_ex 
+$ g++ main_d.cpp
+seungl21@andromeda-4 13:46:30 ~/hw/hw_ex 
+$ ./a.out
+ ========= Partition1 ========= 
+insertAllWords time of	words.txt	partition	1 is	0.61901
+findAllWords time of	words.txt	partition	1 is	0.401738
+removeAllWords time of	words.txt	partition	1 is	0.354902
+ ========= Partition2 ========= 
+insertAllWords time of	words.txt	partition	2 is	2.38794
+findAllWords time of	words.txt	partition	2 is	1.55994
+removeAllWords time of	words.txt	partition	2 is	1.39055
+ ========= Partition3 ========= 
+insertAllWords time of	words.txt	partition	3 is	5.59676
+findAllWords time of	words.txt	partition	3 is	3.7611
+removeAllWords time of	words.txt	partition	3 is	3.30543
+ ========= Partition4 ========= 
+insertAllWords time of	words.txt	partition	4 is	9.90642
+findAllWords time of	words.txt	partition	4 is	6.62794
+removeAllWords time of	words.txt	partition	4 is	5.88334
+ ========= Partition5 ========= 
+insertAllWords time of	words.txt	partition	5 is	15.433
+findAllWords time of	words.txt	partition	5 is	10.336
+removeAllWords time of	words.txt	partition	5 is	9.19787
+ ========= Partition6 ========= 
+insertAllWords time of	words.txt	partition	6 is	21.1689
+findAllWords time of	words.txt	partition	6 is	14.1225
+removeAllWords time of	words.txt	partition	6 is	12.7321
+ ========= Partition7 ========= 
+insertAllWords time of	words.txt	partition	7 is	29.3199
+findAllWords time of	words.txt	partition	7 is	19.6544
+removeAllWords time of	words.txt	partition	7 is	17.9542
+ ========= Partition8 ========= 
+insertAllWords time of	words.txt	partition	8 is	39.7652
+findAllWords time of	words.txt	partition	8 is	26.9613
+removeAllWords time of	words.txt	partition	8 is	24.8285
+ ========= Partition9 ========= 
+insertAllWords time of	words.txt	partition	9 is	52.1429
+findAllWords time of	words.txt	partition	9 is	36.0515
+removeAllWords time of	words.txt	partition	9 is	34.1653
+ ========= Partition10 ========= 
+insertAllWords time of	words.txt	partition	10 is	66.59
+findAllWords time of	words.txt	partition	10 is	46.8663
+removeAllWords time of	words.txt	partition	10 is	46.0698
+seungl21@andromeda-4 13:55:57 ~/hw/hw_ex 
+$ 

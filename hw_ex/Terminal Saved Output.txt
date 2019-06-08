@@ -1,0 +1,116 @@
+seungl21@andromeda-4 13:28:02 ~/hw/hw_ex 
+$ ./a.out
+ ========= Partition1 ========= 
+insertAllWords time of	words.txt	partition	1 is	0.011907
+findAllWords time of	words.txt	partition	1 is	0.009113
+Segmentation fault (core dumped)
+seungl21@andromeda-4 13:28:09 ~/hw/hw_ex 
+$ vim main_d.cpp
+seungl21@andromeda-4 13:31:15 ~/hw/hw_ex 
+$ g++ main_d.cpp
+seungl21@andromeda-4 13:31:20 ~/hw/hw_ex 
+$ ./a.out
+ ========= Partition1 ========= 
+insertAllWords time of	words.txt	partition	1 is	0.012321
+findAllWords time of	words.txt	partition	1 is	0.009005
+Segmentation fault (core dumped)
+seungl21@andromeda-4 13:31:22 ~/hw/hw_ex 
+$ ls
+a.out*      core.9479  core.9667            main_d_backup.cpp      random.txt
+core.10156  core.9487  main2_BSTAVL.cpp     main_d.cpp             Timer.h
+core.16320  core.9496  main.cpp             main_d_template_w.cpp  words.txt
+core.16729  core.9665  main_d_backup_1.cpp  main_g.cpp
+seungl21@andromeda-4 13:32:48 ~/hw/hw_ex 
+$ rm core*
+rm: remove regular file ‘core.10156’? y
+removed ‘core.10156’
+rm: remove regular file ‘core.16320’? y
+removed ‘core.16320’
+rm: remove regular file ‘core.16729’? y
+removed ‘core.16729’
+rm: remove regular file ‘core.9479’? y
+removed ‘core.9479’
+rm: remove regular file ‘core.9487’? y
+removed ‘core.9487’
+rm: remove regular file ‘core.9496’? y
+removed ‘core.9496’
+rm: remove regular file ‘core.9665’? y
+removed ‘core.9665’
+rm: remove regular file ‘core.9667’? y
+removed ‘core.9667’
+seungl21@andromeda-4 13:32:56 ~/hw/hw_ex 
+$ 
+seungl21@andromeda-4 13:32:58 ~/hw/hw_ex 
+$ ls
+a.out*            main_d_backup_1.cpp  main_d_template_w.cpp  Timer.h
+main2_BSTAVL.cpp  main_d_backup.cpp    main_g.cpp             words.txt
+main.cpp          main_d.cpp           random.txt
+seungl21@andromeda-4 13:32:58 ~/hw/hw_ex 
+$ rm a.out
+rm: remove regular file ‘a.out’? y
+removed ‘a.out’
+seungl21@andromeda-4 13:33:03 ~/hw/hw_ex 
+$ vim main_d_backup.cpp
+seungl21@andromeda-4 13:33:49 ~/hw/hw_ex 
+$ g++ main_d_backup.cpp
+seungl21@andromeda-4 13:34:01 ~/hw/hw_ex 
+$ clear
+
+seungl21@andromeda-4 13:34:05 ~/hw/hw_ex 
+$ vim main_d_backup.cpp
+seungl21@andromeda-4 13:34:21 ~/hw/hw_ex 
+$ ./a.out
+BST constructor called
+ ========= Partition1 ========= 
+insertAllWords time of	random.txt	partition	1 is	0.000305
+findAllWords time of	random.txt	partition	1 is	0
+removeAllWords time of	random.txt	partition	1 is	0.000115
+ ========= Partition2 ========= 
+insertAllWords time of	random.txt	partition	2 is	0.001493
+findAllWords time of	random.txt	partition	2 is	0.001102
+removeAllWords time of	random.txt	partition	2 is	0.001221
+ ========= Partition3 ========= 
+insertAllWords time of	random.txt	partition	3 is	0.002216
+findAllWords time of	random.txt	partition	3 is	0.001742
+removeAllWords time of	random.txt	partition	3 is	0.001388
+ ========= Partition4 ========= 
+insertAllWords time of	random.txt	partition	4 is	0.003161
+findAllWords time of	random.txt	partition	4 is	0.002352
+removeAllWords time of	random.txt	partition	4 is	0.002768
+ ========= Partition5 ========= 
+insertAllWords time of	random.txt	partition	5 is	0.003478
+findAllWords time of	random.txt	partition	5 is	0.003112
+removeAllWords time of	random.txt	partition	5 is	0.003571
+ ========= Partition6 ========= 
+insertAllWords time of	random.txt	partition	6 is	0.005167
+findAllWords time of	random.txt	partition	6 is	0.003981
+removeAllWords time of	random.txt	partition	6 is	0.004404
+ ========= Partition7 ========= 
+insertAllWords time of	random.txt	partition	7 is	0.006142
+findAllWords time of	random.txt	partition	7 is	0.004738
+removeAllWords time of	random.txt	partition	7 is	0.005241
+ ========= Partition8 ========= 
+insertAllWords time of	random.txt	partition	8 is	0.00712
+findAllWords time of	random.txt	partition	8 is	0.005471
+removeAllWords time of	random.txt	partition	8 is	0.006081
+ ========= Partition9 ========= 
+insertAllWords time of	random.txt	partition	9 is	0.008164
+findAllWords time of	random.txt	partition	9 is	0.006649
+removeAllWords time of	random.txt	partition	9 is	0.006944
+ ========= Partition10 ========= 
+insertAllWords time of	random.txt	partition	10 is	0.009191
+findAllWords time of	random.txt	partition	10 is	0.007093
+removeAllWords time of	random.txt	partition	10 is	0.006974
+seungl21@andromeda-4 13:34:26 ~/hw/hw_ex 
+$ vim main_d_backup.cpp
+seungl21@andromeda-4 13:34:48 ~/hw/hw_ex 
+$ g++ main_d_backup.cpp
+seungl21@andromeda-4 13:34:54 ~/hw/hw_ex 
+$ ./a.out
+BST constructor called
+ ========= Partition1 ========= 
+insertAllWords time of	words.txt	partition	1 is	0.0119
+findAllWords time of	words.txt	partition	1 is	0.00916
+Segmentation fault (core dumped)
+seungl21@andromeda-4 13:34:57 ~/hw/hw_ex 
+$ 
